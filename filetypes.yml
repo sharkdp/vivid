@@ -40,66 +40,92 @@ markup:
     - .css
     - .htm
     - .html
+    - .shtml
+    - .xhtml
     - .less
 
   other:
     - .json
     - .md
     - .markdown
+    - .mdown
     - .tex
     - .toml
+    - .tml
     - .xml
     - .yaml
     - .yml
     - .xmp
+    - .csv
 
 programming:
   source:
-    cpp:
-      - .c
-      - .cpp
-      - .h
-      - .hpp
-
-    diff:
-      - .patch
-
-    haskell:
-      - .hs
-
-    java:
-      - java
-
-    javascript:
-      - js
-
-    php:
-      - .php
-
-    purescript:
-      - .purs
-
-    python:
-      - .py
-
-    rust:
-      - .rs
-
-    shell:
-      - .sh
-      - .bash
-      - .zsh
-      - .fish
-      - .csh
-
-    typescript:
-      - .ts
-
+    actionscript: [.as]
+    applescript: [.applescript]
+    asp: [.asa]
+    awk: [.awk]
+    batch: [.bat, .cmd]
+    bibtex: [.bib]
+    shell: [.sh, .bash, .zsh, .fish]
+    c: [.c, .h]
+    csharp: [.cs, .csx]
+    cxx: [.cpp, .cc, .cp, .cxx, .c++, .C, .h, .hh, .hpp, .hxx, .h++, .inl, .ipp]
+    cabal: [.cabal]
+    clojure: [.clj]
+    crystal: [.cr]
+    d: [.d, .di]
+    dart: [.dart]
+    diff: [.diff, .patch]
+    dockerfile: [Dockerfile, dockerfile]
+    elixir: [.ex, .exs]
+    elm: [.elm]
+    erlang: [.erl]
+    fsharp: [.fs, .fsi, .fsx]
+    go: [.go]
+    graphviz: [.dot, .DOT, .gv]
+    groovy: [.groovy, .gvy, .gradle]
+    haskell: [.hs]
+    java: [.java, .bsh]
+    javascript: [.js, .htc]
+    julia: [.jl]
+    kotlin: [.kt, .kts]
+    latex: [.tex, .ltx]
+    less: [.less]
+    lisp: [.lisp, .el]
+    literate haskell: [.lhs]
+    lua: [.lua]
+    matlab: [.matlab]
+    nix: [.nix]
+    ocaml: [.ml, .mli]
+    pascal: [.pas, .p, .dpr]
+    perl: [.pl, .pm, .pod, .t, .PL]
+    php: [.php]
+    powershell: [.ps1, .psm1, .psd1]
+    puppet: [.pp, .epp]
+    purescript: [.purs]
+    python: [.py]
+    r: [.R, .r]
+    ruby: [.rb]
+    rust: [.rs]
+    scala: [.scala, .sbt]
+    sql: [.sql]
+    swift: [.swift]
+    tcl: [.tcl]
+    typescript: [.ts]
+    typescriptreact: [.tsx]
+    viml: [.vim]
 
   vcs:
     git:
       - .gitignore
       - .gitmodules
+      - .gitattributes
+      - .gitconfig
+      - .gitconfig
+
+    hg:
+      - .hgrc
+      - hgrc
 
     other:
       - .ignore
@@ -113,6 +139,7 @@ programming:
 
     make:
       - Makefile
+      - .make
 
     scons:
       - SConscript
@@ -188,6 +215,7 @@ executable:
 unimportant:
   - "~"
   - .bak
+  - .git  # only works for '.git' files (submodules)
   - .lock
   - .log
   - .o
@@ -195,5 +223,5 @@ unimportant:
   - .pyc
   - .scons_opt
   - .sconsign.dblite
-  - .gitattributes
-  - .git  # only works for '.git' files (submodules)
+  - CMakeCache.txt
+  - package-lock.json
