@@ -1,0 +1,199 @@
+core:
+  regular_file: [$fi]
+  directory: [$di]
+
+  executable_file: [$ex]
+
+  symlink: [$ln]
+  broken_symlink: [$or, $mi]
+
+  fifo: [$pi]
+  socket: [$so]
+
+  normal_text: [$no]
+
+text:
+  special:
+    - CONTRIBUTORS
+    - CONTRIBUTORS.md
+    - CONTRIBUTORS.txt
+    - README
+    - README.md
+    - README.txt
+
+  important:
+    - TODO
+    - TODO.md
+    - TODO.txt
+
+  licenses:
+    - LICENSE
+    - LICENSE-MIT
+    - LICENSE-APACHE
+    - COPYING
+
+  other:
+    - .txt
+
+markup:
+  web:
+    - .css
+    - .htm
+    - .html
+    - .less
+
+  other:
+    - .json
+    - .md
+    - .markdown
+    - .tex
+    - .toml
+    - .xml
+    - .yaml
+    - .yml
+    - .xmp
+
+programming:
+  source:
+    cpp:
+      - .c
+      - .cpp
+      - .h
+      - .hpp
+
+    diff:
+      - .patch
+
+    haskell:
+      - .hs
+
+    java:
+      - java
+
+    javascript:
+      - js
+
+    php:
+      - .php
+
+    purescript:
+      - .purs
+
+    python:
+      - .py
+
+    rust:
+      - .rs
+
+    shell:
+      - .sh
+      - .bash
+      - .zsh
+      - .fish
+      - .csh
+
+    typescript:
+      - .ts
+
+
+  vcs:
+    git:
+      - .gitignore
+      - .gitmodules
+
+    other:
+      - .ignore
+      - .fdignore
+      - .rgignore
+
+  build:
+    cmake:
+      - .cmake
+      - CMakeLists.txt
+
+    make:
+      - Makefile
+
+    scons:
+      - SConscript
+      - SConstruct
+
+  ci:
+    - appveyor.yml
+    - .travis.yml
+
+media:
+  image:
+    - .jpg
+    - .png
+    - .jpeg
+    - .svg
+    - .bmp
+    - .gif
+
+  audio:
+    - .wav
+    - .flac
+    - .mp3
+
+  video:
+    - .mkv
+    - .mov
+    - .mp4
+    - .mpeg
+    - .mpg
+    - .wmv
+
+office:
+  document:
+    - .doc
+    - .docx
+    - .pdf
+
+  sheet:
+    - .xls
+    - .xlsx
+
+  presentation:
+    - .ppt
+    - .pptx
+
+archives:
+  packages:
+    - .apk
+    - .deb
+    - .rpm
+
+  other:
+    - .7z
+    - .bz
+    - .bz2
+    - .gz
+    - .iso
+    - .jar
+    - .rar
+    - .tar
+    - .tbz
+    - .tbz2
+    - .tgz
+    - .z
+    - .zip
+
+executable:
+  windows:
+    - .bat
+    - .cmd
+    - .exe
+
+unimportant:
+  - "~"
+  - .bak
+  - .lock
+  - .log
+  - .o
+  - .orig
+  - .pyc
+  - .scons_opt
+  - .sconsign.dblite
+  - .gitattributes
+  - .git  # only works for '.git' files (submodules)

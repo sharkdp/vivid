@@ -1,0 +1,100 @@
+colors:
+  # Theme colors
+  purple: "ae81ff"
+  khaki: "e6db74"
+  tan: "c4be89"
+  pink: "f92672"
+  cyan: "66d9ef"
+  green: "a6e22e"
+  orange: "fd971f"
+
+  # Others
+  white: "ffffff"
+  black: "000000"
+  red: "ff412c"
+  gray: "b6b6b6"
+  dimgray: "7a7070"
+  gold: "e2d139"
+  springgreen: "00ff87"
+
+core:
+  regular_file: {}
+
+  directory:
+    foreground: cyan
+
+  executable_file:
+    foreground: pink
+    style: bold
+
+  symlink:
+    foreground: pink
+
+  broken_symlink:
+    foreground: black
+    background: red
+    # style: blink
+
+  fifo:
+    foreground: black
+    background: cyan
+
+  socket:
+    foreground: black
+    background: pink
+
+  normal_text:
+    {}
+    # foreground: dimgray
+
+text:
+  special:
+    foreground: black
+    background: khaki
+
+  important:
+    style: bold
+
+  licenses:
+    foreground: gray
+
+  other:
+    foreground: gold
+
+markup:
+  foreground: gold
+
+programming:
+  source:
+    foreground: green
+
+  build:
+    foreground: springgreen
+
+  vcs:
+    foreground: springgreen
+
+  ci:
+    foreground: tan
+
+media:
+  image:
+    foreground: orange
+  audio:
+    foreground: orange
+  video:
+    foreground: orange
+
+office:
+  foreground: khaki
+
+archives:
+  foreground: pink
+  style: italic
+
+executable:
+  foreground: pink
+  style: bold
+
+unimportant:
+  foreground: dimgray
