@@ -10,6 +10,8 @@ Usage:
 export LS_COLORS="$(python generate.py --theme molokai)"
 ```
 
+![Preview of "ls -R"](https://i.imgur.com/oekLIya.png)
+
 ## Current limitations
 
 Only works on terminals with truecolor (24-bit) support. Adding 8-bit support would
