@@ -2,8 +2,8 @@
 
 **WORK IN PROGRESS**
 
-A generator for `LS_COLORS` expressions similar to `dircolors`. It uses a YAML-based for the
-filetype-database as well as for the color themes.
+A generator for `LS_COLORS` expressions similar to `dircolors`. It uses a YAML-based configuration
+file for the [filetype-database](filetypes.yml) as well as for the [color themes](themes/molokai.yml).
 
 Usage:
 ``` bash
