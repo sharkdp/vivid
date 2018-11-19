@@ -66,13 +66,13 @@ markup:
 
 programming:
   source:
-    foreground: green
+    foreground: springgreen
 
   build:
-    foreground: springgreen
+    foreground: green
 
   vcs:
-    foreground: springgreen
+    foreground: green
 
   ci:
     foreground: tan
@@ -90,7 +90,7 @@ office:
 
 archives:
   foreground: pink
-  style: italic
+  style: bold
 
 executable:
   foreground: pink
