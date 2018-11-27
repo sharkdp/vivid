@@ -2,8 +2,8 @@
 
 **WORK IN PROGRESS**
 
-A generator for `LS_COLORS` expressions similar to `dircolors`. It uses a YAML-based configuration
-file for the [filetype-database](filetypes.yml) as well as for the [color themes](themes/molokai.yml).
+A manager for `LS_COLORS` expressions (similar to `dircolors`). It uses a YAML-based configuration
+file for the [filetype-database](filetypes.yml) and the [color themes](themes/molokai.yml).
 
 Usage:
 ``` bash
@@ -20,12 +20,22 @@ certainly be possible by using an approximation scheme such as the one we use in
 
 For a list of truecolor terminals, see [this article](https://gist.github.com/XVilka/8346728).
 
+
+## License
+
+Licensed under either of
+
+ * Apache License, Version 2.0, ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
+ * MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+
+at your option.
+
 ### Similar and related projects
 
 - https://github.com/karlding/dirchromatic
 - https://github.com/trapd00r/LS_COLORS
 - https://geoff.greer.fm/lscolors/
-- Themes:
+- `LS_COLORS` themes:
    - https://github.com/seebi/dircolors-solarized
    - https://github.com/ivoarch/dircolors-zenburn
    - https://github.com/arcticicestudio/nord-dircolors
