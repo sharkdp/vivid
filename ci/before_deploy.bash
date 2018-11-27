@@ -81,7 +81,9 @@ make_deb() {
     install -Dm644 LICENSE-APACHE "$tempdir/usr/share/doc/$PROJECT_NAME/LICENSE-APACHE"
 
     # filetype database and themes
+    mkdir -p "$tempdir/usr/share/$PROJECT_NAME/config/"
     install -Dm644 config/* "$tempdir/usr/share/$PROJECT_NAME/config/"
+    mkdir -p "$tempdir/usr/share/$PROJECT_NAME/themes/"
     install -Dm644 themes/* "$tempdir/usr/share/$PROJECT_NAME/themes/"
 
     # Control file
