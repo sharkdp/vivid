@@ -1,0 +1,134 @@
+use std::collections::HashMap;
+use std::path::Path;
+
+use yaml_rust::yaml::YamlLoader;
+use yaml_rust::Yaml;
+
+use color::Color;
+use error::{DircolorsError, Result};
+use types::Category;
+use util::load_yaml_file;
+
+lazy_static! {
+    static ref ANSI_STYLES: HashMap<&'static str, u8> = {
+        let mut m = HashMap::new();
+        m.insert("regular", 0);
+        m.insert("bold", 1);
+        m.insert("faint", 2);
+        m.insert("italic", 3);
+        m.insert("underline", 4);
+        m.insert("blink", 5);
+        m.insert("rapid-blink", 6);
+        m.insert("overline", 5);
+        m
+    };
+}
+
+pub struct Theme {
+    colors: HashMap<String, Color>,
+    categories: Yaml,
+}
+
+impl Theme {
+    pub fn from_file(path: &Path) -> Result<Theme> {
+        let contents = load_yaml_file(path)?;
+        Self::from_string(&contents)
+    }
+
+    fn from_string(contents: &str) -> Result<Theme> {
+        let mut docs = YamlLoader::load_from_str(&contents)?;
+        let doc = docs.pop().expect("YAML file with one document"); // TODO
+
+        let mut colors = HashMap::new();
+
+        match &doc["colors"] {
+            Yaml::Hash(map) => {
+                for (key, value) in map {
+                    match (key, value) {
+                        (Yaml::String(key), Yaml::String(value)) => {
+                            colors.insert(key.clone(), Color::from_hex_str(&value)?);
+                        }
+                        _ => return Err(DircolorsError::UnexpectedYamlType),
+                    }
+                }
+            }
+            _ => return Err(DircolorsError::UnexpectedYamlType),
+        }
+
+        Ok(Theme {
+            colors,
+            categories: doc,
+        })
+    }
+
+    pub fn get_style(&self, category: &Category) -> Result<String> {
+        if category.is_empty() {
+            // TODO: raise error
+        }
+
+        let mut item = &self.categories;
+        for key in category {
+            if let Yaml::Hash(map) = item {
+                if map.contains_key(&Yaml::String("foreground".into()))
+                    || map.contains_key(&Yaml::String("background".into()))
+                    || map.contains_key(&Yaml::String("font-style".into()))
+                {
+                    break;
+                }
+
+                if let Some(value) = map.get(&Yaml::String(key.clone())) {
+                    item = &value;
+                } else {
+                    // TODO: warning("could not resolve path '{}'".format("/".join(path)))
+                    return Ok("0".into());
+                }
+            } else {
+                return Err(DircolorsError::UnexpectedYamlType);
+            }
+        }
+
+        if let Yaml::Hash(map) = item {
+            let font_style: &str = map
+                .get(&Yaml::String("font-style".into()))
+                .map(|s| s.as_str().unwrap())
+                .unwrap_or("regular");
+
+            let font_style_ansi: &u8 = ANSI_STYLES.get(&font_style).unwrap(); // TODO
+
+            let foreground = map
+                .get(&Yaml::String("foreground".into()))
+                .map(|s| s.as_str().unwrap())
+                .unwrap_or("default");
+
+            let white = Color::white();
+            let foreground = self.colors.get(foreground).unwrap_or(&white); // TODO
+
+            let background = map
+                .get(&Yaml::String("background".into()))
+                .map(|s| s.as_str().unwrap());
+
+            let background = background.and_then(|b| self.colors.get(b));
+
+            let mut style: String = format!(
+                "{font_style};38;2;{r};{g};{b}",
+                font_style = *font_style_ansi,
+                r = foreground.r,
+                g = foreground.g,
+                b = foreground.b
+            );
+
+            if let Some(background) = background {
+                style.push_str(&format!(
+                    ";48;2;{r};{g};{b}",
+                    r = background.r,
+                    g = background.g,
+                    b = background.b
+                ));
+            }
+
+            Ok(style)
+        } else {
+            Err(DircolorsError::UnexpectedYamlType)
+        }
+    }
+}
