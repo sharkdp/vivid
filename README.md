@@ -14,11 +14,11 @@ export LS_COLORS="$(dircolors-hd generate filetypes.yml --theme themes/molokai.y
 
 ![Preview of "ls -R"](https://i.imgur.com/oekLIya.png)
 
-## Current limitations
+## True color
 
-Only works on terminals with truecolor (24-bit) support. Adding 8-bit support would
-certainly be possible by using an approximation scheme such as the one we use in
-[bat](https://github.com/sharkdp/bat) (https://crates.io/crates/ansi_colours).
+By default, `dircolors-hd` runs in truecolor mode (24-bit). If you don't use a [terminal
+that supports 24-bit colors](https://gist.github.com/XVilka/8346728), use the `--color-mode 8-bit`
+option when running `dircolors-hd`.
 
 For a list of truecolor terminals, see [this article](https://gist.github.com/XVilka/8346728).
 
