@@ -1,5 +1,7 @@
 # dircolors-hd
 
+[![Build Status](https://travis-ci.org/sharkdp/dircolors-hd.svg?branch=master)](https://travis-ci.org/sharkdp/dircolors-hd)
+
 **WORK IN PROGRESS**
 
 A manager for `LS_COLORS` expressions (similar to `dircolors`). It uses a YAML-based configuration
