@@ -24,6 +24,7 @@ addons:
     packages:
       # needed to build deb packages
       - fakeroot
+      - musl-gcc
 
 env:
   global:
