@@ -25,7 +25,7 @@ core:
 
   executable_file:
     foreground: pink
-    style: bold
+    font-style: bold
 
   symlink:
     foreground: pink
@@ -33,7 +33,7 @@ core:
   broken_symlink:
     foreground: black
     background: red
-    # style: blink
+    # font-style: blink
 
   fifo:
     foreground: black
@@ -53,7 +53,7 @@ text:
     background: khaki
 
   important:
-    style: bold
+    font-style: bold
 
   licenses:
     foreground: gray
@@ -90,11 +90,11 @@ office:
 
 archives:
   foreground: pink
-  style: bold
+  font-style: bold
 
 executable:
   foreground: pink
-  style: bold
+  font-style: bold
 
 unimportant:
   foreground: dimgray
