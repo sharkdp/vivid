@@ -5,7 +5,7 @@
 **WORK IN PROGRESS**
 
 A manager for `LS_COLORS` expressions (similar to `dircolors`). It uses a YAML-based configuration
-file for the [filetype-database](filetypes.yml) and the [color themes](themes/molokai.yml).
+file for the [filetype-database](config/filetypes.yml) and the [color themes](themes/molokai.yml).
 
 Usage:
 ``` bash
