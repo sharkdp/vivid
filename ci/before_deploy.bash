@@ -28,6 +28,12 @@ pack() {
     cp LICENSE-MIT "$tempdir/$package_name"
     cp LICENSE-APACHE "$tempdir/$package_name"
 
+    # filetype database and themes
+    mkdir "$tempdir/$package_name/config"
+    cp config/* "$tempdir/$package_name/config"
+    mkdir "$tempdir/$package_name/themes"
+    cp themes/* "$tempdir/$package_name/themes"
+
     # archiving
     pushd "$tempdir"
     tar czf "$out_dir/$package_name.tar.gz" "$package_name"/*
@@ -73,6 +79,10 @@ make_deb() {
     install -Dm644 README.md "$tempdir/usr/share/doc/$PROJECT_NAME/README.md"
     install -Dm644 LICENSE-MIT "$tempdir/usr/share/doc/$PROJECT_NAME/LICENSE-MIT"
     install -Dm644 LICENSE-APACHE "$tempdir/usr/share/doc/$PROJECT_NAME/LICENSE-APACHE"
+
+    # filetype database and themes
+    install config/* "$tempdir/$package_name/usr/share/$PROJECT_NAME/config/"
+    install themes/* "$tempdir/$package_name/usr/share/$PROJECT_NAME/themes/"
 
     # Control file
     mkdir "$tempdir/DEBIAN"
