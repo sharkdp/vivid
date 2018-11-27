@@ -8,6 +8,7 @@ name = "dircolors-hd"
 readme = "README.md"
 repository = "https://github.com/sharkdp/dircolors-hd"
 version = "0.1.0"
+exclude = ["demo/*"]
 
 [dependencies]
 yaml-rust = "0.4"
