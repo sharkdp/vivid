@@ -1,3 +1,4 @@
+extern crate ansi_colours;
 extern crate yaml_rust;
 #[macro_use]
 extern crate clap;
@@ -16,6 +17,7 @@ use std::path::Path;
 
 use clap::{App, AppSettings, Arg, SubCommand};
 
+use color::ColorMode;
 use error::Result;
 use filetypes::FileTypes;
 use theme::Theme;
@@ -32,6 +34,16 @@ fn run() -> Result<()> {
         .setting(AppSettings::InferSubcommands)
         .setting(AppSettings::VersionlessSubcommands)
         .max_term_width(100)
+        .arg(
+            Arg::with_name("color-mode")
+                .long("color-mode")
+                .short("m")
+                .takes_value(true)
+                .value_name("mode")
+                .possible_values(&["8-bit", "24-bit"])
+                .default_value("24-bit")
+                .help("Type of ANSI colors to be used"),
+        )
         .subcommand(
             SubCommand::with_name("generate")
                 .about("Generate a LS_COLORS expression")
@@ -51,13 +63,17 @@ fn run() -> Result<()> {
         );
 
     let matches = app.get_matches();
+    let color_mode = match matches.value_of("color-mode") {
+        Some("8-bit") => ColorMode::BitDepth8,
+        _ => ColorMode::BitDepth24,
+    };
 
     if let Some(sub_matches) = matches.subcommand_matches("generate") {
         let path = Path::new(sub_matches.value_of("filetypes-db").unwrap());
         let filetypes = FileTypes::from_file(&path)?;
 
         let theme_path = Path::new(sub_matches.value_of("theme").unwrap());
-        let theme = Theme::from_file(&theme_path)?;
+        let theme = Theme::from_file(&theme_path, color_mode)?;
 
         let mut filetypes_list = filetypes.mapping.keys().collect::<Vec<_>>();
         filetypes_list.sort_unstable_by_key(|entry| entry.len());

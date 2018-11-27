@@ -4,7 +4,7 @@ use std::path::Path;
 use yaml_rust::yaml::YamlLoader;
 use yaml_rust::Yaml;
 
-use color::Color;
+use color::{Color, ColorMode};
 use error::{DircolorsError, Result};
 use types::Category;
 use util::load_yaml_file;
@@ -27,15 +27,16 @@ lazy_static! {
 pub struct Theme {
     colors: HashMap<String, Color>,
     categories: Yaml,
+    color_mode: ColorMode,
 }
 
 impl Theme {
-    pub fn from_file(path: &Path) -> Result<Theme> {
+    pub fn from_file(path: &Path, color_mode: ColorMode) -> Result<Theme> {
         let contents = load_yaml_file(path)?;
-        Self::from_string(&contents)
+        Self::from_string(&contents, color_mode)
     }
 
-    fn from_string(contents: &str) -> Result<Theme> {
+    fn from_string(contents: &str, color_mode: ColorMode) -> Result<Theme> {
         let mut docs = YamlLoader::load_from_str(&contents)?;
         let doc = docs.pop().expect("YAML file with one document"); // TODO
 
@@ -58,6 +59,7 @@ impl Theme {
         Ok(Theme {
             colors,
             categories: doc,
+            color_mode,
         })
     }
 
@@ -109,20 +111,18 @@ impl Theme {
 
             let background = background.and_then(|b| self.colors.get(b));
 
+            let foreground_code = foreground.get_style(self.color_mode);
             let mut style: String = format!(
-                "{font_style};38;2;{r};{g};{b}",
+                "{font_style};38;{foreground_code}",
                 font_style = *font_style_ansi,
-                r = foreground.r,
-                g = foreground.g,
-                b = foreground.b
+                foreground_code = foreground_code
             );
 
             if let Some(background) = background {
+                let background_code = background.get_style(self.color_mode);
                 style.push_str(&format!(
-                    ";48;2;{r};{g};{b}",
-                    r = background.r,
-                    g = background.g,
-                    b = background.b
+                    ";48;{background_code}",
+                    background_code = background_code
                 ));
             }
 
