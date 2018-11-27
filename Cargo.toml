@@ -1,0 +1,8 @@
+[package]
+name = "dircolors-hd"
+version = "0.1.0"
+authors = ["David Peter <mail@david-peter.de>"]
+
+[dependencies]
+yaml-rust = "0.4"
+lazy_static = "1.2.0"
