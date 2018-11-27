@@ -20,8 +20,25 @@ By default, `dircolors-hd` runs in truecolor mode (24-bit). If you don't use a [
 that supports 24-bit colors](https://gist.github.com/XVilka/8346728), use the `--color-mode 8-bit`
 option when running `dircolors-hd`.
 
-For a list of truecolor terminals, see [this article](https://gist.github.com/XVilka/8346728).
+## Installation
 
+### On Debian-based systems
+
+``` bash
+wget "https://github.com/sharkdp/dircolors-hd/releases/download/v0.1.0/dircolors-hd_0.1.0_amd64.deb"
+sudo dpkg -i dircolors-hd_0.1.0_amd64.deb
+```
+
+### On other distrubutions
+
+Check out the [release page](https://github.com/sharkdp/dircolors-hd/releases) for binary builds.
+
+### Via cargo
+
+If you have Rust 1.30 or higher, you can install `dircolors-hd` from source via `cargo`:
+```
+cargo install dircolors-hd
+```
 
 ## License
 
