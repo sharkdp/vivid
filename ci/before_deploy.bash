@@ -85,7 +85,7 @@ Maintainer: David Peter <mail@david-peter.de>
 Architecture: $architecture
 Provides: $PROJECT_NAME
 Conflicts: $conflictname
-Description: A generator for LS_COLORS with support for multiple color themes.
+Description: LS_COLORS manager with multiple themes.
 EOF
 
     fakeroot dpkg-deb --build "$tempdir" "${dpkgname}_${version}_${architecture}.deb"
