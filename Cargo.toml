@@ -1,8 +1,18 @@
 [package]
-name = "dircolors-hd"
-version = "0.1.0"
 authors = ["David Peter <mail@david-peter.de>"]
+categories = ["command-line-utilities"]
+description = "A generator for LS_COLORS with support for multiple color themes"
+homepage = "https://github.com/sharkdp/dircolors-hd"
+license = "MIT/Apache-2.0"
+name = "dircolors-hd"
+readme = "README.md"
+repository = "https://github.com/sharkdp/dircolors-hd"
+version = "0.1.0"
 
 [dependencies]
 yaml-rust = "0.4"
 lazy_static = "1.2.0"
+
+[dependencies.clap]
+version = "2"
+features = ["suggestions", "color", "wrap_help"]
