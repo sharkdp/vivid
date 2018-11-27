@@ -9,7 +9,7 @@ file for the [filetype-database](filetypes.yml) and the [color themes](themes/mo
 
 Usage:
 ``` bash
-export LS_COLORS="$(python generate.py --theme molokai)"
+export LS_COLORS="$(dircolors-hd generate filetypes.yml --theme themes/molokai.yml)"
 ```
 
 ![Preview of "ls -R"](https://i.imgur.com/oekLIya.png)

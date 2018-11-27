@@ -38,7 +38,7 @@ fn run() -> Result<()> {
                 .arg(
                     Arg::with_name("filetypes-db")
                         .required(true)
-                        .help("Path to file-types database (filetypes.yaml)"),
+                        .help("Path to file-types database (filetypes.yml)"),
                 )
                 .arg(
                     Arg::with_name("theme")
@@ -46,7 +46,7 @@ fn run() -> Result<()> {
                         .short("t")
                         .takes_value(true)
                         .required(true)
-                        .help("Path to theme file (YAML)"),
+                        .help("Path to theme file (YML)"),
                 ),
         );
 
