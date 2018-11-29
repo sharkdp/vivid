@@ -32,6 +32,11 @@ text:
     - LICENSE-APACHE
     - COPYING
 
+  configuration:
+    generic:
+      - .conf
+      - .cfg
+
   other:
     - .txt
 
