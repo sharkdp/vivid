@@ -19,7 +19,7 @@ lazy_static! {
         m.insert("underline", 4);
         m.insert("blink", 5);
         m.insert("rapid-blink", 6);
-        m.insert("overline", 5);
+        m.insert("overline", 53);
         m
     };
 }

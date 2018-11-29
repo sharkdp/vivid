@@ -68,7 +68,7 @@ programming:
   source:
     foreground: springgreen
 
-  build:
+  tooling:
     foreground: green
 
   vcs:
