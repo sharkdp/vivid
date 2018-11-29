@@ -247,6 +247,7 @@ executable:
 
 unimportant:
   - "~"
+  - .aux
   - .bak
   - .git  # only works for '.git' files (submodules)
   - .lock
