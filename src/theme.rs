@@ -76,7 +76,10 @@ impl Theme {
                     || map.contains_key(&Yaml::String("background".into()))
                     || map.contains_key(&Yaml::String("font-style".into()))
                 {
-                    break;
+                    if map.get(&Yaml::String(key.clone())).is_none() {
+                        // We can not specialize further
+                        break;
+                    }
                 }
 
                 if let Some(value) = map.get(&Yaml::String(key.clone())) {
