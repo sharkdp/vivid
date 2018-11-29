@@ -44,7 +44,6 @@ core:
 
   normal_text:
     {}
-    # foreground: dimgray
 
 text:
   special:
