@@ -71,26 +71,18 @@ programming:
   tooling:
     foreground: green
 
-  vcs:
-    foreground: green
-
-  ci:
-    foreground: tan
+    continuous-integration:
+      foreground: tan
 
 media:
-  image:
-    foreground: orange
-  audio:
-    foreground: orange
-  video:
-    foreground: orange
+  foreground: orange
 
 office:
   foreground: khaki
 
 archives:
   foreground: pink
-  font-style: bold
+  font-style: underline
 
 executable:
   foreground: pink
