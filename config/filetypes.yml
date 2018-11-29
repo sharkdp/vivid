@@ -101,7 +101,7 @@ programming:
     lisp: [.lisp, .el]
     literate haskell: [.lhs]
     lua: [.lua]
-    matlab: [.matlab]
+    matlab: [.matlab, .m]
     nix: [.nix]
     ocaml: [.ml, .mli]
     pascal: [.pas, .p, .dpr]
