@@ -50,18 +50,20 @@ markup:
     - .less
 
   other:
+    - .csv
     - .json
-    - .md
     - .markdown
+    - .md
     - .mdown
+    - .rst
     - .tex
-    - .toml
     - .tml
+    - .toml
     - .xml
+    - .xmp
     - .yaml
     - .yml
-    - .xmp
-    - .csv
+    - .ipynb
 
 programming:
   source:
