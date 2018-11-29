@@ -122,39 +122,62 @@ programming:
     typescriptreact: [.tsx]
     viml: [.vim]
 
-  vcs:
-    git:
-      - .gitignore
-      - .gitmodules
-      - .gitattributes
-      - .gitconfig
-      - .gitconfig
+  tooling:
+    vcs:
+      git:
+        - .gitignore
+        - .gitmodules
+        - .gitattributes
+        - .gitconfig
+        - .gitconfig
 
-    hg:
-      - .hgrc
-      - hgrc
+      hg:
+        - .hgrc
+        - hgrc
 
-    other:
-      - .ignore
-      - .fdignore
-      - .rgignore
+      other:
+        - CODEOWNERS
+        - .ignore
+        - .fdignore
+        - .rgignore
 
-  build:
-    cmake:
-      - .cmake
-      - CMakeLists.txt
+    build:
+      cmake:
+        - .cmake
+        - CMakeLists.txt
+        - .cmake.in
 
-    make:
-      - Makefile
-      - .make
+      make:
+        - Makefile
+        - .make
 
-    scons:
-      - SConscript
-      - SConstruct
+      scons:
+        - SConscript
+        - SConstruct
 
-  ci:
-    - appveyor.yml
-    - .travis.yml
+      pip:
+        - requirements.txt
+
+    packaging:
+      python:
+        - MANIFEST.in
+        - setup.py
+
+    code-style:
+      python:
+        - .flake8
+
+      cxx:
+        - .clang-format
+
+    documentation:
+      doxygen:
+        - Doxyfile
+        - .dox
+
+    continuous-integration:
+      - appveyor.yml
+      - .travis.yml
 
 media:
   image:
