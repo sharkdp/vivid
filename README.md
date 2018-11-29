@@ -2,12 +2,12 @@
 
 [![Build Status](https://travis-ci.org/sharkdp/dircolors-hd.svg?branch=master)](https://travis-ci.org/sharkdp/dircolors-hd)
 
-**WORK IN PROGRESS**
+A manager for `LS_COLORS` expressions. In contrast to `dircolors`, it uses a YAML-based
+configuration file for the [filetype-database](config/filetypes.yml) and the [color
+themes](themes/molokai.yml). Colors can be specified in `#RRGGBB` format instead of cryptic ANSI
+codes.
 
-A manager for `LS_COLORS` expressions (similar to `dircolors`). It uses a YAML-based configuration
-file for the [filetype-database](config/filetypes.yml) and the [color themes](themes/molokai.yml).
-
-Usage:
+**Usage:**
 ``` bash
 export LS_COLORS="$(dircolors-hd generate filetypes.yml --theme themes/molokai.yml)"
 ```
@@ -16,7 +16,7 @@ export LS_COLORS="$(dircolors-hd generate filetypes.yml --theme themes/molokai.y
 
 ## True color
 
-By default, `dircolors-hd` runs in truecolor mode (24-bit). If you don't use a [terminal
+By default, `dircolors-hd` runs in true color mode (24-bit). If you don't use a [terminal
 that supports 24-bit colors](https://gist.github.com/XVilka/8346728), use the `--color-mode 8-bit`
 option when running `dircolors-hd`.
 
