@@ -2,7 +2,6 @@ colors:
   # Theme colors
   purple: "ae81ff"
   khaki: "e6db74"
-  tan: "c4be89"
   pink: "f92672"
   cyan: "66d9ef"
   green: "a6e22e"
@@ -72,7 +71,7 @@ programming:
     foreground: green
 
     continuous-integration:
-      foreground: tan
+      foreground: khaki
 
 media:
   foreground: orange
