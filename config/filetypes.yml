@@ -42,12 +42,10 @@ text:
 
 markup:
   web:
-    - .css
     - .htm
     - .html
     - .shtml
     - .xhtml
-    - .less
 
   other:
     - .csv
@@ -56,7 +54,6 @@ markup:
     - .md
     - .mdown
     - .rst
-    - .tex
     - .tml
     - .toml
     - .xml
@@ -71,12 +68,11 @@ programming:
     applescript: [.applescript]
     asp: [.asa]
     awk: [.awk]
-    batch: [.bat, .cmd]
     bibtex: [.bib, .bst]
     shell: [.sh, .bash, .zsh, .fish]
-    c: [.c, .h]
     csharp: [.cs, .csx]
-    cxx: [.cpp, .cc, .cp, .cxx, .c++, .C, .h, .hh, .hpp, .hxx, .h++, .inl, .ipp]
+    css: [css]
+    cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .C, .h, .hh, .hpp, .hxx, .h++, .inl, .ipp]
     cabal: [.cabal]
     clojure: [.clj]
     crystal: [.cr]
