@@ -26,7 +26,7 @@ lazy_static! {
 
 pub struct Theme {
     colors: HashMap<String, Color>,
-    categories: Yaml,
+    categories: Yaml, // TODO: load the category tree into a proper data structure
     color_mode: ColorMode,
 }
 
@@ -65,7 +65,8 @@ impl Theme {
 
     pub fn get_style(&self, category: &Category) -> Result<String> {
         if category.is_empty() {
-            // TODO: raise error
+            // TODO: use a non-empty collection data type to avoid this
+            panic!("category should not be empty");
         }
 
         let mut item = &self.categories;
