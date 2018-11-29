@@ -43,7 +43,11 @@ impl FileTypes {
                 for filetype in array {
                     if let Yaml::String(filetype) = filetype {
                         let code = Self::get_code(filetype);
-                        mapping.insert(code, category.clone());
+                        let result = mapping.insert(code, category.clone());
+
+                        if !result.is_none() {
+                            return Err(DircolorsError::DuplicateFileType(filetype.to_string()));
+                        }
                     } else {
                         return Err(DircolorsError::UnexpectedYamlType);
                     }

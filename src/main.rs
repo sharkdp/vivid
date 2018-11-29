@@ -12,8 +12,8 @@ mod theme;
 mod types;
 mod util;
 
-use std::error::Error;
 use std::path::Path;
+use std::process;
 
 use clap::{App, AppSettings, Arg, SubCommand};
 
@@ -94,7 +94,8 @@ fn main() {
     match res {
         Ok(()) => {}
         Err(e) => {
-            eprintln!("Error: {}", e.description());
+            eprintln!("Error: {}", e);
+            process::exit(1);
         }
     }
 }

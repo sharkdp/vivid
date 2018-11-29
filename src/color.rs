@@ -24,13 +24,15 @@ impl Color {
     }
 
     pub fn from_hex_str(hex_str: &str) -> Result<Color> {
+        let parse_error = || DircolorsError::ColorParseError(hex_str.to_string());
+
         if hex_str.len() != 6 {
-            return Err(DircolorsError::ColorParseError);
+            return Err(parse_error());
         }
 
-        let r = u8::from_str_radix(&hex_str[0..2], 16)?;
-        let g = u8::from_str_radix(&hex_str[2..4], 16)?;
-        let b = u8::from_str_radix(&hex_str[4..6], 16)?;
+        let r = u8::from_str_radix(&hex_str[0..2], 16).map_err(|_| parse_error())?;
+        let g = u8::from_str_radix(&hex_str[2..4], 16).map_err(|_| parse_error())?;
+        let b = u8::from_str_radix(&hex_str[4..6], 16).map_err(|_| parse_error())?;
 
         Ok(Color { r, g, b })
     }
