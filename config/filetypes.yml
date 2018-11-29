@@ -221,6 +221,9 @@ archives:
     - .deb
     - .rpm
 
+  ros:
+    - .bag
+
   other:
     - .7z
     - .bz
