@@ -32,7 +32,8 @@ pub struct Theme {
 
 impl Theme {
     pub fn from_file(path: &Path, color_mode: ColorMode) -> Result<Theme> {
-        let contents = load_yaml_file(path).map_err(|_| DircolorsError::CouldNotLoadTheme(path.to_string_lossy().into()))?;
+        let contents = load_yaml_file(path)
+            .map_err(|_| DircolorsError::CouldNotLoadTheme(path.to_string_lossy().into()))?;
         Self::from_string(&contents, color_mode)
     }
 

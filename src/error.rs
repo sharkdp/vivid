@@ -12,7 +12,7 @@ pub enum DircolorsError {
     UnexpectedYamlType,
     ColorParseError(String),
     DuplicateFileType(String),
-    CouldNotLoadTheme(String)
+    CouldNotLoadTheme(String),
 }
 
 impl Display for DircolorsError {
@@ -21,9 +21,13 @@ impl Display for DircolorsError {
             DircolorsError::IoError(e) => write!(fmt, "{}", e.description()),
             DircolorsError::YamlParsingError(e) => write!(fmt, "{}", e.description()),
             DircolorsError::UnexpectedYamlType => write!(fmt, "Unexpected type in YAML file."),
-            DircolorsError::ColorParseError(color_str) => write!(fmt, "Could not parse color string '{}'.", color_str),
+            DircolorsError::ColorParseError(color_str) => {
+                write!(fmt, "Could not parse color string '{}'.", color_str)
+            }
             DircolorsError::DuplicateFileType(ft) => write!(fmt, "Duplicate file type '{}'.", ft),
-            DircolorsError::CouldNotLoadTheme(path) => write!(fmt, "Could not load theme '{}'.", path),
+            DircolorsError::CouldNotLoadTheme(path) => {
+                write!(fmt, "Could not load theme '{}'.", path)
+            }
         }
     }
 }

@@ -60,6 +60,15 @@ impl FileTypes {
                         child_category.push(key.clone());
                     }
                     let child_mapping = Self::get_mapping(value, &child_category)?;
+
+                    if let Some(filetype) = child_mapping
+                        .mapping
+                        .keys()
+                        .find(|ft| mapping.contains_key(*ft))
+                    {
+                        return Err(DircolorsError::DuplicateFileType(filetype.to_string()));
+                    }
+
                     mapping.extend(child_mapping.mapping);
                 }
             }
