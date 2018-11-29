@@ -72,7 +72,7 @@ programming:
     asp: [.asa]
     awk: [.awk]
     batch: [.bat, .cmd]
-    bibtex: [.bib]
+    bibtex: [.bib, .bst]
     shell: [.sh, .bash, .zsh, .fish]
     c: [.c, .h]
     csharp: [.cs, .csx]
