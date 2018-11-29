@@ -25,8 +25,8 @@ option when running `dircolors-hd`.
 ### On Debian-based systems
 
 ``` bash
-wget "https://github.com/sharkdp/dircolors-hd/releases/download/v0.1.0/dircolors-hd_0.1.0_amd64.deb"
-sudo dpkg -i dircolors-hd_0.1.0_amd64.deb
+wget "https://github.com/sharkdp/dircolors-hd/releases/download/v0.2.0/dircolors-hd_0.2.0_amd64.deb"
+sudo dpkg -i dircolors-hd_0.2.0_amd64.deb
 ```
 
 ### On other distrubutions
