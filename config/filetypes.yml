@@ -246,16 +246,27 @@ executable:
     - .exe
 
 unimportant:
-  - "~"
-  - .aux
-  - .bak
-  - .git  # only works for '.git' files (submodules)
-  - .lock
-  - .log
-  - .o
-  - .orig
-  - .pyc
-  - .scons_opt
-  - .sconsign.dblite
-  - CMakeCache.txt
-  - package-lock.json
+  latex:
+    - .aux
+    - .bbl
+    - .bcf
+    - .blg
+    - .fls
+    - .out
+    - .toc
+    - .synctex.gz
+    - .fdb_latexmk
+
+  other:
+    - "~"
+    - .bak
+    - .git  # only works for '.git' files (submodules)
+    - .lock
+    - .log
+    - .o
+    - .orig
+    - .pyc
+    - .scons_opt
+    - .sconsign.dblite
+    - CMakeCache.txt
+    - package-lock.json
