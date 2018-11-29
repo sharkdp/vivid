@@ -1,0 +1,101 @@
+colors:
+  # Original "snazzy" theme by sindresorhus
+  # https://github.com/sindresorhus/hyper-snazzy
+  white: 'eff0eb'
+  red: 'ff5c57'
+  green: '5af78e'
+  yellow: 'f3f99d'
+  blue: '57c7ff'
+  pink: 'ff6ac1'
+  cyan: '9aedfe'
+
+  rose: 'f9b79d'
+
+  light_red: 'ff8b89'
+  light_green: 'a5ffc3'
+  light_yellow: 'f9fccf'
+  light_blue: 'a3e1ff'
+  light_pink: 'ffb4df'
+  light_cyan: 'd4f7fe'
+
+  black: '000000'
+  gray: 'aaaaaa'
+
+core:
+  regular_file: {}
+
+  directory:
+    foreground: cyan
+
+  executable_file:
+    foreground: red
+    font-style: bold
+
+  symlink:
+    foreground: pink
+
+  broken_symlink:
+    foreground: black
+    background: red
+    # font-style: blink
+
+  fifo:
+    foreground: black
+    background: blue
+
+  socket:
+    foreground: black
+    background: pink
+
+  normal_text:
+    {}
+
+text:
+  special:
+    foreground: black
+    background: yellow
+
+  important:
+    font-style: bold
+
+  licenses:
+    foreground: yellow
+
+  other:
+    foreground: yellow
+
+markup:
+  foreground: yellow
+
+programming:
+  source:
+    foreground: green
+
+  tooling:
+    foreground: light_green
+    # font-style: italic
+
+    continuous-integration:
+      foreground: green
+
+media:
+  image:
+    foreground: white
+  audio:
+    foreground: white
+  video:
+    foreground: white
+
+office:
+  foreground: red
+
+archives:
+  foreground: blue
+  font-style: underline
+
+executable:
+  foreground: red
+  font-style: bold
+
+unimportant:
+  foreground: gray
