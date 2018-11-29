@@ -129,7 +129,6 @@ programming:
         - .gitmodules
         - .gitattributes
         - .gitconfig
-        - .gitconfig
 
       hg:
         - .hgrc
