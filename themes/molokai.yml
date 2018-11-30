@@ -59,6 +59,9 @@ text:
   other:
     foreground: gold
 
+  configuration:
+    foreground: green
+
 markup:
   foreground: gold
 

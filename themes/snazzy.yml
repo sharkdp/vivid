@@ -64,6 +64,9 @@ text:
   licenses:
     foreground: gray
 
+  configuration:
+    foreground: yellow
+
   other:
     foreground: yellow
 
