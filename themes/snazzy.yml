@@ -1,6 +1,7 @@
 colors:
   # Original "snazzy" theme by sindresorhus
   # https://github.com/sindresorhus/hyper-snazzy
+  background_color: '282a36'
   white: 'eff0eb'
   red: 'ff5c57'
   green: '5af78e'
@@ -19,13 +20,15 @@ colors:
   light_cyan: 'd4f7fe'
 
   black: '000000'
-  gray: 'aaaaaa'
+  gray: '999999'
+  darkgray: '666666'
 
 core:
   regular_file: {}
 
   directory:
-    foreground: cyan
+    foreground: blue
+    font-style: bold
 
   executable_file:
     foreground: red
@@ -52,14 +55,14 @@ core:
 
 text:
   special:
-    foreground: black
+    foreground: background_color
     background: yellow
 
-  important:
+  todo:
     font-style: bold
 
   licenses:
-    foreground: yellow
+    foreground: gray
 
   other:
     foreground: yellow
@@ -73,24 +76,23 @@ programming:
 
   tooling:
     foreground: light_green
-    # font-style: italic
 
     continuous-integration:
       foreground: green
 
 media:
   image:
-    foreground: white
+    foreground: light_pink
   audio:
-    foreground: white
+    foreground: light_pink
   video:
-    foreground: white
+    foreground: light_pink
 
 office:
   foreground: red
 
 archives:
-  foreground: blue
+  foreground: cyan
   font-style: underline
 
 executable:
@@ -98,4 +100,4 @@ executable:
   font-style: bold
 
 unimportant:
-  foreground: gray
+  foreground: darkgray

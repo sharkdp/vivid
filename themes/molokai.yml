@@ -50,7 +50,7 @@ text:
     foreground: black
     background: khaki
 
-  important:
+  todo:
     font-style: bold
 
   licenses:

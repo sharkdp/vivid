@@ -21,7 +21,7 @@ text:
     - README.md
     - README.txt
 
-  important:
+  todo:
     - TODO
     - TODO.md
     - TODO.txt
@@ -36,6 +36,25 @@ text:
     generic:
       - .conf
       - .cfg
+      - .ini
+      - .toml
+      - .yaml
+      - .yml
+      - .tml
+      - .json
+
+    metadata:
+      - .xmp
+
+    bibtex:
+      - .bib
+      - .bst
+
+    dockerfile:
+      - Dockerfile
+
+    nix:
+      - .nix
 
   other:
     - .txt
@@ -49,18 +68,11 @@ markup:
 
   other:
     - .csv
-    - .json
     - .markdown
     - .md
     - .mdown
     - .rst
-    - .tml
-    - .toml
     - .xml
-    - .xmp
-    - .yaml
-    - .yml
-    - .ipynb
 
 programming:
   source:
@@ -68,24 +80,22 @@ programming:
     applescript: [.applescript]
     asp: [.asa]
     awk: [.awk]
-    bibtex: [.bib, .bst]
     shell: [.sh, .bash, .zsh, .fish]
     csharp: [.cs, .csx]
     css: [css]
-    cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .C, .h, .hh, .hpp, .hxx, .h++, .inl, .ipp]
+    cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .h, .hh, .hpp, .hxx, .h++, .inl, .ipp]
     cabal: [.cabal]
     clojure: [.clj]
     crystal: [.cr]
     d: [.d, .di]
     dart: [.dart]
     diff: [.diff, .patch]
-    dockerfile: [Dockerfile, dockerfile]
     elixir: [.ex, .exs]
     elm: [.elm]
     erlang: [.erl]
     fsharp: [.fs, .fsi, .fsx]
     go: [.go]
-    graphviz: [.dot, .DOT, .gv]
+    graphviz: [.dot, .gv]
     groovy: [.groovy, .gvy, .gradle]
     haskell: [.hs]
     java: [.java, .bsh]
@@ -95,27 +105,25 @@ programming:
     latex: [.tex, .ltx]
     less: [.less]
     lisp: [.lisp, .el]
-    literate haskell: [.lhs]
     lua: [.lua]
     matlab: [.matlab, .m]
-    nix: [.nix]
     ocaml: [.ml, .mli]
     pascal: [.pas, .p, .dpr]
-    perl: [.pl, .pm, .pod, .t, .PL]
+    perl: [.pl, .pm, .pod, .t]
     php: [.php]
     powershell: [.ps1, .psm1, .psd1]
     puppet: [.pp, .epp]
     purescript: [.purs]
     python: [.py]
-    r: [.R, .r]
+    ipython: [.ipynb]
+    r: [.r]
     ruby: [.rb]
     rust: [.rs]
     scala: [.scala, .sbt]
     sql: [.sql]
     swift: [.swift]
     tcl: [.tcl]
-    typescript: [.ts]
-    typescriptreact: [.tsx]
+    typescript: [.ts, .tsx]
     viml: [.vim]
 
   tooling:
@@ -241,16 +249,28 @@ executable:
     - .exe
 
 unimportant:
-  latex:
-    - .aux
-    - .bbl
-    - .bcf
-    - .blg
-    - .fls
-    - .out
-    - .toc
-    - .synctex.gz
-    - .fdb_latexmk
+  build_artifacts:
+    cxx:
+      - .o
+    cmake:
+      - CMakeCache.txt
+    rust:
+      - .rlib
+    python:
+      - .pyc
+    scons:
+      - .scons_opt
+      - .sconsign.dblite
+    latex:
+      - .aux
+      - .bbl
+      - .bcf
+      - .blg
+      - .fls
+      - .out
+      - .toc
+      - .synctex.gz
+      - .fdb_latexmk
 
   other:
     - "~"
@@ -258,10 +278,5 @@ unimportant:
     - .git  # only works for '.git' files (submodules)
     - .lock
     - .log
-    - .o
     - .orig
-    - .pyc
-    - .scons_opt
-    - .sconsign.dblite
-    - CMakeCache.txt
     - package-lock.json
