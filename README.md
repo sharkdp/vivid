@@ -1,4 +1,4 @@
-# vivid
+![vivid](doc/vivid.png)
 
 [![Build Status](https://travis-ci.org/sharkdp/vivid.svg?branch=master)](https://travis-ci.org/sharkdp/vivid)
 
