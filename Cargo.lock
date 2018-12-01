@@ -50,16 +50,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "vivid"
-version = "0.2.0"
-dependencies = [
- "ansi_colours 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "lazy_static 1.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "yaml-rust 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
 name = "kernel32-sys"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -139,6 +129,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 name = "vec_map"
 version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "vivid"
+version = "0.3.0"
+dependencies = [
+ "ansi_colours 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "lazy_static 1.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "yaml-rust 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
+]
 
 [[package]]
 name = "winapi"
