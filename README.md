@@ -1,26 +1,32 @@
 ![vivid](doc/vivid.png)
 
-[![Build Status](https://travis-ci.org/sharkdp/vivid.svg?branch=master)](https://travis-ci.org/sharkdp/vivid)
+*vivid* is a manager for `LS_COLORS` expressions which controls the colorized output of
+[`ls`](https://www.gnu.org/software/coreutils/), [`tree`](http://mama.indstate.edu/users/ice/tree/),
+[`fd`](https://github.com/sharkdp/fd), etc.
 
-A manager for `LS_COLORS` expressions. In contrast to `dircolors`, it uses a YAML-based
-configuration file for the [filetype-database](config/filetypes.yml) and the [color
-themes](themes/molokai.yml). Colors can be specified in `#RRGGBB` format instead of cryptic ANSI
-codes.
+It uses a YAML-based configuration format for the [filetype-database](config/filetypes.yml)
+and the [color themes](themes/molokai.yml). In contrast to `dircolors`, the database and
+the themes are organized in different files. This allows different users to choose different
+themes. Instead of using (cryptic) ANSI escape codes, colors can be specified in the `RRGGBB`
+format and will be translated to either truecolor (24-bit) ANSI codes or 8-bit codes for
+older terminal emulators.
 
-**Usage:**
+#### Usage
 ``` bash
 export LS_COLORS="$(vivid generate filetypes.yml --theme themes/molokai.yml)"
 ```
 
 ![Preview of "ls -R"](https://i.imgur.com/oekLIya.png)
 
-## True color
+#### True color
 
 By default, `vivid` runs in true color mode (24-bit). If you don't use a [terminal
 that supports 24-bit colors](https://gist.github.com/XVilka/8346728), use the `--color-mode 8-bit`
 option when running `vivid`.
 
 ## Installation
+
+[![Build Status](https://travis-ci.org/sharkdp/vivid.svg?branch=master)](https://travis-ci.org/sharkdp/vivid)
 
 ### On Debian-based systems
 
