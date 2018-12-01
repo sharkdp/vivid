@@ -50,7 +50,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "dircolors-hd"
+name = "vivid"
 version = "0.2.0"
 dependencies = [
  "ansi_colours 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)",

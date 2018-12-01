@@ -1,6 +1,6 @@
-# dircolors-hd
+# vivid
 
-[![Build Status](https://travis-ci.org/sharkdp/dircolors-hd.svg?branch=master)](https://travis-ci.org/sharkdp/dircolors-hd)
+[![Build Status](https://travis-ci.org/sharkdp/vivid.svg?branch=master)](https://travis-ci.org/sharkdp/vivid)
 
 A manager for `LS_COLORS` expressions. In contrast to `dircolors`, it uses a YAML-based
 configuration file for the [filetype-database](config/filetypes.yml) and the [color
@@ -9,35 +9,35 @@ codes.
 
 **Usage:**
 ``` bash
-export LS_COLORS="$(dircolors-hd generate filetypes.yml --theme themes/molokai.yml)"
+export LS_COLORS="$(vivid generate filetypes.yml --theme themes/molokai.yml)"
 ```
 
 ![Preview of "ls -R"](https://i.imgur.com/oekLIya.png)
 
 ## True color
 
-By default, `dircolors-hd` runs in true color mode (24-bit). If you don't use a [terminal
+By default, `vivid` runs in true color mode (24-bit). If you don't use a [terminal
 that supports 24-bit colors](https://gist.github.com/XVilka/8346728), use the `--color-mode 8-bit`
-option when running `dircolors-hd`.
+option when running `vivid`.
 
 ## Installation
 
 ### On Debian-based systems
 
 ``` bash
-wget "https://github.com/sharkdp/dircolors-hd/releases/download/v0.2.0/dircolors-hd_0.2.0_amd64.deb"
-sudo dpkg -i dircolors-hd_0.2.0_amd64.deb
+wget "https://github.com/sharkdp/vivid/releases/download/v0.3.0/vivid_0.3.0_amd64.deb"
+sudo dpkg -i vivid_0.3.0_amd64.deb
 ```
 
 ### On other distrubutions
 
-Check out the [release page](https://github.com/sharkdp/dircolors-hd/releases) for binary builds.
+Check out the [release page](https://github.com/sharkdp/vivid/releases) for binary builds.
 
 ### Via cargo
 
-If you have Rust 1.30 or higher, you can install `dircolors-hd` from source via `cargo`:
+If you have Rust 1.30 or higher, you can install `vivid` from source via `cargo`:
 ```
-cargo install dircolors-hd
+cargo install vivid
 ```
 
 ## License
