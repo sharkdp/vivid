@@ -2,15 +2,16 @@
 <br><br>
 
 *vivid* is a manager for `LS_COLORS` expressions to control the colorized output of
-[`ls`](https://www.gnu.org/software/coreutils/), [`tree`](http://mama.indstate.edu/users/ice/tree/),
+[`ls`](https://www.gnu.org/software/coreutils/manual/html_node/ls-invocation.html#ls-invocation), [`tree`](http://mama.indstate.edu/users/ice/tree/),
 [`fd`](https://github.com/sharkdp/fd), etc.
 
 It uses a YAML-based configuration format for the [filetype-database](config/filetypes.yml)
-and the [color themes](themes/molokai.yml). In contrast to `dircolors`, the database and
-the themes are organized in different files. This allows different users to choose different
-themes. Instead of using (cryptic) ANSI escape codes, colors can be specified in the `RRGGBB`
-format and will be translated to either truecolor (24-bit) ANSI codes or 8-bit codes for
-older terminal emulators.
+and the [color themes](themes/molokai.yml). In contrast to
+[`dircolors`](https://www.gnu.org/software/coreutils/manual/html_node/dircolors-invocation.html#dircolors-invocation),
+the database and the themes are organized in different files. This allows different users
+to choose different themes. Instead of using (cryptic) ANSI escape codes, colors can be
+specified in the `RRGGBB` format and will be translated to either truecolor (24-bit) ANSI
+codes or 8-bit codes for older terminal emulators.
 
 #### Usage
 ``` bash
