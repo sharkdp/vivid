@@ -1,4 +1,5 @@
 ![vivid](doc/vivid.png)
+<br><br>
 
 *vivid* is a manager for `LS_COLORS` expressions to control the colorized output of
 [`ls`](https://www.gnu.org/software/coreutils/), [`tree`](http://mama.indstate.edu/users/ice/tree/),
