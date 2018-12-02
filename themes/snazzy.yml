@@ -28,7 +28,6 @@ core:
 
   directory:
     foreground: blue
-    font-style: bold
 
   executable_file:
     foreground: red

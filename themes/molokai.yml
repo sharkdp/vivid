@@ -1,5 +1,6 @@
 colors:
   # Theme colors
+  background_color: '1a1a1a'
   purple: "ae81ff"
   khaki: "e6db74"
   pink: "f92672"
@@ -21,7 +22,6 @@ core:
 
   directory:
     foreground: cyan
-    font-style: bold
 
   executable_file:
     foreground: pink
