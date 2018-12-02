@@ -9,10 +9,10 @@ It uses a YAML-based configuration format for the [filetype-database](config/fil
 and the [color themes](themes/). In contrast to
 [`dircolors`](https://www.gnu.org/software/coreutils/manual/html_node/dircolors-invocation.html#dircolors-invocation),
 the database and the themes are organized in different files. This allows users to
-choose and customize color themes independent from the content. Instead of using
-(cryptic) ANSI escape codes, colors can be specified in the `RRGGBB` format and
-will be translated to either truecolor (24-bit) ANSI codes or 8-bit codes for older
-terminal emulators.
+choose and customize color themes independent from the collection of file extensions.
+Instead of using (cryptic) ANSI escape codes, colors can be specified in the `RRGGBB`
+format and will be translated to either truecolor (24-bit) ANSI codes or 8-bit codes
+for older terminal emulators.
 
 #### Usage
 ``` bash
