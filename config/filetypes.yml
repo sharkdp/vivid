@@ -263,15 +263,29 @@ office:
   document:
     - .doc
     - .docx
+    - .epub
+    - .odt
     - .pdf
+    - .ps
+    - .rtf
+    - .sxw
 
-  sheet:
+  spreadsheet:
     - .xls
     - .xlsx
+    - .ods
+    - .xlr
 
   presentation:
     - .ppt
     - .pptx
+    - .odp
+    - .sxi
+    - .kex
+    - .pps
+
+  calendar:
+    - .ics
 
 archives:
   packages:
