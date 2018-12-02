@@ -171,6 +171,13 @@ programming:
         - Makefile
         - .make
 
+      automake:
+        - Makefile.am
+
+      configure:
+        - configure
+        - configure.ac
+
       scons:
         - SConscript
         - SConstruct
