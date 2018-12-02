@@ -189,6 +189,8 @@ programming:
       python:
         - MANIFEST.in
         - setup.py
+      ruby:
+        - .gemspec
 
     code-style:
       python:
