@@ -216,12 +216,18 @@ programming:
 
 media:
   image:
-    - .jpg
-    - .png
-    - .jpeg
-    - .svg
     - .bmp
     - .gif
+    - .ico
+    - .jpeg
+    - .jpg
+    - .pbm
+    - .pgm
+    - .png
+    - .ppm
+    - .svg
+    - .tif
+    - .xcf
 
   audio:
     - .wav
