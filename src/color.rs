@@ -1,13 +1,13 @@
 use ansi_colours::ansi256_from_rgb;
 use error::{DircolorsError, Result};
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum ColorMode {
     BitDepth24,
     BitDepth8,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub enum ColorType {
     Foreground,
     Background,
@@ -22,7 +22,7 @@ impl ColorType {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Color {
     Default,
     RGB(u8, u8, u8),
@@ -32,15 +32,22 @@ impl Color {
     pub fn from_hex_str(hex_str: &str) -> Result<Color> {
         let parse_error = || DircolorsError::ColorParseError(hex_str.to_string());
 
-        if hex_str.len() != 6 {
-            return Err(parse_error());
+        if hex_str.len() == 6 {
+            let r = u8::from_str_radix(&hex_str[0..2], 16).map_err(|_| parse_error())?;
+            let g = u8::from_str_radix(&hex_str[2..4], 16).map_err(|_| parse_error())?;
+            let b = u8::from_str_radix(&hex_str[4..6], 16).map_err(|_| parse_error())?;
+
+            Ok(Color::RGB(r, g, b))
+        } else if hex_str.len() == 3 {
+            let r = u8::from_str_radix(&hex_str[0..1], 16).map_err(|_| parse_error())?;
+            let g = u8::from_str_radix(&hex_str[1..2], 16).map_err(|_| parse_error())?;
+            let b = u8::from_str_radix(&hex_str[2..3], 16).map_err(|_| parse_error())?;
+
+            Ok(Color::RGB((r << 4) + r, (g << 4) + g, (b << 4) + b))
+        } else {
+            Err(parse_error())
         }
 
-        let r = u8::from_str_radix(&hex_str[0..2], 16).map_err(|_| parse_error())?;
-        let g = u8::from_str_radix(&hex_str[2..4], 16).map_err(|_| parse_error())?;
-        let b = u8::from_str_radix(&hex_str[4..6], 16).map_err(|_| parse_error())?;
-
-        Ok(Color::RGB(r, g, b))
     }
 
     pub fn get_style(&self, colortype: ColorType, colormode: ColorMode) -> String {
@@ -67,6 +74,27 @@ impl Color {
 #[cfg(test)]
 mod tests {
     use super::{Color, ColorMode, ColorType};
+
+    #[test]
+    fn from_hex_str_6chars() {
+        let color = Color::from_hex_str("4ec703").unwrap();
+        assert_eq!(Color::RGB(0x4e, 0xc7, 0x03), color);
+    }
+
+    #[test]
+    fn from_hex_str_3chars() {
+        let color = Color::from_hex_str("4ec").unwrap();
+        assert_eq!(Color::RGB(0x44, 0xee, 0xcc), color);
+    }
+
+    #[test]
+    fn from_hex_str_errors() {
+        assert!(Color::from_hex_str("").is_err());
+        assert!(Color::from_hex_str("fffffff").is_err());
+        assert!(Color::from_hex_str("4e").is_err());
+        assert!(Color::from_hex_str("ffggff").is_err());
+        assert!(Color::from_hex_str("ff ").is_err());
+    }
 
     #[test]
     fn default() {
