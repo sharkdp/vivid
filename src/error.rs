@@ -14,6 +14,7 @@ pub enum DircolorsError {
     DuplicateFileType(String),
     CouldNotLoadTheme(String),
     EmptyThemeFile,
+    CouldNotFindStyleFor(String),
 }
 
 impl Display for DircolorsError {
@@ -29,8 +30,9 @@ impl Display for DircolorsError {
             DircolorsError::CouldNotLoadTheme(path) => {
                 write!(fmt, "Could not load theme '{}'.", path)
             }
-            DircolorsError::EmptyThemeFile => {
-                write!(fmt, "Theme file is empty")
+            DircolorsError::EmptyThemeFile => write!(fmt, "Theme file is empty"),
+            DircolorsError::CouldNotFindStyleFor(category) => {
+                write!(fmt, "Could not find style for category '{}'", category)
             }
         }
     }

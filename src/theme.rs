@@ -86,8 +86,7 @@ impl Theme {
                 if let Some(value) = map.get(&Yaml::String(key.clone())) {
                     item = &value;
                 } else {
-                    // TODO: warning("could not resolve path '{}'".format("/".join(path)))
-                    return Ok("0".into());
+                    return Err(DircolorsError::CouldNotFindStyleFor(category.join(".")));
                 }
             } else {
                 return Err(DircolorsError::UnexpectedYamlType);
