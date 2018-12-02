@@ -31,7 +31,7 @@ impl FileTypes {
             filetype[1..].into()
         } else {
             let mut s = String::from("*");
-            s.push_str(&filetype.to_lowercase());
+            s.push_str(&filetype);
             s
         }
     }
