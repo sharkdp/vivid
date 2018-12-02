@@ -239,11 +239,18 @@ media:
     - .wma
 
   video:
+    - .avi
+    - .flv
+    - .h264
+    - .m4v
     - .mkv
     - .mov
     - .mp4
     - .mpeg
     - .mpg
+    - .rm
+    - .swf
+    - .vob
     - .wmv
 
 office:
