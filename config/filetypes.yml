@@ -230,9 +230,13 @@ media:
     - .xcf
 
   audio:
-    - .wav
+    - .aif
     - .flac
+    - .mid
     - .mp3
+    - .ogg
+    - .wav
+    - .wma
 
   video:
     - .mkv
