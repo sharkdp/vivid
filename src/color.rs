@@ -47,7 +47,6 @@ impl Color {
         } else {
             Err(parse_error())
         }
-
     }
 
     pub fn get_style(&self, colortype: ColorType, colormode: ColorMode) -> String {

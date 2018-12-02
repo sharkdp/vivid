@@ -64,10 +64,12 @@ impl Theme {
         })
     }
 
-    fn get_color(&self, color: &str) -> Result<&Color> {
+    fn get_color(&self, color_str: &str) -> Result<Color> {
         self.colors
-            .get(color)
-            .ok_or(DircolorsError::UnknownColor(color.to_string()))
+            .get(color_str)
+            .map(|c| c.clone())
+            .or(Color::from_hex_str(color_str).ok())
+            .ok_or(DircolorsError::UnknownColor(color_str.to_string()))
     }
 
     pub fn get_style(&self, category: &Category) -> Result<String> {
@@ -102,7 +104,7 @@ impl Theme {
         if let Yaml::Hash(map) = item {
             let font_style: &str = map
                 .get(&Yaml::String("font-style".into()))
-                .map(|s| s.as_str().unwrap())
+                .map(|s| s.as_str().expect("Color value should be a string"))
                 .unwrap_or("regular");
 
             let font_style_ansi: &u8 = ANSI_STYLES.get(&font_style).unwrap(); // TODO
@@ -112,11 +114,11 @@ impl Theme {
                 .map(|s| s.as_str().unwrap());
 
             let foreground =
-                transpose(foreground.map(|fg| self.get_color(fg)))?.unwrap_or(&Color::Default);
+                transpose(foreground.map(|fg| self.get_color(fg)))?.unwrap_or(Color::Default);
 
             let background = map
                 .get(&Yaml::String("background".into()))
-                .map(|s| s.as_str().unwrap());
+                .map(|s| s.as_str().expect("'background' value should be a string"));
 
             let background = transpose(background.map(|fg| self.get_color(fg)))?;
 
