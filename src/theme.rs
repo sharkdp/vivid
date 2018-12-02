@@ -64,6 +64,12 @@ impl Theme {
         })
     }
 
+    fn get_color(&self, color: &str) -> Result<&Color> {
+        self.colors
+            .get(color)
+            .ok_or(DircolorsError::UnknownColor(color.to_string()))
+    }
+
     pub fn get_style(&self, category: &Category) -> Result<String> {
         if category.is_empty() {
             // TODO: use a non-empty collection data type to avoid this
@@ -105,22 +111,18 @@ impl Theme {
                 .get(&Yaml::String("foreground".into()))
                 .map(|s| s.as_str().unwrap());
 
-            let foreground = transpose(foreground.map(|fg| {
-                self.colors
-                    .get(fg)
-                    .ok_or(DircolorsError::UnknownColor(fg.to_string()))
-            }))?
-            .unwrap_or(&Color::Default);
+            let foreground =
+                transpose(foreground.map(|fg| self.get_color(fg)))?.unwrap_or(&Color::Default);
 
             let background = map
                 .get(&Yaml::String("background".into()))
                 .map(|s| s.as_str().unwrap());
 
-            let background = background.and_then(|b| self.colors.get(b));
+            let background = transpose(background.map(|fg| self.get_color(fg)))?;
 
             let foreground_code = foreground.get_style(ColorType::Foreground, self.color_mode);
             let mut style: String = format!(
-                "{font_style};38;{foreground_code}",
+                "{font_style};{foreground_code}",
                 font_style = *font_style_ansi,
                 foreground_code = foreground_code
             );
@@ -128,7 +130,7 @@ impl Theme {
             if let Some(background) = background {
                 let background_code = background.get_style(ColorType::Background, self.color_mode);
                 style.push_str(&format!(
-                    ";48;{background_code}",
+                    ";{background_code}",
                     background_code = background_code
                 ));
             }

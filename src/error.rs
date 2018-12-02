@@ -15,6 +15,7 @@ pub enum DircolorsError {
     CouldNotLoadTheme(String),
     EmptyThemeFile,
     CouldNotFindStyleFor(String),
+    UnknownColor(String),
 }
 
 impl Display for DircolorsError {
@@ -34,6 +35,7 @@ impl Display for DircolorsError {
             DircolorsError::CouldNotFindStyleFor(category) => {
                 write!(fmt, "Could not find style for category '{}'", category)
             }
+            DircolorsError::UnknownColor(color) => write!(fmt, "Unknown color '{}'", color),
         }
     }
 }
