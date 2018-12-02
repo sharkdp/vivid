@@ -339,12 +339,23 @@ unimportant:
   build_artifacts:
     cxx:
       - .o
+      - .la
+      - .lo
     cmake:
       - CMakeCache.txt
+    automake:
+      - Makefile.in
     rust:
       - .rlib
     python:
       - .pyc
+    haskell:
+      - .dyn_hi
+      - .dyn_o
+      - .cache
+      - .hi
+    java:
+      - .class
     scons:
       - .scons_opt
       - .sconsign.dblite
@@ -353,11 +364,15 @@ unimportant:
       - .bbl
       - .bcf
       - .blg
-      - .fls
-      - .out
-      - .toc
-      - .synctex.gz
       - .fdb_latexmk
+      - .fls
+      - .idx
+      - .ilg
+      - .ind
+      - .out
+      - .sty
+      - .synctex.gz
+      - .toc
 
   other:
     - "~"
@@ -366,4 +381,7 @@ unimportant:
     - .lock
     - .log
     - .orig
+    - .pid
+    - .swp
+    - .tmp
     - package-lock.json
