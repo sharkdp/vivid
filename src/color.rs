@@ -63,3 +63,44 @@ impl Color {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{Color, ColorMode, ColorType};
+
+    #[test]
+    fn default() {
+        let style = Color::Default.get_style(ColorType::Foreground, ColorMode::BitDepth24);
+        assert_eq!("", style);
+    }
+
+    #[test]
+    fn fg_white() {
+        let white = Color::RGB(0xff, 0xff, 0xff);
+        let style_8bit = white.get_style(ColorType::Foreground, ColorMode::BitDepth8);
+        assert_eq!("38;5;231", style_8bit);
+
+        let style_24bit = white.get_style(ColorType::Foreground, ColorMode::BitDepth24);
+        assert_eq!("38;2;255;255;255", style_24bit);
+    }
+
+    #[test]
+    fn bg_black() {
+        let black = Color::RGB(0x00, 0x00, 0x00);
+        let style_8bit = black.get_style(ColorType::Background, ColorMode::BitDepth8);
+        assert_eq!("48;5;16", style_8bit);
+
+        let style_24bit = black.get_style(ColorType::Background, ColorMode::BitDepth24);
+        assert_eq!("48;2;0;0;0", style_24bit);
+    }
+
+    #[test]
+    fn fg_red() {
+        let red = Color::RGB(0xff, 0x00, 0x00);
+        let style_8bit = red.get_style(ColorType::Foreground, ColorMode::BitDepth8);
+        assert_eq!("38;5;196", style_8bit);
+
+        let style_24bit = red.get_style(ColorType::Foreground, ColorMode::BitDepth24);
+        assert_eq!("38;2;255;0;0", style_24bit);
+    }
+}
