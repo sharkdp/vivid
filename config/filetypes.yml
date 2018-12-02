@@ -61,6 +61,16 @@ text:
     nix:
       - .nix
 
+    qt:
+      - .ui
+
+    desktop:
+      - .desktop
+
+    system:
+      - passwd
+      - shadow
+
   other:
     - .txt
 
