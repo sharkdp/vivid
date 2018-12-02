@@ -6,7 +6,7 @@
 [`fd`](https://github.com/sharkdp/fd), etc.
 
 It uses a YAML-based configuration format for the [filetype-database](config/filetypes.yml)
-and the [color themes](themes/molokai.yml). In contrast to
+and the [color themes](themes/). In contrast to
 [`dircolors`](https://www.gnu.org/software/coreutils/manual/html_node/dircolors-invocation.html#dircolors-invocation),
 the database and the themes are organized in different files. This allows users to
 choose and customize color themes independent from the content. Instead of using
