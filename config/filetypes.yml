@@ -253,6 +253,12 @@ media:
     - .vob
     - .wmv
 
+  fonts:
+    - .fnt
+    - .fon
+    - .otf
+    - .ttf
+
 office:
   document:
     - .doc
