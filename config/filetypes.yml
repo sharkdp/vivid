@@ -38,14 +38,15 @@ text:
 
   configuration:
     generic:
-      - .conf
       - .cfg
+      - .conf
+      - .config
       - .ini
+      - .json
+      - .tml
       - .toml
       - .yaml
       - .yml
-      - .tml
-      - .json
 
     metadata:
       - .xmp
