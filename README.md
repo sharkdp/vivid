@@ -1,7 +1,7 @@
 ![vivid](doc/vivid.png)
 <br><br>
 
-*vivid* is a manager for `LS_COLORS` expressions that control the colorized output of
+*vivid* is a generator for the `LS_COLORS` environment variable that controls the colorized output of
 [`ls`](https://www.gnu.org/software/coreutils/manual/html_node/ls-invocation.html#ls-invocation), [`tree`](http://mama.indstate.edu/users/ice/tree/),
 [`fd`](https://github.com/sharkdp/fd), etc.
 
