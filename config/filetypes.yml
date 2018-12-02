@@ -199,6 +199,12 @@ programming:
       cxx:
         - .clang-format
 
+    editors:
+      qt:
+        - .pro
+      kdevelop:
+        - .kdevelop
+
     documentation:
       doxygen:
         - Doxyfile
