@@ -296,18 +296,28 @@ archives:
   ros:
     - .bag
 
+  images:
+    - .bin
+    - .dmg
+    - .img
+    - .iso
+    - .toast
+    - .vcd
+
   other:
     - .7z
+    - .arj
     - .bz
     - .bz2
     - .gz
-    - .iso
     - .jar
+    - .pkg
     - .rar
     - .tar
     - .tbz
     - .tbz2
     - .tgz
+    - .xz
     - .z
     - .zip
 
