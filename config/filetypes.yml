@@ -324,8 +324,16 @@ archives:
 executable:
   windows:
     - .bat
-    - .cmd
+    - .com
     - .exe
+
+  library:
+    - .so
+    - .a
+    - .dll
+
+  linux:
+    - .ko
 
 unimportant:
   build_artifacts:
