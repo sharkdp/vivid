@@ -7,22 +7,28 @@ pub enum ColorMode {
     BitDepth8,
 }
 
+#[derive(Debug, Clone, Copy)]
+pub enum ColorType {
+    Foreground,
+    Background,
+}
+
+impl ColorType {
+    fn get_code(self) -> &'static str {
+        match self {
+            ColorType::Foreground => "38",
+            ColorType::Background => "48",
+        }
+    }
+}
+
 #[derive(Debug, Clone)]
-pub struct Color {
-    r: u8,
-    g: u8,
-    b: u8,
+pub enum Color {
+    Default,
+    RGB(u8, u8, u8),
 }
 
 impl Color {
-    pub fn white() -> Color {
-        Color {
-            r: 0xff,
-            g: 0xff,
-            b: 0xff,
-        }
-    }
-
     pub fn from_hex_str(hex_str: &str) -> Result<Color> {
         let parse_error = || DircolorsError::ColorParseError(hex_str.to_string());
 
@@ -34,16 +40,26 @@ impl Color {
         let g = u8::from_str_radix(&hex_str[2..4], 16).map_err(|_| parse_error())?;
         let b = u8::from_str_radix(&hex_str[4..6], 16).map_err(|_| parse_error())?;
 
-        Ok(Color { r, g, b })
+        Ok(Color::RGB(r, g, b))
     }
 
-    pub fn get_style(&self, mode: ColorMode) -> String {
-        match mode {
-            ColorMode::BitDepth24 => format!("2;{r};{g};{b}", r = self.r, g = self.g, b = self.b),
-            ColorMode::BitDepth8 => format!(
-                "5;{code}",
-                code = ansi256_from_rgb((self.r, self.g, self.b))
-            ),
+    pub fn get_style(&self, colortype: ColorType, colormode: ColorMode) -> String {
+        match self {
+            Color::Default => String::default(),
+            Color::RGB(r, g, b) => match colormode {
+                ColorMode::BitDepth24 => format!(
+                    "{ctype};2;{r};{g};{b}",
+                    ctype = colortype.get_code(),
+                    r = r,
+                    g = g,
+                    b = b
+                ),
+                ColorMode::BitDepth8 => format!(
+                    "{ctype};5;{code}",
+                    ctype = colortype.get_code(),
+                    code = ansi256_from_rgb((*r, *g, *b))
+                ),
+            },
         }
     }
 }

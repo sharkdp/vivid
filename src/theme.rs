@@ -4,10 +4,10 @@ use std::path::Path;
 use yaml_rust::yaml::YamlLoader;
 use yaml_rust::Yaml;
 
-use color::{Color, ColorMode};
+use color::{Color, ColorMode, ColorType};
 use error::{DircolorsError, Result};
 use types::Category;
-use util::load_yaml_file;
+use util::{load_yaml_file, transpose};
 
 lazy_static! {
     static ref ANSI_STYLES: HashMap<&'static str, u8> = {
@@ -103,11 +103,14 @@ impl Theme {
 
             let foreground = map
                 .get(&Yaml::String("foreground".into()))
-                .map(|s| s.as_str().unwrap())
-                .unwrap_or("default");
+                .map(|s| s.as_str().unwrap());
 
-            let white = Color::white();
-            let foreground = self.colors.get(foreground).unwrap_or(&white); // TODO
+            let foreground = transpose(foreground.map(|fg| {
+                self.colors
+                    .get(fg)
+                    .ok_or(DircolorsError::UnknownColor(fg.to_string()))
+            }))?
+            .unwrap_or(&Color::Default);
 
             let background = map
                 .get(&Yaml::String("background".into()))
@@ -115,7 +118,7 @@ impl Theme {
 
             let background = background.and_then(|b| self.colors.get(b));
 
-            let foreground_code = foreground.get_style(self.color_mode);
+            let foreground_code = foreground.get_style(ColorType::Foreground, self.color_mode);
             let mut style: String = format!(
                 "{font_style};38;{foreground_code}",
                 font_style = *font_style_ansi,
@@ -123,7 +126,7 @@ impl Theme {
             );
 
             if let Some(background) = background {
-                let background_code = background.get_style(self.color_mode);
+                let background_code = background.get_style(ColorType::Background, self.color_mode);
                 style.push_str(&format!(
                     ";48;{background_code}",
                     background_code = background_code
