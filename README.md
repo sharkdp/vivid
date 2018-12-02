@@ -58,6 +58,11 @@ Licensed under either of
 
 at your option.
 
+### Useful sources
+
+- https://en.wikipedia.org/wiki/List_of_file_formats
+- https://fileinfo.com/
+
 ### Similar and related projects
 
 - https://github.com/karlding/dirchromatic
