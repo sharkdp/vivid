@@ -39,7 +39,7 @@ impl Theme {
 
     fn from_string(contents: &str, color_mode: ColorMode) -> Result<Theme> {
         let mut docs = YamlLoader::load_from_str(&contents)?;
-        let doc = docs.pop().expect("YAML file with one document"); // TODO
+        let doc = docs.pop().ok_or(DircolorsError::EmptyThemeFile)?;
 
         let mut colors = HashMap::new();
 

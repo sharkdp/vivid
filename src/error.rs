@@ -13,6 +13,7 @@ pub enum DircolorsError {
     ColorParseError(String),
     DuplicateFileType(String),
     CouldNotLoadTheme(String),
+    EmptyThemeFile,
 }
 
 impl Display for DircolorsError {
@@ -27,6 +28,9 @@ impl Display for DircolorsError {
             DircolorsError::DuplicateFileType(ft) => write!(fmt, "Duplicate file type '{}'.", ft),
             DircolorsError::CouldNotLoadTheme(path) => {
                 write!(fmt, "Could not load theme '{}'.", path)
+            }
+            DircolorsError::EmptyThemeFile => {
+                write!(fmt, "Theme file is empty")
             }
         }
     }
