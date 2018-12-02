@@ -113,8 +113,7 @@ impl Theme {
                 .get(&Yaml::String("foreground".into()))
                 .map(|s| s.as_str().unwrap());
 
-            let foreground =
-                transpose(foreground.map(|fg| self.get_color(fg)))?.unwrap_or(Color::Default);
+            let foreground = transpose(foreground.map(|fg| self.get_color(fg)))?;
 
             let background = map
                 .get(&Yaml::String("background".into()))
@@ -122,12 +121,14 @@ impl Theme {
 
             let background = transpose(background.map(|fg| self.get_color(fg)))?;
 
-            let foreground_code = foreground.get_style(ColorType::Foreground, self.color_mode);
-            let mut style: String = format!(
-                "{font_style};{foreground_code}",
-                font_style = *font_style_ansi,
-                foreground_code = foreground_code
-            );
+            let mut style: String = format!("{font_style}", font_style = *font_style_ansi,);
+            if let Some(foreground) = foreground {
+                let foreground_code = foreground.get_style(ColorType::Foreground, self.color_mode);
+                style.push_str(&format!(
+                    ";{foreground_code}",
+                    foreground_code = foreground_code
+                ));
+            }
 
             if let Some(background) = background {
                 let background_code = background.get_style(ColorType::Background, self.color_mode);
