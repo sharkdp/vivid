@@ -1,5 +1,5 @@
 use ansi_colours::ansi256_from_rgb;
-use error::{DircolorsError, Result};
+use error::{Result, VividError};
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum ColorMode {
@@ -30,7 +30,7 @@ pub enum Color {
 
 impl Color {
     pub fn from_hex_str(hex_str: &str) -> Result<Color> {
-        let parse_error = || DircolorsError::ColorParseError(hex_str.to_string());
+        let parse_error = || VividError::ColorParseError(hex_str.to_string());
 
         if hex_str.len() == 6 {
             let r = u8::from_str_radix(&hex_str[0..2], 16).map_err(|_| parse_error())?;

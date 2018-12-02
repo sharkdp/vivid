@@ -4,7 +4,7 @@ use std::path::Path;
 use yaml_rust::yaml::YamlLoader;
 use yaml_rust::Yaml;
 
-use error::{DircolorsError, Result};
+use error::{Result, VividError};
 use types::{Category, FileType};
 use util::load_yaml_file;
 
@@ -46,10 +46,10 @@ impl FileTypes {
                         let result = mapping.insert(code, category.clone());
 
                         if !result.is_none() {
-                            return Err(DircolorsError::DuplicateFileType(filetype.to_string()));
+                            return Err(VividError::DuplicateFileType(filetype.to_string()));
                         }
                     } else {
-                        return Err(DircolorsError::UnexpectedYamlType);
+                        return Err(VividError::UnexpectedYamlType);
                     }
                 }
             }
@@ -66,14 +66,14 @@ impl FileTypes {
                         .keys()
                         .find(|ft| mapping.contains_key(*ft))
                     {
-                        return Err(DircolorsError::DuplicateFileType(filetype.to_string()));
+                        return Err(VividError::DuplicateFileType(filetype.to_string()));
                     }
 
                     mapping.extend(child_mapping.mapping);
                 }
             }
             _ => {
-                return Err(DircolorsError::UnexpectedYamlType);
+                return Err(VividError::UnexpectedYamlType);
             }
         }
 

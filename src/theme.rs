@@ -5,7 +5,7 @@ use yaml_rust::yaml::YamlLoader;
 use yaml_rust::Yaml;
 
 use color::{Color, ColorMode, ColorType};
-use error::{DircolorsError, Result};
+use error::{Result, VividError};
 use types::Category;
 use util::{load_yaml_file, transpose};
 
@@ -33,13 +33,13 @@ pub struct Theme {
 impl Theme {
     pub fn from_file(path: &Path, color_mode: ColorMode) -> Result<Theme> {
         let contents = load_yaml_file(path)
-            .map_err(|_| DircolorsError::CouldNotLoadTheme(path.to_string_lossy().into()))?;
+            .map_err(|_| VividError::CouldNotLoadTheme(path.to_string_lossy().into()))?;
         Self::from_string(&contents, color_mode)
     }
 
     fn from_string(contents: &str, color_mode: ColorMode) -> Result<Theme> {
         let mut docs = YamlLoader::load_from_str(&contents)?;
-        let doc = docs.pop().ok_or(DircolorsError::EmptyThemeFile)?;
+        let doc = docs.pop().ok_or(VividError::EmptyThemeFile)?;
 
         let mut colors = HashMap::new();
 
@@ -50,11 +50,11 @@ impl Theme {
                         (Yaml::String(key), Yaml::String(value)) => {
                             colors.insert(key.clone(), Color::from_hex_str(&value)?);
                         }
-                        _ => return Err(DircolorsError::UnexpectedYamlType),
+                        _ => return Err(VividError::UnexpectedYamlType),
                     }
                 }
             }
-            _ => return Err(DircolorsError::UnexpectedYamlType),
+            _ => return Err(VividError::UnexpectedYamlType),
         }
 
         Ok(Theme {
@@ -69,7 +69,7 @@ impl Theme {
             .get(color_str)
             .map(|c| c.clone())
             .or(Color::from_hex_str(color_str).ok())
-            .ok_or(DircolorsError::UnknownColor(color_str.to_string()))
+            .ok_or(VividError::UnknownColor(color_str.to_string()))
     }
 
     pub fn get_style(&self, category: &Category) -> Result<String> {
@@ -94,10 +94,10 @@ impl Theme {
                 if let Some(value) = map.get(&Yaml::String(key.clone())) {
                     item = &value;
                 } else {
-                    return Err(DircolorsError::CouldNotFindStyleFor(category.join(".")));
+                    return Err(VividError::CouldNotFindStyleFor(category.join(".")));
                 }
             } else {
-                return Err(DircolorsError::UnexpectedYamlType);
+                return Err(VividError::UnexpectedYamlType);
             }
         }
 
@@ -139,7 +139,7 @@ impl Theme {
 
             Ok(style)
         } else {
-            Err(DircolorsError::UnexpectedYamlType)
+            Err(VividError::UnexpectedYamlType)
         }
     }
 }
