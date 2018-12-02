@@ -21,6 +21,7 @@ core:
 
   directory:
     foreground: cyan
+    font-style: bold
 
   executable_file:
     foreground: pink
@@ -56,11 +57,11 @@ text:
   licenses:
     foreground: gray
 
-  other:
-    foreground: gold
-
   configuration:
     foreground: green
+
+  other:
+    foreground: gold
 
 markup:
   foreground: gold

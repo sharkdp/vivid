@@ -84,12 +84,7 @@ programming:
       foreground: green
 
 media:
-  image:
-    foreground: light_pink
-  audio:
-    foreground: light_pink
-  video:
-    foreground: light_pink
+  foreground: light_pink
 
 office:
   foreground: red
