@@ -52,12 +52,17 @@ sudo dpkg -i vivid_0.4.0_amd64.deb
 
 Check out the [release page](https://github.com/sharkdp/vivid/releases) for binary builds.
 
+Make sure that you install the contents of the `share/vivid` folder at
+`/usr/share/vivid` or at `$HOME/.config/vivid`.
+
 ### Via cargo
 
 If you have Rust 1.30 or higher, you can install `vivid` from source via `cargo`:
 ```
 cargo install vivid
 ```
+
+Make sure that you install the assets (database and themes) separately. See above for instructions.
 
 ## License
 
