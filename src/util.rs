@@ -18,3 +18,7 @@ pub fn transpose<T, E>(
 ) -> std::result::Result<Option<T>, E> {
     opt.map_or(Ok(None), |res| res.map(Some))
 }
+
+pub fn get_first_existing_path<'a>(paths: &[&'a Path]) -> Option<&'a Path> {
+    paths.iter().find(|p| Path::exists(*p)).map(|p| *p)
+}

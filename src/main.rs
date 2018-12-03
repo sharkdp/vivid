@@ -12,13 +12,14 @@ mod theme;
 mod types;
 mod util;
 
-use std::path::Path;
+use std::env;
+use std::path::{Path, PathBuf};
 use std::process;
 
 use clap::{App, AppSettings, Arg, SubCommand};
 
 use color::ColorMode;
-use error::Result;
+use error::{Result, VividError};
 use filetypes::FileTypes;
 use theme::Theme;
 
@@ -44,22 +45,18 @@ fn run() -> Result<()> {
                 .default_value("24-bit")
                 .help("Type of ANSI colors to be used"),
         )
+        .arg(
+            Arg::with_name("database")
+                .long("database")
+                .short("d")
+                .takes_value(true)
+                .value_name("path")
+                .help("Path to filetypes database (filetypes.yml)"),
+        )
         .subcommand(
             SubCommand::with_name("generate")
                 .about("Generate a LS_COLORS expression")
-                .arg(
-                    Arg::with_name("filetypes-db")
-                        .required(true)
-                        .help("Path to file-types database (filetypes.yml)"),
-                )
-                .arg(
-                    Arg::with_name("theme")
-                        .long("theme")
-                        .short("t")
-                        .takes_value(true)
-                        .required(true)
-                        .help("Path to theme file (YML)"),
-                ),
+                .arg(Arg::with_name("theme").help("Name of the color theme")),
         );
 
     let matches = app.get_matches();
@@ -69,11 +66,49 @@ fn run() -> Result<()> {
     };
 
     if let Some(sub_matches) = matches.subcommand_matches("generate") {
-        let path = Path::new(sub_matches.value_of("filetypes-db").unwrap());
-        let filetypes = FileTypes::from_file(&path)?;
+        let mut user_config_path = PathBuf::new();
+        user_config_path.push(env::var("HOME").expect("Environment variable HOME"));
+        user_config_path.push(".config");
+        user_config_path.push("vivid");
 
-        let theme_path = Path::new(sub_matches.value_of("theme").unwrap());
-        let theme = Theme::from_file(&theme_path, color_mode)?;
+        println!("{:?}", user_config_path);
+
+        // Load the filetypes database
+        let database_path_from_arg = matches.value_of("database").map(Path::new);
+
+        let mut database_path_user = user_config_path.clone();
+        database_path_user.push("filetypes.yml");
+
+        let database_path_env_s = env::var("VIVID_DATABASE").ok();
+        let database_path_env = database_path_env_s.as_ref().map(Path::new);
+
+        let database_path_system = Path::new("/usr/share/vivid/filetypes.yml");
+
+        let database_path = database_path_from_arg
+            .or(database_path_env)
+            .or_else(|| util::get_first_existing_path(&[&database_path_user, database_path_system]))
+            .ok_or(VividError::CouldNotFindDatabase)?;
+        let filetypes = FileTypes::from_file(&database_path)?;
+
+        // Load the theme
+        let theme_name_env = env::var("VIVID_THEME").ok();
+        let theme_name = sub_matches
+            .value_of("theme")
+            .or(theme_name_env.as_ref().map(String::as_str))
+            .unwrap_or("molokai");
+        let theme_file = format!("{}.yml", theme_name);
+
+        let mut theme_path_user = user_config_path.clone();
+        theme_path_user.push("themes");
+        theme_path_user.push(theme_file.clone());
+
+        let mut theme_path_system = PathBuf::new();
+        theme_path_system.push("/usr/share/vivid/themes/");
+        theme_path_system.push(theme_file);
+
+        let theme_path = util::get_first_existing_path(&[&theme_path_user, &theme_path_system])
+            .ok_or(VividError::CouldNotFindTheme(theme_name.to_string()))?;
+        let theme = Theme::from_file(theme_path, color_mode)?;
 
         let mut filetypes_list = filetypes.mapping.keys().collect::<Vec<_>>();
         filetypes_list.sort_unstable_by_key(|entry| entry.len());

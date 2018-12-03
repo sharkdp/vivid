@@ -15,7 +15,7 @@ pub struct FileTypes {
 impl FileTypes {
     pub fn from_file(path: &Path) -> Result<FileTypes> {
         let contents = load_yaml_file(path)
-            .map_err(|_| VividError::CouldNotLoadFileTypes(path.to_string_lossy().into()))?;
+            .map_err(|_| VividError::CouldNotLoadDatabaseFrom(path.to_string_lossy().into()))?;
         Self::from_string(&contents)
     }
 

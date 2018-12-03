@@ -12,7 +12,9 @@ pub enum VividError {
     UnexpectedYamlType,
     ColorParseError(String),
     DuplicateFileType(String),
-    CouldNotLoadFileTypes(String),
+    CouldNotFindDatabase,
+    CouldNotLoadDatabaseFrom(String),
+    CouldNotFindTheme(String),
     CouldNotLoadTheme(String),
     EmptyThemeFile,
     CouldNotFindStyleFor(String),
@@ -29,9 +31,16 @@ impl Display for VividError {
                 write!(fmt, "Could not parse color string '{}'.", color_str)
             }
             VividError::DuplicateFileType(ft) => write!(fmt, "Duplicate file type '{}'.", ft),
-            VividError::CouldNotLoadFileTypes(path) => {
-                write!(fmt, "Could not load filetypes database '{}'.", path)
+            VividError::CouldNotFindDatabase => write!(
+                fmt,
+                "Could not find filetypes database. Make sure that it is located in \
+                 a standard location. Alternatively, specify the path via the \
+                 command-line or the VIVID_DATABASE environment variable."
+            ),
+            VividError::CouldNotLoadDatabaseFrom(path) => {
+                write!(fmt, "Could not load filetypes database from '{}'.", path)
             }
+            VividError::CouldNotFindTheme(name) => write!(fmt, "Could not find theme '{}'.", name),
             VividError::CouldNotLoadTheme(path) => write!(fmt, "Could not load theme '{}'.", path),
             VividError::EmptyThemeFile => write!(fmt, "Theme file is empty"),
             VividError::CouldNotFindStyleFor(category) => {
