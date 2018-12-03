@@ -39,8 +39,8 @@ colors.
 ### On Debian-based systems
 
 ``` bash
-wget "https://github.com/sharkdp/vivid/releases/download/v0.3.0/vivid_0.3.0_amd64.deb"
-sudo dpkg -i vivid_0.3.0_amd64.deb
+wget "https://github.com/sharkdp/vivid/releases/download/v0.4.0/vivid_0.4.0_amd64.deb"
+sudo dpkg -i vivid_0.4.0_amd64.deb
 ```
 
 ### On other distrubutions
