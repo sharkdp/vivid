@@ -26,6 +26,10 @@ for older terminal emulators.
 Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your shells RC file
 (`~/.bashrc`, `~/.zshrc`, …):
 
+``` bash	
+export LS_COLORS="$(vivid generate molokai)"	
+```
+
 #### True color
 
 By default, `vivid` runs in true color mode (24-bit). If you don't use a [terminal
