@@ -6,7 +6,7 @@ use yaml_rust::Yaml;
 
 use color::{Color, ColorMode, ColorType};
 use error::{Result, VividError};
-use types::Category;
+use types::CategoryRef;
 use util::{load_yaml_file, transpose};
 
 lazy_static! {
@@ -24,6 +24,7 @@ lazy_static! {
     };
 }
 
+#[derive(Debug)]
 pub struct Theme {
     colors: HashMap<String, Color>,
     categories: Yaml, // TODO: load the category tree into a proper data structure
@@ -72,7 +73,7 @@ impl Theme {
             .ok_or(VividError::UnknownColor(color_str.to_string()))
     }
 
-    pub fn get_style(&self, category: &Category) -> Result<String> {
+    pub fn get_style(&self, category: CategoryRef) -> Result<String> {
         if category.is_empty() {
             // TODO: use a non-empty collection data type to avoid this
             panic!("category should not be empty");
@@ -142,5 +143,40 @@ impl Theme {
         } else {
             Err(VividError::UnexpectedYamlType)
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::Theme;
+    use color::{Color, ColorMode};
+
+    #[test]
+    fn basic() {
+        let theme = Theme::from_string(
+            "
+                colors:
+                  color1: '00ff7f'
+
+                foo:
+                  bar:
+                    foreground: color1
+
+                c1:
+                  foreground: 'ffffff'
+
+                  c2:
+                    foreground: '000000'",
+            ColorMode::BitDepth24,
+        )
+        .unwrap();
+
+        let color1 = theme.get_style(&["foo".into(), "bar".into()]).unwrap();
+        assert_eq!("0;38;2;0;255;127", color1);
+
+        let color2 = theme
+            .get_style(&["c1".into(), "c2".into(), "c3".into()])
+            .unwrap();
+        assert_eq!("0;38;2;0;0;0", color2);
     }
 }
