@@ -166,17 +166,23 @@ mod tests {
                   foreground: 'ffffff'
 
                   c2:
-                    foreground: '000000'",
+                    foreground: '000000'
+
+                t3:
+                    font-style: bold",
             ColorMode::BitDepth24,
         )
         .unwrap();
 
-        let color1 = theme.get_style(&["foo".into(), "bar".into()]).unwrap();
-        assert_eq!("0;38;2;0;255;127", color1);
+        let style1 = theme.get_style(&["foo".into(), "bar".into()]).unwrap();
+        assert_eq!("0;38;2;0;255;127", style1);
 
-        let color2 = theme
+        let style2 = theme
             .get_style(&["c1".into(), "c2".into(), "c3".into()])
             .unwrap();
-        assert_eq!("0;38;2;0;0;0", color2);
+        assert_eq!("0;38;2;0;0;0", style2);
+
+        let style3 = theme.get_style(&["t3".into()]).unwrap();
+        assert_eq!("1", style3);
     }
 }
