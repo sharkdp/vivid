@@ -27,7 +27,7 @@ Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your
 (`~/.bashrc`, `~/.zshrc`, …):
 
 ``` bash	
-export LS_COLORS="$(vivid generate molokai)"	
+export LS_COLORS="$(vivid generate molokai)"
 ```
 
 #### True color
