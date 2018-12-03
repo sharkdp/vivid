@@ -14,14 +14,17 @@ Instead of using (cryptic) ANSI escape codes, colors can be specified in the `RR
 format and will be translated to either truecolor (24-bit) ANSI codes or 8-bit codes
 for older terminal emulators.
 
+#### Preview
+
+| `snazzy` | `molokai` | `ayu` |
+| --- | --- |
+| ![snazzy theme](https://i.imgur.com/ECdQqxb.png) | ![molokai theme](https://i.imgur.com/5OiAczQ.png) | ![ayu theme](https://i.imgur.com/LC4Cx8E.png) |
+
+
 #### Usage
 
 Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your shells RC file
 (`~/.bashrc`, `~/.zshrc`, …):
-
-``` bash
-export LS_COLORS="$(vivid generate molokai)"
-```
 
 ![Preview of "ls -R"](https://i.imgur.com/oekLIya.png)
 
