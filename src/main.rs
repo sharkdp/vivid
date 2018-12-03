@@ -71,8 +71,6 @@ fn run() -> Result<()> {
         user_config_path.push(".config");
         user_config_path.push("vivid");
 
-        println!("{:?}", user_config_path);
-
         // Load the filetypes database
         let database_path_from_arg = matches.value_of("database").map(Path::new);
 
