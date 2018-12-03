@@ -149,7 +149,7 @@ impl Theme {
 #[cfg(test)]
 mod tests {
     use super::Theme;
-    use color::{Color, ColorMode};
+    use color::ColorMode;
 
     #[test]
     fn basic() {

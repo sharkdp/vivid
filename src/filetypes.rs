@@ -81,3 +81,32 @@ impl FileTypes {
         Ok(FileTypes { mapping })
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::FileTypes;
+
+    #[test]
+    fn basic() {
+        let ft = FileTypes::from_string(
+            "
+                core:
+                  - .ext1
+
+                bar:
+                  baz: [.ext2, .ext3]
+            ",
+        )
+        .unwrap();
+
+        assert_eq!(vec!["core".to_string()], ft.mapping["*.ext1"]);
+        assert_eq!(
+            vec!["bar".to_string(), "baz".to_string()],
+            ft.mapping["*.ext2"]
+        );
+        assert_eq!(
+            vec!["bar".to_string(), "baz".to_string()],
+            ft.mapping["*.ext3"]
+        );
+    }
+}
