@@ -17,7 +17,7 @@ for older terminal emulators.
 #### Preview
 
 | `snazzy` | `molokai` | `ayu` |
-| --- | --- |
+| --- | --- | --- |
 | ![snazzy theme](https://i.imgur.com/ECdQqxb.png) | ![molokai theme](https://i.imgur.com/5OiAczQ.png) | ![ayu theme](https://i.imgur.com/LC4Cx8E.png) |
 
 
