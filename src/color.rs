@@ -24,7 +24,6 @@ impl ColorType {
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Color {
-    Default,
     RGB(u8, u8, u8),
 }
 
@@ -51,7 +50,6 @@ impl Color {
 
     pub fn get_style(&self, colortype: ColorType, colormode: ColorMode) -> String {
         match self {
-            Color::Default => String::default(),
             Color::RGB(r, g, b) => match colormode {
                 ColorMode::BitDepth24 => format!(
                     "{ctype};2;{r};{g};{b}",
@@ -93,12 +91,6 @@ mod tests {
         assert!(Color::from_hex_str("4e").is_err());
         assert!(Color::from_hex_str("ffggff").is_err());
         assert!(Color::from_hex_str("ff ").is_err());
-    }
-
-    #[test]
-    fn default() {
-        let style = Color::Default.get_style(ColorType::Foreground, ColorMode::BitDepth24);
-        assert_eq!("", style);
     }
 
     #[test]
