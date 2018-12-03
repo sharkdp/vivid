@@ -15,8 +15,12 @@ format and will be translated to either truecolor (24-bit) ANSI codes or 8-bit c
 for older terminal emulators.
 
 #### Usage
+
+Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your shells RC file
+(`~/.bashrc`, `~/.zshrc`, …):
+
 ``` bash
-export LS_COLORS="$(vivid generate filetypes.yml --theme themes/molokai.yml)"
+export LS_COLORS="$(vivid generate molokai)"
 ```
 
 ![Preview of "ls -R"](https://i.imgur.com/oekLIya.png)
@@ -25,7 +29,8 @@ export LS_COLORS="$(vivid generate filetypes.yml --theme themes/molokai.yml)"
 
 By default, `vivid` runs in true color mode (24-bit). If you don't use a [terminal
 that supports 24-bit colors](https://gist.github.com/XVilka/8346728), use the `--color-mode 8-bit`
-option when running `vivid`.
+option when running `vivid` (`vivid -m 8-bit generate molokai`). This will use interpolated 8-bit
+colors.
 
 ## Installation
 

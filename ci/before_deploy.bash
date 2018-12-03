@@ -29,10 +29,10 @@ pack() {
     cp LICENSE-APACHE "$tempdir/$package_name"
 
     # filetype database and themes
-    mkdir "$tempdir/$package_name/config"
-    cp config/* "$tempdir/$package_name/config"
-    mkdir "$tempdir/$package_name/themes"
-    cp themes/* "$tempdir/$package_name/themes"
+    mkdir -p "$tempdir/$package_name/share/vivid"
+    mkdir -p "$tempdir/$package_name/share/vivid/themes"
+    cp config/filetypes.yml "$tempdir/$package_name/share/vivid"
+    cp themes/*.yml "$tempdir/$package_name/share/vivid/themes"
 
     # archiving
     pushd "$tempdir"
@@ -82,7 +82,7 @@ make_deb() {
 
     # filetype database and themes
     mkdir -p "$tempdir/usr/share/$PROJECT_NAME/"
-    install -Dm644 config/* "$tempdir/usr/share/$PROJECT_NAME/"
+    install -Dm644 config/filetypes.yml "$tempdir/usr/share/$PROJECT_NAME/"
     mkdir -p "$tempdir/usr/share/$PROJECT_NAME/themes/"
     install -Dm644 themes/* "$tempdir/usr/share/$PROJECT_NAME/themes/"
 
