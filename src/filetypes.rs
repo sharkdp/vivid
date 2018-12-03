@@ -46,7 +46,7 @@ impl FileTypes {
                         let code = Self::get_code(filetype);
                         let result = mapping.insert(code, category.clone());
 
-                        if !result.is_none() {
+                        if result.is_some() {
                             return Err(VividError::DuplicateFileType(filetype.to_string()));
                         }
                     } else {

@@ -68,9 +68,9 @@ impl Theme {
     fn get_color(&self, color_str: &str) -> Result<Color> {
         self.colors
             .get(color_str)
-            .map(|c| c.clone())
-            .or(Color::from_hex_str(color_str).ok())
-            .ok_or(VividError::UnknownColor(color_str.to_string()))
+            .cloned()
+            .or_else(|| Color::from_hex_str(color_str).ok())
+            .ok_or_else(|| VividError::UnknownColor(color_str.to_string()))
     }
 
     pub fn get_style(&self, category: CategoryRef) -> Result<String> {

@@ -92,7 +92,7 @@ fn run() -> Result<()> {
         let theme_name_env = env::var("VIVID_THEME").ok();
         let theme_name = sub_matches
             .value_of("theme")
-            .or(theme_name_env.as_ref().map(String::as_str))
+            .or_else(|| theme_name_env.as_ref().map(String::as_str))
             .unwrap_or("molokai");
         let theme_file = format!("{}.yml", theme_name);
 
@@ -105,7 +105,7 @@ fn run() -> Result<()> {
         theme_path_system.push(theme_file);
 
         let theme_path = util::get_first_existing_path(&[&theme_path_user, &theme_path_system])
-            .ok_or(VividError::CouldNotFindTheme(theme_name.to_string()))?;
+            .ok_or_else(|| VividError::CouldNotFindTheme(theme_name.to_string()))?;
         let theme = Theme::from_file(theme_path, color_mode)?;
 
         let mut filetypes_list = filetypes.mapping.keys().collect::<Vec<_>>();
