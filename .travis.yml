@@ -43,7 +43,8 @@ install:
 script:
   # Incorporate TARGET env var to the build and test process
   - cargo build --target $TARGET --verbose
-  #- cargo test --target $TARGET --verbose
+  - cargo test --target $TARGET --verbose
+  - for theme in themes/*; do cargo run -- --database config/filetypes.yml generate "$theme"; done
 
 before_deploy:
   - bash ci/before_deploy.bash
