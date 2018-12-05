@@ -43,9 +43,20 @@ colors.
 
 ### On Debian-based systems
 
+Download one of the Debian packages from the [release page](https://github.com/sharkdp/vivid/releases)
+and install it via `dpkg -i`:
+
 ``` bash
 wget "https://github.com/sharkdp/vivid/releases/download/v0.4.0/vivid_0.4.0_amd64.deb"
 sudo dpkg -i vivid_0.4.0_amd64.deb
+```
+
+### On Arch Linux
+
+You can install `vivid` from [the AUR](https://aur.archlinux.org/packages/vivid/):
+
+``` bash
+yaourt -S vivid
 ```
 
 ### On other distrubutions
