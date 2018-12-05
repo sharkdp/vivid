@@ -78,6 +78,8 @@ at your option.
 - https://en.wikipedia.org/wiki/List_of_file_formats
 - https://fileinfo.com/
 
+- https://jonasjacek.github.io/colors/
+
 ### Similar and related projects
 
 - https://github.com/karlding/dirchromatic
