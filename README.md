@@ -87,3 +87,5 @@ at your option.
    - https://github.com/seebi/dircolors-solarized
    - https://github.com/ivoarch/dircolors-zenburn
    - https://github.com/arcticicestudio/nord-dircolors
+   - https://github.com/peterhellberg/dircolors-jellybeans
+   - https://github.com/KKPMW/dircolors-moonshine
