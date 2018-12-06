@@ -26,7 +26,7 @@ for older terminal emulators.
 Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your shells RC file
 (`~/.bashrc`, `~/.zshrc`, …):
 
-``` bash	
+``` bash
 export LS_COLORS="$(vivid generate molokai)"
 ```
 
@@ -56,7 +56,12 @@ sudo dpkg -i vivid_0.4.0_amd64.deb
 You can install `vivid` from [the AUR](https://aur.archlinux.org/packages/vivid/):
 
 ``` bash
+# Use a AUR helper:
 yaourt -S vivid
+
+# Or build the package yourself:
+git clone https://aur.archlinux.org/vivid.git
+makepkg -isr
 ```
 
 ### On other distrubutions
