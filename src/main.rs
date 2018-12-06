@@ -1,10 +1,3 @@
-extern crate ansi_colours;
-extern crate yaml_rust;
-#[macro_use]
-extern crate clap;
-#[macro_use]
-extern crate lazy_static;
-
 mod color;
 mod error;
 mod filetypes;
@@ -16,12 +9,12 @@ use std::env;
 use std::path::{Path, PathBuf};
 use std::process;
 
-use clap::{App, AppSettings, Arg, SubCommand};
+use clap::{App, AppSettings, Arg, SubCommand, crate_name, crate_version, crate_description};
 
-use color::ColorMode;
-use error::{Result, VividError};
-use filetypes::FileTypes;
-use theme::Theme;
+use crate::color::ColorMode;
+use crate::error::{Result, VividError};
+use crate::filetypes::FileTypes;
+use crate::theme::Theme;
 
 fn run() -> Result<()> {
     let app = App::new(crate_name!())

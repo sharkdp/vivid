@@ -4,10 +4,12 @@ use std::path::Path;
 use yaml_rust::yaml::YamlLoader;
 use yaml_rust::Yaml;
 
-use color::{Color, ColorMode, ColorType};
-use error::{Result, VividError};
-use types::CategoryRef;
-use util::{load_yaml_file, transpose};
+use lazy_static::lazy_static;
+
+use crate::color::{Color, ColorMode, ColorType};
+use crate::error::{Result, VividError};
+use crate::types::CategoryRef;
+use crate::util::{load_yaml_file, transpose};
 
 lazy_static! {
     static ref ANSI_STYLES: HashMap<&'static str, u8> = {
@@ -149,7 +151,7 @@ impl Theme {
 #[cfg(test)]
 mod tests {
     use super::Theme;
-    use color::ColorMode;
+    use crate::color::ColorMode;
 
     #[test]
     fn basic() {

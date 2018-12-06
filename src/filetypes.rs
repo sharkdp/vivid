@@ -4,9 +4,9 @@ use std::path::Path;
 use yaml_rust::yaml::YamlLoader;
 use yaml_rust::Yaml;
 
-use error::{Result, VividError};
-use types::{Category, FileType};
-use util::load_yaml_file;
+use crate::error::{Result, VividError};
+use crate::types::{Category, FileType};
+use crate::util::load_yaml_file;
 
 pub struct FileTypes {
     pub mapping: HashMap<FileType, Category>,

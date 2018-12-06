@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io::Read;
 use std::path::Path;
 
-use error::Result;
+use crate::error::Result;
 
 pub fn load_yaml_file(path: &Path) -> Result<String> {
     let mut file = File::open(path)?;

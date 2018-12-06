@@ -9,6 +9,7 @@ readme = "README.md"
 repository = "https://github.com/sharkdp/vivid"
 version = "0.4.0"
 exclude = ["demo/*"]
+edition = "2018"
 
 [dependencies]
 yaml-rust = "0.4"
