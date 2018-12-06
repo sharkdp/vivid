@@ -91,9 +91,11 @@ at your option.
 
 ### Useful sources
 
+File types:
 - https://en.wikipedia.org/wiki/List_of_file_formats
 - https://fileinfo.com/
 
+ANSI colors:
 - https://jonasjacek.github.io/colors/
 
 ### Similar and related projects
