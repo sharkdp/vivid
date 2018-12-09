@@ -73,7 +73,7 @@ Make sure that you install the contents of the `share/vivid` folder at
 
 ### Via cargo
 
-If you have Rust 1.30 or higher, you can install `vivid` from source via `cargo`:
+If you have Rust 1.31 or higher, you can install `vivid` from source via `cargo`:
 ```
 cargo install vivid
 ```
