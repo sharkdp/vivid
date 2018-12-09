@@ -41,6 +41,14 @@ core:
     foreground: black
     background: pink
 
+  character_device:
+    foreground: black
+    background: lime
+
+  block_device:
+    foreground: black
+    background: sienna
+
   normal_text:
     {}
 

@@ -16,6 +16,7 @@ colors:
   dimgray: "7a7070"
   gold: "e2d139"
   springgreen: "00ff87"
+  darkgray: "333333"
 
 core:
   regular_file: {}
@@ -42,6 +43,15 @@ core:
   socket:
     foreground: black
     background: pink
+
+  character_device:
+    foreground: pink
+    background: darkgray
+
+  block_device:
+    foreground: cyan
+    background: darkgray
+
 
   normal_text:
     {}

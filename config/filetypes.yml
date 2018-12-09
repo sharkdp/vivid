@@ -10,6 +10,9 @@ core:
   fifo: [$pi]
   socket: [$so]
 
+  character_device: [$cd]
+  block_device: [$bd]
+
   normal_text: [$no]
 
 text:

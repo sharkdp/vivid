@@ -22,6 +22,7 @@ colors:
   black: '000000'
   gray: '999999'
   darkgray: '666666'
+  darkergray: '333333'
 
 core:
   regular_file: {}
@@ -48,6 +49,14 @@ core:
   socket:
     foreground: black
     background: pink
+
+  character_device:
+    foreground: pink
+    background: darkergray
+
+  block_device:
+    foreground: cyan
+    background: darkergray
 
   normal_text:
     {}
