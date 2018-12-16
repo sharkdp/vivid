@@ -9,12 +9,69 @@ use std::env;
 use std::path::{Path, PathBuf};
 use std::process;
 
-use clap::{App, AppSettings, Arg, SubCommand, crate_name, crate_version, crate_description};
+use clap::{
+    crate_description, crate_name, crate_version, App, AppSettings, Arg, ArgMatches, SubCommand,
+};
 
 use crate::color::ColorMode;
 use crate::error::{Result, VividError};
 use crate::filetypes::FileTypes;
 use crate::theme::Theme;
+
+fn get_user_config_path() -> PathBuf {
+    let mut user_config_path = PathBuf::new();
+    user_config_path.push(env::var("HOME").expect("Environment variable HOME"));
+    user_config_path.push(".config");
+    user_config_path.push("vivid");
+    user_config_path
+}
+
+fn load_filetypes_database(matches: &ArgMatches, user_config_path: &PathBuf) -> Result<FileTypes> {
+    let database_path_from_arg = matches.value_of("database").map(Path::new);
+
+    let mut database_path_user = user_config_path.clone();
+    database_path_user.push("filetypes.yml");
+
+    let database_path_env_s = env::var("VIVID_DATABASE").ok();
+    let database_path_env = database_path_env_s.as_ref().map(Path::new);
+
+    let database_path_system = Path::new("/usr/share/vivid/filetypes.yml");
+
+    let database_path = database_path_from_arg
+        .or(database_path_env)
+        .or_else(|| util::get_first_existing_path(&[&database_path_user, database_path_system]))
+        .ok_or(VividError::CouldNotFindDatabase)?;
+    FileTypes::from_file(&database_path)
+}
+
+fn load_theme(
+    sub_matches: &ArgMatches,
+    user_config_path: &PathBuf,
+    color_mode: ColorMode,
+) -> Result<Theme> {
+    let theme_from_env = env::var("VIVID_THEME").ok();
+    let theme = sub_matches
+        .value_of("theme")
+        .or_else(|| theme_from_env.as_ref().map(String::as_str))
+        .unwrap_or("molokai");
+
+    let theme_as_path = Path::new(theme);
+
+    let theme_file = format!("{}.yml", theme);
+
+    let mut theme_path_user = user_config_path.clone();
+    theme_path_user.push("themes");
+    theme_path_user.push(theme_file.clone());
+
+    let mut theme_path_system = PathBuf::new();
+    theme_path_system.push("/usr/share/vivid/themes/");
+    theme_path_system.push(theme_file);
+
+    let theme_path =
+        util::get_first_existing_path(&[&theme_as_path, &theme_path_user, &theme_path_system])
+            .ok_or_else(|| VividError::CouldNotFindTheme(theme.to_string()))?;
+    Theme::from_file(theme_path, color_mode)
+}
 
 fn run() -> Result<()> {
     let app = App::new(crate_name!())
@@ -58,52 +115,12 @@ fn run() -> Result<()> {
         _ => ColorMode::BitDepth24,
     };
 
+    let user_config_path = get_user_config_path();
+
+    let filetypes = load_filetypes_database(&matches, &user_config_path)?;
+
     if let Some(sub_matches) = matches.subcommand_matches("generate") {
-        let mut user_config_path = PathBuf::new();
-        user_config_path.push(env::var("HOME").expect("Environment variable HOME"));
-        user_config_path.push(".config");
-        user_config_path.push("vivid");
-
-        // Load the filetypes database
-        let database_path_from_arg = matches.value_of("database").map(Path::new);
-
-        let mut database_path_user = user_config_path.clone();
-        database_path_user.push("filetypes.yml");
-
-        let database_path_env_s = env::var("VIVID_DATABASE").ok();
-        let database_path_env = database_path_env_s.as_ref().map(Path::new);
-
-        let database_path_system = Path::new("/usr/share/vivid/filetypes.yml");
-
-        let database_path = database_path_from_arg
-            .or(database_path_env)
-            .or_else(|| util::get_first_existing_path(&[&database_path_user, database_path_system]))
-            .ok_or(VividError::CouldNotFindDatabase)?;
-        let filetypes = FileTypes::from_file(&database_path)?;
-
-        // Load the theme
-        let theme_from_env = env::var("VIVID_THEME").ok();
-        let theme = sub_matches
-            .value_of("theme")
-            .or_else(|| theme_from_env.as_ref().map(String::as_str))
-            .unwrap_or("molokai");
-
-        let theme_as_path = Path::new(theme);
-
-        let theme_file = format!("{}.yml", theme);
-
-        let mut theme_path_user = user_config_path.clone();
-        theme_path_user.push("themes");
-        theme_path_user.push(theme_file.clone());
-
-        let mut theme_path_system = PathBuf::new();
-        theme_path_system.push("/usr/share/vivid/themes/");
-        theme_path_system.push(theme_file);
-
-        let theme_path =
-            util::get_first_existing_path(&[&theme_as_path, &theme_path_user, &theme_path_system])
-                .ok_or_else(|| VividError::CouldNotFindTheme(theme.to_string()))?;
-        let theme = Theme::from_file(theme_path, color_mode)?;
+        let theme = load_theme(&sub_matches, &user_config_path, color_mode)?;
 
         let mut filetypes_list = filetypes.mapping.keys().collect::<Vec<_>>();
         filetypes_list.sort_unstable_by_key(|entry| entry.len());
