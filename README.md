@@ -53,15 +53,10 @@ sudo dpkg -i vivid_0.4.0_amd64.deb
 
 ### On Arch Linux
 
-You can install `vivid` from [the AUR](https://aur.archlinux.org/packages/vivid/):
+You can install `vivid` from [the official package repository](https://www.archlinux.org/packages/community/x86_64/vivid/):
 
 ``` bash
-# Use a AUR helper:
-yaourt -S vivid
-
-# Or build the package yourself:
-git clone https://aur.archlinux.org/vivid.git
-makepkg -isr
+pacman -S vivid
 ```
 
 ### On other distrubutions
