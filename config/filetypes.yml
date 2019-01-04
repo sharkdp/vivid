@@ -104,7 +104,7 @@ programming:
     crystal: [.cr]
     csharp: [.cs, .csx]
     css: [css]
-    cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .h, .hh, .hpp, .hxx, .h++, .inl, .ipp]
+    cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .h, .hh, .hpp, .hxx, .h++, .inc, .inl, .ipp, .def]
     d: [.d, .di]
     dart: [.dart]
     diff: [.diff, .patch]
@@ -123,6 +123,7 @@ programming:
     kotlin: [.kt, .kts]
     latex: [.tex, .ltx]
     less: [.less]
+    llvm: [.ll, .mir]
     lisp: [.lisp, .el]
     lua: [.lua]
     mathematica: [.nb]
@@ -142,6 +143,7 @@ programming:
     shell: [.sh, .bash, .zsh, .fish]
     sql: [.sql]
     swift: [.swift]
+    tablegen: [.td]
     tcl: [.tcl]
     typescript: [.ts, .tsx]
     viml: [.vim]
@@ -376,6 +378,8 @@ unimportant:
       - .sty
       - .synctex.gz
       - .toc
+    llvm:
+      - .bc
 
   other:
     - "~"
