@@ -1,0 +1,109 @@
+colors:
+  # Theme colors
+  bg:             "151515"
+  darker_grey:    "1c1c1c"
+  dark_grey:      "262626"
+  grey:           "888888"
+  blue_grey:      "a0a8b0"
+  light_grey:     "d8dee9"
+  white:          "ffffff"
+  dark_red:       "902020"
+  red:            "cf6a4c"
+  red_orange:     "ffb964"
+  bright_orange:  "fad07a"
+  pale_gold:      "dad085"
+  pink:           "f0a0c0"
+  lilac:          "c6b6ee"
+  dark_blue:      "2b5b77"
+  deep_blue:      "0d61ac"
+  blue:           "8197bf"
+  bright_blue:    "7697d6"
+  cyan:           "8fbfdc"
+  blue_green:     "668799"
+  green:          "799d6a"
+  bright_green:   "70b950"
+  brighter_green: "65c254"
+  light_green:    "99ad6a"
+  dark_green:     "556633"
+
+core:
+  regular_file: {}
+
+  directory:
+    foreground: lilac
+
+  executable_file:
+    foreground: red_orange
+    font-style: bold
+
+  symlink:
+    foreground: bright_orange
+
+  broken_symlink:
+    foreground: bright_orange
+    background: dark_red
+    # font-style: blink
+
+  fifo:
+    foreground: pink
+
+  socket:
+    foreground: pink
+
+  character_device:
+    foreground: red
+
+  block_device:
+    foreground: red
+
+  normal_text:
+    {}
+
+text:
+  special:
+    foreground: brighter_green
+    font-style: bold
+
+  todo:
+    foreground: bright_green
+
+  licenses:
+    foreground: light_green
+    font-style: italic
+
+  configuration:
+    foreground: light_green
+
+  other:
+    foreground: green
+
+markup:
+  foreground: blue_green
+
+programming:
+  source:
+    foreground: blue
+
+  tooling:
+    foreground: bright_blue
+
+    continuous-integration:
+      foreground: cyan
+
+media:
+  foreground: pale_gold
+
+office:
+  foreground: blue_green
+
+archives:
+  foreground: bright_orange
+  font-style: underline
+
+executable:
+  foreground: red_orange
+  font-style: bold
+
+unimportant:
+  foreground: grey
+  font-style: italic
