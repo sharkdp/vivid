@@ -13,6 +13,8 @@ core:
   character_device: [$cd]
   block_device: [$bd]
 
+  sticky_writable: [$tw]
+
   normal_text: [$no]
 
 text:
