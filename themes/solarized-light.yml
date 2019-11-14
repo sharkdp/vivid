@@ -1,0 +1,117 @@
+colors:
+  # Based on the light mode of `Solarized`
+  # (https://ethanschoonover.com/solarized/)
+  #
+  # The assignment of colors to file types roughly follows `dircolors`
+
+  base03  :  '002b36'
+  base02  :  '073642'
+  base01  :  '586e75'
+  base00  :  '657b83'
+  base0   :  '839496'
+  base1   :  '93a1a1'
+  base2   :  'eee8d5'
+  base3   :  'fdf6e3'
+
+  yellow  :  'b58900'
+  orange  :  'cb4b16'
+  red     :  'dc322f'
+  magenta :  'd33682'
+  violet  :  '6c71c4'
+  blue    :  '268bd2'
+  cyan    :  '2aa198'
+  green   :  '859900'
+
+core:
+  regular_file:
+    foreground: base00
+
+  directory:
+    foreground: blue
+    font-style: bold
+
+  executable_file:
+    foreground: green
+    font-style: bold
+
+  symlink:
+    foreground: cyan
+    font-style: bold
+
+  broken_symlink:
+    foreground: red
+    background: base02
+    font-style: bold
+
+  fifo:
+    foreground: yellow
+    background: base02
+    font-style: bold
+
+  socket:
+    foreground: magenta
+    background: base02
+    font-style: bold
+
+  character_device:
+    foreground: yellow
+    background: base02
+    font-style: bold
+
+  block_device:
+    foreground: yellow
+    background: base02
+    font-style: bold
+
+  normal_text:
+    foreground: base00
+
+text:
+  special:
+    foreground: base00
+
+  todo:
+    foreground: base00
+    font-style: bold
+
+  licenses:
+    foreground: base00
+
+  configuration:
+    foreground: base00
+
+  other:
+    foreground: base00
+
+markup:
+  foreground: base00
+
+programming:
+  foreground: base00
+
+media:
+  image:
+    foreground: magenta
+
+  audio:
+    foreground: cyan
+
+  video:
+    foreground: magenta
+    font-style: bold
+
+  fonts:
+    foreground: violet
+
+office:
+  foreground: orange
+
+archives:
+  foreground: red
+  font-style: bold
+
+executable:
+  foreground: base00
+
+unimportant:
+  foreground: base1
