@@ -107,6 +107,11 @@ fn run() -> Result<()> {
             SubCommand::with_name("generate")
                 .about("Generate a LS_COLORS expression")
                 .arg(Arg::with_name("theme").help("Name of the color theme")),
+        )
+        .subcommand(
+            SubCommand::with_name("preview")
+                .about("Preview a given theme")
+                .arg(Arg::with_name("theme").help("Name of the color theme")),
         );
 
     let matches = app.get_matches();
@@ -132,6 +137,21 @@ fn run() -> Result<()> {
         }
 
         println!("{}", ls_colors.join(":"));
+    } else if let Some(sub_matches) = matches.subcommand_matches("preview") {
+        let theme = load_theme(&sub_matches, &user_config_path, color_mode)?;
+
+        let mut pairs = filetypes.mapping.iter().collect::<Vec<_>>();
+        pairs.sort_by_key(|(_, category)| category.clone());
+
+        for (entry, category) in pairs {
+            let ansi_code = theme.get_style(&category).unwrap_or("0".into());
+            println!(
+                "{}: \x1b[{}m{}\x1b[0m",
+                category.join("."),
+                ansi_code,
+                entry
+            );
+        }
     }
     Ok(())
 }
