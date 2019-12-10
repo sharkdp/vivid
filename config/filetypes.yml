@@ -381,6 +381,11 @@ unimportant:
     llvm:
       - .bc
 
+  macos:
+    - .CFUserTextEncoding
+    - .DS_Store
+    - .localized
+
   other:
     - "~"
     - .bak
