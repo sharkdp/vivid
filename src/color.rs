@@ -1,5 +1,5 @@
-use ansi_colours::ansi256_from_rgb;
 use crate::error::{Result, VividError};
+use ansi_colours::ansi256_from_rgb;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum ColorMode {
