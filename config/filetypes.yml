@@ -5,7 +5,8 @@ core:
   executable_file: [$ex]
 
   symlink: [$ln]
-  broken_symlink: [$or, $mi]
+  broken_symlink: [$or]
+  missing_symlink_target: [$mi]
 
   fifo: [$pi]
   socket: [$so]

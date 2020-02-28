@@ -40,7 +40,9 @@ core:
   broken_symlink:
     foreground: black
     background: red
-    # font-style: blink
+  missing_symlink_target:
+    foreground: black
+    background: red
 
   fifo:
     foreground: black

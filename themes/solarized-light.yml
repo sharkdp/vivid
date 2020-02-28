@@ -43,6 +43,11 @@ core:
     background: base02
     font-style: bold
 
+  missing_symlink_target:
+    foreground: red
+    background: base02
+    font-style: bold
+
   fifo:
     foreground: yellow
     background: base02
