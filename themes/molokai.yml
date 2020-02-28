@@ -52,8 +52,16 @@ core:
     foreground: cyan
     background: darkgray
 
-
   normal_text:
+    {}
+
+  sticky:
+    {}
+
+  sticky_other_writable:
+    {}
+
+  other_writable:
     {}
 
 text:

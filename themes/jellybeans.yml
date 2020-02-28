@@ -59,6 +59,15 @@ core:
   normal_text:
     {}
 
+  sticky:
+    {}
+
+  sticky_other_writable:
+    {}
+
+  other_writable:
+    {}
+
 text:
   special:
     foreground: brighter_green

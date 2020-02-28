@@ -15,6 +15,11 @@ core:
 
   normal_text: [$no]
 
+  sticky: [$st]
+
+  other_writable: [$ow]
+  sticky_other_writable: [$tw]
+
 text:
   special:
     - CONTRIBUTORS
