@@ -66,6 +66,15 @@ core:
   normal_text:
     foreground: base00
 
+  other_writable:
+    {}
+
+  sticky:
+    {}
+
+  sticky_other_writable:
+    {}
+
 text:
   special:
     foreground: base00
