@@ -228,6 +228,7 @@ programming:
 media:
   image:
     - .bmp
+    - .eps
     - .gif
     - .ico
     - .jpeg
@@ -236,13 +237,16 @@ media:
     - .pgm
     - .png
     - .ppm
+    - .psd
     - .svg
     - .tif
+    - .tiff
     - .xcf
 
   audio:
     - .aif
     - .flac
+    - .m4a
     - .mid
     - .mp3
     - .ogg
