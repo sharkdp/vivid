@@ -1,0 +1,197 @@
+---
+colors:
+  # Theme colors
+  # Dark background
+  dark_bg0_hard: "1d2021"
+  dark_bg0: "282828"
+  dark_bg0_soft: "32302f"
+  dark_bg1: "3c3836"
+  dark_bg2: "504945"
+  dark_bg3: "665c54"
+  dark_bg4: "7c6f64"
+  dark_bg: "282828"
+
+  # Dark foreground
+  dark_fg0: "fbf1c7"
+  dark_fg1: "eddbb2"
+  dark_fg2: "d5c4a1"
+  dark_fg3: "bdae93"
+  dark_fg4: "a89984"
+  dark_fg: "eddbb2"
+
+  # Variants
+  gray_245: "928374"
+  gray_244: "928374"
+
+  # Light background
+  light_bg0_hard: "f9f5d7"
+  light_bg0: "fbf1c7"
+  light_bg0_soft: "f2e5bc"
+  light_bg1: "ebdbb2"
+  light_bg2: "d5c4a1"
+  light_bg3: "bdae93"
+  light_bg4: "a89984"
+  light_bg: "fbf1c7"
+
+  # Light foreground
+  light_fg0: "282828"
+  light_fg1: "3c3836"
+  light_fg2: "504945"
+  light_fg3: "665c54"
+  light_fg4: "7c6f64"
+  light_fg: "3c3836"
+
+  # Bright colors
+  bright_red: "fb4934"
+  bright_green: "b8bb26"
+  bright_yellow: "fabd2f"
+  bright_blue: "83a598"
+  bright_purple: "d3869b"
+  bright_aqua: "8ec07c"
+  bright_orange: "fe8019"
+
+  # Neutral colors
+  neutral_red: "cc241d"
+  neutral_green: "98971a"
+  neutral_yellow: "d79921"
+  neutral_blue: "458588"
+  neutral_purple: "b16286"
+  neutral_aqua: "689d6a"
+  neutral_orange: "d65d0e"
+
+  # Faded colors
+  faded_red: "9d0006"
+  faded_green: "79740e"
+  faded_yellow: "b57614"
+  faded_blue: "076678"
+  faded_purple: "8f3f71"
+  faded_aqua: "427b58"
+  faded_orange: "af3a03"
+
+core:
+  normal_text: {}
+
+  regular_file: {}
+
+  reset: {}
+
+  directory:
+    foreground: neutral_blue
+
+  symlink:
+    foreground: neutral_purple
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: bright_aqua
+    font-style: bold
+
+  socket:
+    foreground: bright_green
+    font-style: bold
+
+  door:
+    foreground: bright_red
+    font-style: bold
+
+  block_device:
+    foreground: bright_yellow
+    font-style: bold
+
+  character_device:
+    foreground: neutral_yellow
+
+  broken_symlink:
+    foreground: dark_bg
+    background: neutral_purple
+
+  missing_symlink_target:
+    foreground: neutral_red
+    font-style: italic
+
+  setuid:
+    foreground: bright_red
+    font-style: bold
+
+  setgid:
+    foreground: bright_red
+    font-style: bold
+
+  file_with_capability:
+    foreground: bright_red
+    font-style: bold
+
+  sticky_other_writable:
+    foreground: bright_blue
+    font-style: bold
+
+  other_writable:
+    foreground: neutral_blue
+    font-style: italic
+
+  sticky:
+    foreground: bright_blue
+    font-style: bold
+
+  executable_file:
+    foreground: bright_green
+    font-style: bold
+
+text:
+  special:
+    foreground: bright_yellow
+    font-style: bold
+
+  todo:
+    foreground: bright_green
+
+  licenses:
+    foreground: dark_fg0
+    font-style: italic
+
+  configuration:
+    foreground: bright_yellow
+
+  other:
+    foreground: dark_fg
+
+markup:
+  foreground: neutral_yellow
+
+programming:
+  source:
+    foreground: neutral_green
+
+  tooling:
+    foreground: bright_blue
+    font-style: italic
+
+    continuous-integration:
+      foreground: bright_blue
+
+media:
+  foreground: neutral_aqua
+
+  video:
+    foreground: bright_aqua
+    font-style: bold
+
+office:
+  foreground: bright_blue
+  font-style: bold
+
+archives:
+  foreground: neutral_orange
+
+  images:
+    foreground: bright_orange
+    font-style: bold
+
+executable:
+  foreground: bright_green
+  font-style: bold
+
+unimportant:
+  foreground: dark_bg3
+  font-style: italic
