@@ -19,11 +19,19 @@ use crate::filetypes::FileTypes;
 use crate::theme::Theme;
 
 fn get_user_config_path() -> PathBuf {
-    let mut user_config_path = PathBuf::new();
-    user_config_path.push(env::var("HOME").expect("Environment variable HOME"));
-    user_config_path.push(".config");
-    user_config_path.push("vivid");
-    user_config_path
+
+    #[cfg(target_os = "macos")]
+        let config_dir_op = env::var_os("XDG_CONFIG_HOME")
+        .map(PathBuf::from)
+        .filter(|p| p.is_absolute())
+        .unwrap_or(dirs::home_dir()
+            .expect("Could not get home directory")
+            .join(".config"));
+
+    #[cfg(not(target_os = "macos"))]
+        let config_dir_op = dirs::config_dir();
+
+    config_dir_op.join("vivid")
 }
 
 fn load_filetypes_database(matches: &ArgMatches, user_config_path: &PathBuf) -> Result<FileTypes> {
