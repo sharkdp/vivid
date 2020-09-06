@@ -59,12 +59,12 @@ You can install `vivid` from [the official package repository](https://www.archl
 pacman -S vivid
 ```
 
-### On other distrubutions
+### On other distributions
 
 Check out the [release page](https://github.com/sharkdp/vivid/releases) for binary builds.
 
-Make sure that you install the contents of the `share/vivid` folder at
-`/usr/share/vivid` or at `$HOME/.config/vivid`.
+Make sure that you install the contents of the `share/vivid` folder to
+`/usr/share/vivid` or `$HOME/.config/vivid` on POSIX systems and `%APPDATA%\vivid` on Windows systems.
 
 ### Via cargo
 
@@ -73,7 +73,7 @@ If you have Rust 1.31 or higher, you can install `vivid` from source via `cargo`
 cargo install vivid
 ```
 
-Make sure that you install the assets (database and themes) separately. See above for instructions.
+Make sure to install the assets (database: `$srcdir/config/filetypes.yml` and themes: `$srcdir/themes`) to one of the locations listed in the ["On other distributions" section](#on-other-distributions).
 
 ## License
 
