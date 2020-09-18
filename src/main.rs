@@ -54,7 +54,8 @@ fn load_filetypes_database(matches: &ArgMatches, user_config_path: &PathBuf) -> 
         .or(database_path_env)
         .or_else(|| util::get_first_existing_path(&[&database_path_user, database_path_system]));
 
-
+    // If there is a specified database file and it exists, use it.
+    // Otherwise, use the embedded file.
     return match database_path {
         Some(path) => FileTypes::from_path(path),
         None => FileTypes::from_embedded(),

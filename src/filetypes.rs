@@ -28,7 +28,7 @@ impl FileTypes {
         let filetypes = ConfigAssets::get("filetypes.yml").unwrap();
 
         let contents = std::str::from_utf8(filetypes.as_ref())
-            .map_err(|_| VividError::CouldNotLoadDatabaseFrom(String::from("embedded file")))?;
+            .map_err(|_| VividError::CouldNotLoadDatabaseFrom(String::from("embedded defaults")))?;
         Self::from_string(contents)
     }
 
