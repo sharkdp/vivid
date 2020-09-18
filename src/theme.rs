@@ -34,13 +34,13 @@ pub struct Theme {
 }
 
 impl Theme {
-    pub fn from_file(path: &Path, color_mode: ColorMode) -> Result<Theme> {
+    pub fn from_path(path: &Path, color_mode: ColorMode) -> Result<Theme> {
         let contents = load_yaml_file(path)
             .map_err(|_| VividError::CouldNotLoadTheme(path.to_string_lossy().into()))?;
         Self::from_string(&contents, color_mode)
     }
 
-    fn from_string(contents: &str, color_mode: ColorMode) -> Result<Theme> {
+    pub (crate) fn from_string(contents: &str, color_mode: ColorMode) -> Result<Theme> {
         let mut docs = YamlLoader::load_from_str(&contents)?;
         let doc = docs.pop().ok_or(VividError::EmptyThemeFile)?;
 

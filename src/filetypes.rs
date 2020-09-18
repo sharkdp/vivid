@@ -3,6 +3,7 @@ use std::path::Path;
 
 use yaml_rust::yaml::YamlLoader;
 use yaml_rust::Yaml;
+use rust_embed::RustEmbed;
 
 use crate::error::{Result, VividError};
 use crate::types::{Category, FileType};
@@ -12,11 +13,23 @@ pub struct FileTypes {
     pub mapping: HashMap<FileType, Category>,
 }
 
+#[derive(RustEmbed)]
+#[folder = "config/"]
+struct ConfigAssets;
+
 impl FileTypes {
-    pub fn from_file(path: &Path) -> Result<FileTypes> {
+    pub fn from_path(path: &Path) -> Result<FileTypes> {
         let contents = load_yaml_file(path)
             .map_err(|_| VividError::CouldNotLoadDatabaseFrom(path.to_string_lossy().into()))?;
         Self::from_string(&contents)
+    }
+
+    pub fn from_embedded() -> Result<FileTypes> {
+        let filetypes = ConfigAssets::get("filetypes.yml").unwrap();
+
+        let contents = std::str::from_utf8(filetypes.as_ref())
+            .or_else(Err(VividError::CouldNotLoadDatabaseFrom(String::from("embedded file"))))?;
+        Self::from_string(contents)
     }
 
     fn from_string(contents: &str) -> Result<FileTypes> {

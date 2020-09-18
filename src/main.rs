@@ -8,6 +8,7 @@ mod util;
 use std::env;
 use std::path::{Path, PathBuf};
 use std::process;
+use rust_embed::RustEmbed;
 
 use clap::{
     crate_description, crate_name, crate_version, App, AppSettings, Arg, ArgMatches, SubCommand,
@@ -17,6 +18,10 @@ use crate::color::ColorMode;
 use crate::error::{Result, VividError};
 use crate::filetypes::FileTypes;
 use crate::theme::Theme;
+
+#[derive(RustEmbed)]
+#[folder = "themes/"]
+struct ThemeAssets;
 
 fn get_user_config_path() -> PathBuf {
 
@@ -47,9 +52,15 @@ fn load_filetypes_database(matches: &ArgMatches, user_config_path: &PathBuf) -> 
 
     let database_path = database_path_from_arg
         .or(database_path_env)
-        .or_else(|| util::get_first_existing_path(&[&database_path_user, database_path_system]))
-        .ok_or(VividError::CouldNotFindDatabase)?;
-    FileTypes::from_file(&database_path)
+        .or_else(|| util::get_first_existing_path(&[&database_path_user, database_path_system]));
+
+
+    return match database_path {
+        Some(path) => FileTypes::from_path(path),
+        None => FileTypes::from_embedded(),
+    }
+
+
 }
 
 fn load_theme(
@@ -73,12 +84,21 @@ fn load_theme(
 
     let mut theme_path_system = PathBuf::new();
     theme_path_system.push("/usr/share/vivid/themes/");
-    theme_path_system.push(theme_file);
+    theme_path_system.push(&theme_file);
 
-    let theme_path =
-        util::get_first_existing_path(&[&theme_as_path, &theme_path_user, &theme_path_system])
-            .ok_or_else(|| VividError::CouldNotFindTheme(theme.to_string()))?;
-    Theme::from_file(theme_path, color_mode)
+    let theme_path = util::get_first_existing_path(&[&theme_as_path, &theme_path_user, &theme_path_system]);
+
+    if theme_path.is_none() {
+        if let Some(embedded_file) = ThemeAssets::get(&theme_file) {
+            if let Ok(embedded_data) = std::str::from_utf8(embedded_file.as_ref()) {
+                return Theme::from_string(embedded_data, color_mode)
+            }
+        } else {
+            return Err(VividError::CouldNotFindTheme(theme.to_string()))
+        }
+    }
+
+    Theme::from_path(theme_path.unwrap(), color_mode)
 }
 
 fn run() -> Result<()> {
