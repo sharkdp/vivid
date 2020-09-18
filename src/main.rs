@@ -88,17 +88,17 @@ fn load_theme(
 
     let theme_path = util::get_first_existing_path(&[&theme_as_path, &theme_path_user, &theme_path_system]);
 
-    if theme_path.is_none() {
-        if let Some(embedded_file) = ThemeAssets::get(&theme_file) {
-            if let Ok(embedded_data) = std::str::from_utf8(embedded_file.as_ref()) {
-                return Theme::from_string(embedded_data, color_mode)
+    match theme_path {
+        Some(path) =>  return Theme::from_path(path, color_mode),
+        None => {
+            if let Some(embedded_file) = ThemeAssets::get(&theme_file) {
+                if let Ok(embedded_data) = std::str::from_utf8(embedded_file.as_ref()) {
+                    return Theme::from_string(embedded_data, color_mode)
+                }
             }
-        } else {
-            return Err(VividError::CouldNotFindTheme(theme.to_string()))
         }
     }
-
-    Theme::from_path(theme_path.unwrap(), color_mode)
+    Err(VividError::CouldNotFindTheme(theme.to_string()))
 }
 
 fn run() -> Result<()> {
