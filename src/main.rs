@@ -55,10 +55,10 @@ fn load_filetypes_database(matches: &ArgMatches, user_config_path: &PathBuf) -> 
 
     // If there is a specified database file and it exists, use it.
     // Otherwise, use the embedded file.
-    return match database_path {
+    match database_path {
         Some(path) => FileTypes::from_path(path),
         None => FileTypes::from_embedded(),
-    };
+    }
 }
 
 fn load_theme(
