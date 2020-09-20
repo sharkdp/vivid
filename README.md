@@ -70,7 +70,7 @@ pacman -S vivid
 
 Check out the [release page](https://github.com/sharkdp/vivid/releases) for binary builds.
 
-## Theme Customization
+## Customizing File Colors
 
 The bundled themes can be found in `$srcdir/themes` as a starting point.
 
