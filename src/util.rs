@@ -20,5 +20,5 @@ pub fn transpose<T, E>(
 }
 
 pub fn get_first_existing_path<'a>(paths: &[&'a Path]) -> Option<&'a Path> {
-    paths.iter().find(|p| Path::exists(*p)).map(|p| *p)
+    paths.iter().find(|p| Path::exists(*p)).copied()
 }
