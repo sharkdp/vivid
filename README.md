@@ -70,14 +70,15 @@ pacman -S vivid
 
 Check out the [release page](https://github.com/sharkdp/vivid/releases) for binary builds.
 
-## Customizing File Colors
+## Customizing file colors
 
-The bundled themes can be found in `$srcdir/themes` as a starting point.
-
-Custom themes (and filetype configs) can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid`on POSIX systems,
+Custom filetype configs can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid` on POSIX systems,
 or to `%APPDATA%\vivid` on Windows systems.
 
-You can also specify the path to the theme, like so: `vivid generate ~/.config/vivid/mytheme.yml`
+Custom themes go into a `themes` subfolder, respectively. As a starting point,
+you can use one of the bundle themes in [`themes/`](themes/).
+
+You can also specify an explicit path to your custom theme: `vivid generate path/to/my_theme.yml`.
 
 ## License
 
