@@ -80,12 +80,6 @@ make_deb() {
     install -Dm644 LICENSE-MIT "$tempdir/usr/share/doc/$PROJECT_NAME/LICENSE-MIT"
     install -Dm644 LICENSE-APACHE "$tempdir/usr/share/doc/$PROJECT_NAME/LICENSE-APACHE"
 
-    # filetype database and themes
-    mkdir -p "$tempdir/usr/share/$PROJECT_NAME/"
-    install -Dm644 config/filetypes.yml "$tempdir/usr/share/$PROJECT_NAME/"
-    mkdir -p "$tempdir/usr/share/$PROJECT_NAME/themes/"
-    install -Dm644 themes/* "$tempdir/usr/share/$PROJECT_NAME/themes/"
-
     # Control file
     mkdir "$tempdir/DEBIAN"
     cat > "$tempdir/DEBIAN/control" <<EOF
