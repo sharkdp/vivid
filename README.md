@@ -37,6 +37,15 @@ that supports 24-bit colors](https://gist.github.com/XVilka/8346728), use the `-
 option when running `vivid` (`vivid -m 8-bit generate molokai`). This will use interpolated 8-bit
 colors.
 
+### Customization
+
+Custom [`filetypes.yml` databases](config/filetypes.yml) can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid` on POSIX systems,
+or in `%APPDATA%\vivid` on Windows systems.
+
+Custom color themes go into a `themes` subfolder, respectively.  You can also specify an explicit path to your custom theme: `vivid generate path/to/my_theme.yml`.
+As a starting point, you can use one of the [bundled themes](themes/).
+
+
 ## Installation
 
 [![Build Status](https://travis-ci.org/sharkdp/vivid.svg?branch=master)](https://travis-ci.org/sharkdp/vivid)
@@ -69,14 +78,6 @@ pacman -S vivid
 ### On other distributions
 
 Check out the [release page](https://github.com/sharkdp/vivid/releases) for binary builds.
-
-## Customizing file colors
-
-Custom [`filetypes.yml` databases](config/filetypes.yml) can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid` on POSIX systems,
-or in `%APPDATA%\vivid` on Windows systems.
-
-Custom color themes go into a `themes` subfolder, respectively.  You can also specify an explicit path to your custom theme: `vivid generate path/to/my_theme.yml`.
-As a starting point, you can use one of the [bundled themes](themes/).
 
 ## License
 
