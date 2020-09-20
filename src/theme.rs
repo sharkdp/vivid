@@ -40,7 +40,7 @@ impl Theme {
         Self::from_string(&contents, color_mode)
     }
 
-    pub (crate) fn from_string(contents: &str, color_mode: ColorMode) -> Result<Theme> {
+    pub(crate) fn from_string(contents: &str, color_mode: ColorMode) -> Result<Theme> {
         let mut docs = YamlLoader::load_from_str(&contents)?;
         let doc = docs.pop().ok_or(VividError::EmptyThemeFile)?;
 

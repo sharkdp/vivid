@@ -5,10 +5,10 @@ mod theme;
 mod types;
 mod util;
 
+use rust_embed::RustEmbed;
 use std::env;
 use std::path::{Path, PathBuf};
 use std::process;
-use rust_embed::RustEmbed;
 
 use clap::{
     crate_description, crate_name, crate_version, App, AppSettings, Arg, ArgMatches, SubCommand,
@@ -24,18 +24,17 @@ use crate::theme::Theme;
 struct ThemeAssets;
 
 fn get_user_config_path() -> PathBuf {
-
     #[cfg(target_os = "macos")]
-        let config_dir_op = env::var_os("XDG_CONFIG_HOME")
+    let config_dir_op = env::var_os("XDG_CONFIG_HOME")
         .map(PathBuf::from)
         .filter(|p| p.is_absolute())
         .or_else(|| dirs::home_dir().map(|d| d.join(".config")));
 
-
     #[cfg(not(target_os = "macos"))]
-        let config_dir_op = dirs::config_dir();
+    let config_dir_op = dirs::config_dir();
 
-    config_dir_op.map(|d| d.join("vivid"))
+    config_dir_op
+        .map(|d| d.join("vivid"))
         .expect("Could not get home directory")
 }
 
@@ -59,9 +58,7 @@ fn load_filetypes_database(matches: &ArgMatches, user_config_path: &PathBuf) -> 
     return match database_path {
         Some(path) => FileTypes::from_path(path),
         None => FileTypes::from_embedded(),
-    }
-
-
+    };
 }
 
 fn load_theme(
@@ -74,7 +71,7 @@ fn load_theme(
         .value_of("theme")
         .or_else(|| theme_from_env.as_ref().map(String::as_str))
         // Convert option to result, then unwrap value or return error if None
-        .ok_or_else(||VividError::NoThemeProvided)?;
+        .ok_or_else(|| VividError::NoThemeProvided)?;
 
     let theme_as_path = Path::new(theme);
 
@@ -88,14 +85,15 @@ fn load_theme(
     theme_path_system.push("/usr/share/vivid/themes/");
     theme_path_system.push(&theme_file);
 
-    let theme_path = util::get_first_existing_path(&[&theme_as_path, &theme_path_user, &theme_path_system]);
+    let theme_path =
+        util::get_first_existing_path(&[&theme_as_path, &theme_path_user, &theme_path_system]);
 
     match theme_path {
-        Some(path) =>  return Theme::from_path(path, color_mode),
+        Some(path) => return Theme::from_path(path, color_mode),
         None => {
             if let Some(embedded_file) = ThemeAssets::get(&theme_file) {
                 if let Ok(embedded_data) = std::str::from_utf8(embedded_file.as_ref()) {
-                    return Theme::from_string(embedded_data, color_mode)
+                    return Theme::from_string(embedded_data, color_mode);
                 }
             }
         }

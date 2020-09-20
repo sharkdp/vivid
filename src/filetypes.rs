@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 use std::path::Path;
 
+use rust_embed::RustEmbed;
 use yaml_rust::yaml::YamlLoader;
 use yaml_rust::Yaml;
-use rust_embed::RustEmbed;
 
 use crate::error::{Result, VividError};
 use crate::types::{Category, FileType};
