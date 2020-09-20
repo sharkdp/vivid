@@ -24,8 +24,8 @@ pub enum VividError {
 impl Display for VividError {
     fn fmt(&self, fmt: &mut std::fmt::Formatter) -> result::Result<(), std::fmt::Error> {
         match self {
-            VividError::IoError(e) => write!(fmt, "{}", e.description()),
-            VividError::YamlParsingError(e) => write!(fmt, "{}", e.description()),
+            VividError::IoError(e) => write!(fmt, "{}", e),
+            VividError::YamlParsingError(e) => write!(fmt, "{}", e),
             VividError::UnexpectedYamlType => write!(fmt, "Unexpected type in YAML file."),
             VividError::ColorParseError(color_str) => {
                 write!(fmt, "Could not parse color string '{}'.", color_str)
