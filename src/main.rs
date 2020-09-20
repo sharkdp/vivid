@@ -69,7 +69,7 @@ fn load_theme(
     let theme_from_env = env::var("VIVID_THEME").ok();
     let theme = sub_matches
         .value_of("theme")
-        .or_else(|| theme_from_env.as_ref().map(String::as_str))
+        .or_else(|| theme_from_env.as_deref())
         // Convert option to result, then unwrap value or return error if None
         .ok_or_else(|| VividError::NoThemeProvided)?;
 
