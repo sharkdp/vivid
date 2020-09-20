@@ -72,13 +72,11 @@ Check out the [release page](https://github.com/sharkdp/vivid/releases) for bina
 
 ## Customizing file colors
 
-Custom filetype configs can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid` on POSIX systems,
-or to `%APPDATA%\vivid` on Windows systems.
+Custom [`filetypes.yml` databases](config/filetypes.yml) can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid` on POSIX systems,
+or in `%APPDATA%\vivid` on Windows systems.
 
-Custom themes go into a `themes` subfolder, respectively. As a starting point,
-you can use one of the bundle themes in [`themes/`](themes/).
-
-You can also specify an explicit path to your custom theme: `vivid generate path/to/my_theme.yml`.
+Custom color themes go into a `themes` subfolder, respectively.  You can also specify an explicit path to your custom theme: `vivid generate path/to/my_theme.yml`.
+As a starting point, you can use one of the [bundled themes](themes/).
 
 ## License
 
