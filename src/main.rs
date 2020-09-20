@@ -172,7 +172,7 @@ fn run() -> Result<()> {
         pairs.sort_by_key(|(_, category)| category.clone());
 
         for (entry, category) in pairs {
-            let ansi_code = theme.get_style(&category).unwrap_or("0".into());
+            let ansi_code = theme.get_style(&category).unwrap_or_else(|_| "0".into());
             println!(
                 "{}: \x1b[{}m{}\x1b[0m",
                 category.join("."),
