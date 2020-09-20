@@ -169,7 +169,7 @@ fn run() -> Result<()> {
         let theme = load_theme(&sub_matches, &user_config_path, color_mode)?;
 
         let mut pairs = filetypes.mapping.iter().collect::<Vec<_>>();
-        pairs.sort_by_key(|(_, category)| category.clone());
+        pairs.sort_by_key(|(_, category)| *category);
 
         for (entry, category) in pairs {
             let ansi_code = theme.get_style(&category).unwrap_or_else(|_| "0".into());
