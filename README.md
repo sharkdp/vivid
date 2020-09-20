@@ -41,6 +41,13 @@ colors.
 
 [![Build Status](https://travis-ci.org/sharkdp/vivid.svg?branch=master)](https://travis-ci.org/sharkdp/vivid)
 
+### Via cargo
+
+If you have Rust 1.40 or higher, you can install `vivid` from source `cargo`:
+```
+cargo install vivid
+```
+
 ### On Debian-based systems
 
 Download one of the Debian packages from the [release page](https://github.com/sharkdp/vivid/releases)
@@ -63,20 +70,14 @@ pacman -S vivid
 
 Check out the [release page](https://github.com/sharkdp/vivid/releases) for binary builds.
 
-### Via cargo
+## Theme Customization
 
-If you have Rust 1.31 or higher, you can install `vivid` from source via `cargo`:
-```
-cargo install vivid
-```
+The bundled themes can be found in `$srcdir/themes` as a starting point.
 
-## Customization
+Custom can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid`on POSIX systems,
+or to `%APPDATA%\vivid` on Windows systems.
 
-Copy the contents of the `share/vivid` folder in this repository to
-`/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid`
-on POSIX systems, or to `%APPDATA%\vivid` on Windows systems.
-
-You can then start to modify these files or add new themes.
+You can also specify the path to the theme, like so: `vivid generate ~/.config/vivid/mytheme.yml`
 
 ## License
 
