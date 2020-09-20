@@ -74,7 +74,7 @@ Check out the [release page](https://github.com/sharkdp/vivid/releases) for bina
 
 The bundled themes can be found in `$srcdir/themes` as a starting point.
 
-Custom can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid`on POSIX systems,
+Custom themes (and filetype configs) can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid`on POSIX systems,
 or to `%APPDATA%\vivid` on Windows systems.
 
 You can also specify the path to the theme, like so: `vivid generate ~/.config/vivid/mytheme.yml`
