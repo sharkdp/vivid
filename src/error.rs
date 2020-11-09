@@ -19,6 +19,7 @@ pub enum VividError {
     EmptyThemeFile,
     CouldNotFindStyleFor(String),
     UnknownColor(String),
+    InvalidFileName(String),
 }
 
 impl Display for VividError {
@@ -45,6 +46,9 @@ impl Display for VividError {
                 write!(fmt, "Could not find style for category '{}'", category)
             }
             VividError::UnknownColor(color) => write!(fmt, "Unknown color '{}'", color),
+            VividError::InvalidFileName(file_name) => {
+                write!(fmt, "Invalid file name '{}'", file_name)
+            }
         }
     }
 }
