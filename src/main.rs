@@ -6,9 +6,9 @@ mod types;
 mod util;
 
 use rust_embed::RustEmbed;
-use std::env;
 use std::path::{Path, PathBuf};
 use std::process;
+use std::{env, fs};
 
 use clap::{
     crate_description, crate_name, crate_version, App, AppSettings, Arg, ArgMatches, SubCommand,
@@ -22,6 +22,8 @@ use crate::theme::Theme;
 #[derive(RustEmbed)]
 #[folder = "themes/"]
 struct ThemeAssets;
+
+const THEME_PATH_SYSTEM: &str = "/usr/share/vivid/themes/";
 
 fn get_user_config_path() -> PathBuf {
     #[cfg(target_os = "macos")]
@@ -61,6 +63,34 @@ fn load_filetypes_database(matches: &ArgMatches, user_config_path: &PathBuf) -> 
     }
 }
 
+fn available_theme_names(user_config_path: &PathBuf) -> Result<Vec<String>> {
+    let theme_path_user = user_config_path.clone().join("themes");
+    let theme_path_system = PathBuf::from(THEME_PATH_SYSTEM);
+    let theme_paths = util::get_all_existing_paths(&[&theme_path_user, &theme_path_system]);
+
+    // build from default themes first
+    let mut available_themes: Vec<String> = ThemeAssets::iter()
+        .map(|theme_name| theme_name.trim_end_matches(".yml").to_owned())
+        .collect::<Vec<_>>();
+
+    for path in theme_paths {
+        let dir = fs::read_dir(path).map_err(VividError::IoError)?;
+        for theme_file in dir {
+            let theme_name = theme_file
+                .map_err(VividError::IoError)?
+                .file_name()
+                .into_string()
+                .map_err(|n| {
+                    VividError::InvalidFileName(n.as_os_str().to_string_lossy().into_owned())
+                })?;
+            available_themes.push(theme_name.trim_end_matches(".yml").to_owned());
+        }
+    }
+    available_themes.sort();
+    available_themes.dedup();
+    Ok(available_themes)
+}
+
 fn load_theme(
     sub_matches: &ArgMatches,
     user_config_path: &PathBuf,
@@ -82,7 +112,7 @@ fn load_theme(
     theme_path_user.push(theme_file.clone());
 
     let mut theme_path_system = PathBuf::new();
-    theme_path_system.push("/usr/share/vivid/themes/");
+    theme_path_system.push(THEME_PATH_SYSTEM);
     theme_path_system.push(&theme_file);
 
     let theme_path =
@@ -140,7 +170,8 @@ fn run() -> Result<()> {
             SubCommand::with_name("preview")
                 .about("Preview a given theme")
                 .arg(Arg::with_name("theme").help("Name of the color theme")),
-        );
+        )
+        .subcommand(SubCommand::with_name("themes").about("Prints list of available themes"));
 
     let matches = app.get_matches();
     let color_mode = match matches.value_of("color-mode") {
@@ -179,6 +210,10 @@ fn run() -> Result<()> {
                 ansi_code,
                 entry
             );
+        }
+    } else if matches.subcommand_matches("themes").is_some() {
+        for theme in available_theme_names(&user_config_path)? {
+            println!("{}", theme);
         }
     }
     Ok(())
