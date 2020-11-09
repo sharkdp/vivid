@@ -30,6 +30,12 @@ Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your
 export LS_COLORS="$(vivid generate molokai)"
 ```
 
+With MacOS, you can alias `ls` to use GNU ls, which uses `LS_COLORS`, instead of the default BSD version.
+```bash
+brew install coreutils
+alias ls="gls --color"
+```
+
 #### True color
 
 By default, `vivid` runs in true color mode (24-bit). If you don't use a [terminal
