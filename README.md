@@ -81,6 +81,14 @@ You can install `vivid` from [the official package repository](https://www.archl
 pacman -S vivid
 ```
 
+### On macOS
+
+You can install `vivid` from [Homebrew](https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/vivid.rb):
+
+``` bash
+brew install vivid
+```
+
 ### On other distributions
 
 Check out the [release page](https://github.com/sharkdp/vivid/releases) for binary builds.
