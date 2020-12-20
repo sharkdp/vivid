@@ -32,7 +32,7 @@ Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your
 export LS_COLORS="$(vivid generate molokai)"
 ```
 
-### Terminals wihout true color support
+### Terminals without true color support
 
 By default, `vivid` runs in true color mode (24-bit). If you don't have a [terminal
 that supports 24-bit colors](https://gist.github.com/XVilka/8346728), use the `--color-mode 8-bit`
