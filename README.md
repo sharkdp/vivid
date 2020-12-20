@@ -104,7 +104,7 @@ Licensed under either of
 
 at your option.
 
-## Useful sources
+## Useful resources
 
 File types:
 - https://en.wikipedia.org/wiki/List_of_file_formats
@@ -113,7 +113,7 @@ File types:
 ANSI colors:
 - https://jonasjacek.github.io/colors/
 
-## Similar and related projects
+Similar and related projects:
 
 - https://github.com/karlding/dirchromatic
 - https://github.com/trapd00r/LS_COLORS
