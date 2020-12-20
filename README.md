@@ -1,18 +1,18 @@
-# *vivid*
+# vivid
 
 [![Build Status](https://travis-ci.org/sharkdp/vivid.svg?branch=master)](https://travis-ci.org/sharkdp/vivid)
 ![Crates.io](https://img.shields.io/crates/v/vivid)
 
-*vivid* is a generator for the `LS_COLORS` environment variable that controls the colorized output of
+*vivid* is a generator for the **`LS_COLORS`** environment variable that controls the colorized output of
 [`ls`](https://www.gnu.org/software/coreutils/manual/html_node/ls-invocation.html#ls-invocation), [`tree`](http://mama.indstate.edu/users/ice/tree/),
-[`fd`](https://github.com/sharkdp/fd), etc.
+[`fd`](https://github.com/sharkdp/fd), [`bfs`](https://github.com/tavianator/bfs), [`dust`](https://github.com/bootandy/dust) and many other tools.
 
-It uses a YAML-based configuration format for the [filetype-database](config/filetypes.yml)
+It uses a YAML configuration format for the [filetype-database](config/filetypes.yml)
 and the [color themes](themes/). In contrast to
 [`dircolors`](https://www.gnu.org/software/coreutils/manual/html_node/dircolors-invocation.html#dircolors-invocation),
 the database and the themes are organized in different files. This allows users to
 choose and customize color themes independent from the collection of file extensions.
-Instead of using (cryptic) ANSI escape codes, colors can be specified in the `RRGGBB`
+Instead of using cryptic ANSI escape codes, colors can be specified in the `RRGGBB`
 format and will be translated to either truecolor (24-bit) ANSI codes or 8-bit codes
 for older terminal emulators.
 
@@ -34,10 +34,12 @@ export LS_COLORS="$(vivid generate molokai)"
 
 #### True color
 
-By default, `vivid` runs in true color mode (24-bit). If you don't use a [terminal
+By default, `vivid` runs in true color mode (24-bit). If you don't have a [terminal
 that supports 24-bit colors](https://gist.github.com/XVilka/8346728), use the `--color-mode 8-bit`
-option when running `vivid` (`vivid -m 8-bit generate molokai`). This will use interpolated 8-bit
-colors.
+option when running `vivid`. This will generate interpolated 8-bit colors:
+``` bash
+export LS_COLORS="$(vivid -m 8-bit generate molokai)"
+```
 
 ### Customization
 
@@ -49,13 +51,6 @@ As a starting point, you can use one of the [bundled themes](themes/).
 
 
 ## Installation
-
-### Via cargo
-
-If you have Rust 1.40 or higher, you can install `vivid` from source `cargo`:
-```
-cargo install vivid
-```
 
 ### On Debian-based systems
 
@@ -92,6 +87,13 @@ alias ls="gls --color"
 ### On other distributions
 
 Check out the [release page](https://github.com/sharkdp/vivid/releases) for binary builds.
+
+### From source
+
+If you have Rust 1.40 or higher, you can install `vivid` from source via `cargo`:
+``` bash
+cargo install vivid
+```
 
 ## License
 
