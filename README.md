@@ -16,14 +16,14 @@ Instead of using cryptic ANSI escape codes, colors can be specified in the `RRGG
 format and will be translated to either truecolor (24-bit) ANSI codes or 8-bit codes
 for older terminal emulators.
 
-#### Preview
+## Preview
 
 | `snazzy` | `molokai` | `ayu` |
 | --- | --- | --- |
 | ![snazzy theme](https://i.imgur.com/ECdQqxb.png) | ![molokai theme](https://i.imgur.com/5OiAczQ.png) | ![ayu theme](https://i.imgur.com/LC4Cx8E.png) |
 
 
-#### Usage
+## Usage
 
 Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your shells RC file
 (`~/.bashrc`, `~/.zshrc`, …):
@@ -32,7 +32,7 @@ Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your
 export LS_COLORS="$(vivid generate molokai)"
 ```
 
-#### True color
+### Terminals wihout true color support
 
 By default, `vivid` runs in true color mode (24-bit). If you don't have a [terminal
 that supports 24-bit colors](https://gist.github.com/XVilka/8346728), use the `--color-mode 8-bit`
@@ -104,7 +104,7 @@ Licensed under either of
 
 at your option.
 
-### Useful sources
+## Useful sources
 
 File types:
 - https://en.wikipedia.org/wiki/List_of_file_formats
@@ -113,7 +113,7 @@ File types:
 ANSI colors:
 - https://jonasjacek.github.io/colors/
 
-### Similar and related projects
+## Similar and related projects
 
 - https://github.com/karlding/dirchromatic
 - https://github.com/trapd00r/LS_COLORS
