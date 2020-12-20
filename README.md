@@ -1,5 +1,7 @@
-![vivid](doc/vivid.png)
-<br><br>
+# *vivid*
+
+[![Build Status](https://travis-ci.org/sharkdp/vivid.svg?branch=master)](https://travis-ci.org/sharkdp/vivid)
+![Crates.io](https://img.shields.io/crates/v/vivid)
 
 *vivid* is a generator for the `LS_COLORS` environment variable that controls the colorized output of
 [`ls`](https://www.gnu.org/software/coreutils/manual/html_node/ls-invocation.html#ls-invocation), [`tree`](http://mama.indstate.edu/users/ice/tree/),
@@ -47,8 +49,6 @@ As a starting point, you can use one of the [bundled themes](themes/).
 
 
 ## Installation
-
-[![Build Status](https://travis-ci.org/sharkdp/vivid.svg?branch=master)](https://travis-ci.org/sharkdp/vivid)
 
 ### Via cargo
 
