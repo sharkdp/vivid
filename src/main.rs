@@ -6,6 +6,7 @@ mod types;
 mod util;
 
 use rust_embed::RustEmbed;
+use std::io::{self, Write};
 use std::path::{Path, PathBuf};
 use std::process;
 use std::{env, fs};
@@ -183,6 +184,9 @@ fn run() -> Result<()> {
 
     let filetypes = load_filetypes_database(&matches, &user_config_path)?;
 
+    let stdout = io::stdout();
+    let mut stdout_lock = stdout.lock();
+
     if let Some(sub_matches) = matches.subcommand_matches("generate") {
         let theme = load_theme(&sub_matches, &user_config_path, color_mode)?;
 
@@ -195,7 +199,7 @@ fn run() -> Result<()> {
             ls_colors.push(format!("{}={}", filetype, theme.get_style(&category)?));
         }
 
-        println!("{}", ls_colors.join(":"));
+        writeln!(stdout_lock, "{}", ls_colors.join(":")).ok();
     } else if let Some(sub_matches) = matches.subcommand_matches("preview") {
         let theme = load_theme(&sub_matches, &user_config_path, color_mode)?;
 
@@ -204,16 +208,18 @@ fn run() -> Result<()> {
 
         for (entry, category) in pairs {
             let ansi_code = theme.get_style(&category).unwrap_or_else(|_| "0".into());
-            println!(
+            writeln!(
+                stdout_lock,
                 "{}: \x1b[{}m{}\x1b[0m",
                 category.join("."),
                 ansi_code,
                 entry
-            );
+            )
+            .ok();
         }
     } else if matches.subcommand_matches("themes").is_some() {
         for theme in available_theme_names(&user_config_path)? {
-            println!("{}", theme);
+            writeln!(stdout_lock, "{}", theme).ok();
         }
     }
     Ok(())
