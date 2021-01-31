@@ -1,3 +1,9 @@
+# unreleased
+
+- List available themes via `vivid themes`, see #48 (@gillespiecd)
+- Added "One" theme, see #51 (@mortezadadgar)
+- Fix panic if stdout is closed, see #56
+
 # v0.6.0
 
 - The default themes and config files are now embedded into the `vivid` binary.
