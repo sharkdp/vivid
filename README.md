@@ -70,6 +70,14 @@ You can install `vivid` from [the official package repository](https://www.archl
 pacman -S vivid
 ```
 
+### On FreeBSD
+
+You can install `vivid` from [the FreeBSD Ports Collection](https://www.freshports.org/sysutils/vivid/):
+
+``` bash
+pkg install vivid
+```
+
 ### On macOS
 
 You can install `vivid` from [Homebrew](https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/vivid.rb):
