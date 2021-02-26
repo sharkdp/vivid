@@ -335,6 +335,7 @@ archives:
     - .xz
     - .z
     - .zip
+    - .zst
 
 executable:
   windows:
