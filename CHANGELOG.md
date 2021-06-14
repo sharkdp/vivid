@@ -1,5 +1,10 @@
 # unreleased
 
+
+
+
+# v0.7.0
+
 - List available themes via `vivid themes`, see #48 (@gillespiecd)
 - Added "One" theme, see #51 (@mortezadadgar)
 - Fix panic if stdout is closed, see #56
