@@ -22,6 +22,10 @@ for older terminal emulators.
 | --- | --- | --- |
 | ![snazzy theme](https://i.imgur.com/ECdQqxb.png) | ![molokai theme](https://i.imgur.com/5OiAczQ.png) | ![ayu theme](https://i.imgur.com/LC4Cx8E.png) |
 
+| `lava` |
+| --- |
+| ![lava](https://user-images.githubusercontent.com/702227/124368181-77caa700-dc56-11eb-8286-95283e9a2b04.png) |
+
 
 ## Usage
 
