@@ -1,0 +1,135 @@
+# Author: https://github.com/fredericrous
+# Inspired by the Lava theme for Fish-Shell
+colors:
+  base01: '6b3608'
+  base0: '839496'
+  base2: 'eee8d5'
+  yellow: 'b58900'
+  background_color: '1a1a1a'
+  black: '000000'
+  orangedir: 'e06206'
+  darkorange: 'FF9400'
+  amber: 'FFC100'
+  vermilion: 'FF4B00'
+  alpine: 'BF9C30'
+  christine: 'BF5B30'
+  fire: 'A63000'
+  kourkinova: 'BF5B30'
+  chardonnay: 'FFC373'
+
+core:
+  regular_file:
+    foreground: base0
+
+  directory:
+    foreground: orangedir
+    font-style: bold
+
+  executable_file:
+    foreground: vermilion
+    font-style: bold
+
+  symlink:
+    foreground: orangedir
+    font-style: underline
+
+  broken_symlink:
+    foreground: background_color
+    background: kourkinova
+    font-style: bold
+
+  missing_symlink_target:
+    foreground: background_color
+    background: kourkinova
+    font-style: bold
+
+  fifo:
+    foreground: background_color
+    background: kourkinova
+    font-style: bold
+
+  socket:
+    foreground: background_color
+    background: kourkinova
+    font-style: bold
+
+  character_device:
+    foreground: yellow
+    background: base2
+    font-style: bold
+
+  block_device:
+    foreground: yellow
+    background: base2
+    font-style: bold
+
+  normal_text:
+    foreground: base0
+
+  other_writable:
+    {}
+
+  sticky:
+    {}
+
+  sticky_other_writable:
+    {}
+
+text:
+  special:
+    foreground: amber
+
+  todo:
+    foreground: amber
+    font-style: bold
+
+  licenses:
+    foreground: christine
+
+  configuration:
+    foreground: amber
+    font-style: bold
+
+  other:
+    foreground: darkorange
+
+markup:
+  foreground: amber
+
+programming:
+  source:
+    foreground: amber
+
+  tooling:
+    foreground: christine
+
+    continuous-integration:
+      foreground: chardonnay
+
+media:
+  image:
+    foreground: kourkinova
+
+  audio:
+    foreground: alpine
+
+  video:
+    foreground: alpine
+    font-style: bold
+
+  fonts:
+    foreground: kourkinova
+
+office:
+  foreground: christine
+  font-style: bold
+
+archives:
+  foreground: christine
+  font-style: bold
+
+executable:
+  foreground: vermilion
+
+unimportant:
+  foreground: base01
