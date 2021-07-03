@@ -1,0 +1,144 @@
+colors:
+  # Based on the Nord colorscheme.
+  # (https://www.nordtheme.com/docs/colors-and-palettes)
+
+  # Polar night
+  polar-night-nord0 : '2e3440'
+  polar-night-nord1 : '3b4252'
+  polar-night-nord2 : '434c5e'
+  polar-night-nord3 : '4c566a'
+
+  # Snow storm
+  snow-storm-nord4 : 'd8dee9'
+  snow-storm-nord5 : 'e5e9f0'
+  snow-storm-nord6 : 'eceff4'
+
+  # Frost
+  frost-nord7 : '8fbcbb'
+  frost-nord8 : '88c0d0'
+  frost-nord9 : '81a1c1'
+  frost-nord10 : '5e81ac'
+
+  # Aurora
+  aurora-nord11 : 'bf616a'
+  aurora-nord12 : 'd08770'
+  aurora-nord13 : 'ebcb8b'
+  aurora-nord14 : 'a3be8c'
+  aurora-nord15 : 'b48ead'
+
+  # Common
+  yellow  :  'b58900'
+  orange  :  'cb4b16'
+  red     :  'dc322f'
+  magenta :  'd33682'
+  violet  :  '6c71c4'
+  blue    :  '268bd2'
+  cyan    :  '2aa198'
+  green   :  '859900'
+
+core:
+  regular_file:
+    foreground: polar-night-nord3
+
+  directory:
+    foreground: frost-nord7
+    font-style: bold
+
+  executable_file:
+    foreground: aurora-nord12
+    font-style: bold
+
+  symlink:
+    foreground: aurora-nord14
+    font-style: bold
+
+  broken_symlink:
+    foreground: snow-storm-nord6
+    background: aurora-nord11
+    font-style: bold
+
+  missing_symlink_target:
+    foreground: snow-storm-nord6
+    background: aurora-nord11
+    font-style: bold
+
+  fifo:
+    foreground: yellow
+    background: polar-night-nord2
+    font-style: bold
+
+  socket:
+    foreground: magenta
+    background: polar-night-nord2
+    font-style: bold
+
+  character_device:
+    foreground: yellow
+    background: polar-night-nord2
+    font-style: bold
+
+  block_device:
+    foreground: yellow
+    background: polar-night-nord2
+    font-style: bold
+
+  normal_text:
+    foreground: polar-night-nord3
+
+  other_writable:
+    {}
+
+  sticky:
+    {}
+
+  sticky_other_writable:
+    {}
+
+text:
+  special:
+    foreground: aurora-nord15
+
+  todo:
+    foreground: aurora-nord15
+    font-style: bold
+
+  licenses:
+    foreground: aurora-nord15
+
+  configuration:
+    foreground: aurora-nord15
+
+  other:
+    foreground: aurora-nord15
+
+markup:
+  foreground: aurora-nord15
+
+programming:
+  foreground: aurora-nord14
+
+media:
+  image:
+    foreground: aurora-nord15
+
+  audio:
+    foreground: aurora-nord15
+
+  video:
+    foreground: aurora-nord15
+
+  fonts:
+    foreground: aurora-nord15
+
+office:
+  foreground: aurora-nord15
+
+archives:
+  foreground: frost-nord9
+  font-style: bold
+
+executable:
+  foreground: aurora-nord12
+
+unimportant:
+  foreground: polar-night-nord2
