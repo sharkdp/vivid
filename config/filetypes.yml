@@ -250,8 +250,10 @@ media:
     - .mid
     - .mp3
     - .ogg
+    - .opus
     - .wav
     - .wma
+    - .wv
 
   video:
     - .avi
