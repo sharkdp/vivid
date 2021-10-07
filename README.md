@@ -36,6 +36,17 @@ Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your
 export LS_COLORS="$(vivid generate molokai)"
 ```
 
+To try all available themes with your current directory:
+
+``` bash
+for i in $(vivid themes); do
+    echo "Theme: $i"
+    export LS_COLORS=$(vivid generate $i)
+    ls
+    echo
+done
+```
+
 ### Terminals without true color support
 
 By default, `vivid` runs in true color mode (24-bit). If you don't have a [terminal
