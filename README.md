@@ -39,9 +39,9 @@ export LS_COLORS="$(vivid generate molokai)"
 To try all available themes with your current directory:
 
 ``` bash
-for i in $(vivid themes); do
-    echo "Theme: $i"
-    export LS_COLORS=$(vivid generate $i)
+for theme in $(vivid themes); do
+    echo "Theme: $theme"
+    LS_COLORS=$(vivid generate $theme)
     ls
     echo
 done
