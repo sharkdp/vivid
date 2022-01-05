@@ -85,6 +85,14 @@ You can install `vivid` from [the official package repository](https://www.archl
 pacman -S vivid
 ```
 
+### On Gentoo Linux
+
+You can install `vivid` from [GURU Overlay](https://wiki.gentoo.org/wiki/Project:GURU/Information_for_End_Users)
+
+``` bash
+emerge vivid
+```
+
 ### On FreeBSD
 
 You can install `vivid` from [the FreeBSD Ports Collection](https://www.freshports.org/sysutils/vivid/):
