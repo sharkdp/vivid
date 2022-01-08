@@ -27,24 +27,17 @@ colors:
   dark_green:     "556633"
 
 core:
+  normal_text: {}
   regular_file: {}
+  reset_to_normal: {}
 
   directory:
     foreground: lilac
 
-  executable_file:
-    foreground: red_orange
-    font-style: bold
-
   symlink:
     foreground: bright_orange
 
-  broken_symlink:
-    foreground: bright_orange
-    background: dark_red
-  missing_symlink_target:
-    foreground: bright_orange
-    background: dark_red
+  multi_hard_link: {}
 
   fifo:
     foreground: pink
@@ -52,23 +45,38 @@ core:
   socket:
     foreground: pink
 
-  character_device:
-    foreground: red
+  door:
+    foreground: pink
 
   block_device:
     foreground: red
 
-  normal_text:
-    {}
+  character_device:
+    foreground: red
 
-  sticky:
-    {}
+  broken_symlink:
+    foreground: bright_orange
+    background: dark_red
 
-  sticky_other_writable:
-    {}
+  missing_symlink_target:
+    foreground: bright_orange
+    background: dark_red
 
-  other_writable:
-    {}
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: red_orange
+    font-style: bold
 
 text:
   special:

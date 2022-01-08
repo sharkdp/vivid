@@ -16,24 +16,17 @@ colors:
   lightgray: 'aaa'
 
 core:
+  normal_text: {}
   regular_file: {}
+  reset_to_normal: {}
 
   directory:
     foreground: blue
 
-  executable_file:
-    foreground: sienna
-    font-style: bold
-
   symlink:
     foreground: pink
 
-  broken_symlink:
-    foreground: black
-    background: sienna
-  missing_symlink_target:
-    foreground: black
-    background: sienna
+  multi_hard_link: {}
 
   fifo:
     foreground: black
@@ -43,25 +36,41 @@ core:
     foreground: black
     background: pink
 
-  character_device:
+  door:
     foreground: black
-    background: lime
+    background: pink
 
   block_device:
     foreground: black
     background: sienna
 
-  normal_text:
-    {}
+  character_device:
+    foreground: black
+    background: lime
 
-  sticky:
-    {}
+  broken_symlink:
+    foreground: black
+    background: sienna
 
-  sticky_other_writable:
-    {}
+  missing_symlink_target:
+    foreground: black
+    background: sienna
 
-  other_writable:
-    {}
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: sienna
+    font-style: bold
 
 text:
   special:

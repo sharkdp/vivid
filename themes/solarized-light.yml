@@ -23,19 +23,48 @@ colors:
   green   :  '859900'
 
 core:
+  normal_text:
+    foreground: base00
+
   regular_file:
+    foreground: base00
+
+  reset_to_normal:
     foreground: base00
 
   directory:
     foreground: blue
     font-style: bold
 
-  executable_file:
-    foreground: green
-    font-style: bold
-
   symlink:
     foreground: cyan
+    font-style: bold
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: yellow
+    background: base02
+    font-style: bold
+
+  socket:
+    foreground: magenta
+    background: base02
+    font-style: bold
+
+  door:
+    foreground: magenta
+    background: base02
+    font-style: bold
+
+  block_device:
+    foreground: yellow
+    background: base02
+    font-style: bold
+
+  character_device:
+    foreground: yellow
+    background: base02
     font-style: bold
 
   broken_symlink:
@@ -48,37 +77,21 @@ core:
     background: base02
     font-style: bold
 
-  fifo:
-    foreground: yellow
-    background: base02
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: green
     font-style: bold
-
-  socket:
-    foreground: magenta
-    background: base02
-    font-style: bold
-
-  character_device:
-    foreground: yellow
-    background: base02
-    font-style: bold
-
-  block_device:
-    foreground: yellow
-    background: base02
-    font-style: bold
-
-  normal_text:
-    foreground: base00
-
-  other_writable:
-    {}
-
-  sticky:
-    {}
-
-  sticky_other_writable:
-    {}
 
 text:
   special:

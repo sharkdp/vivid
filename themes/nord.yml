@@ -27,19 +27,48 @@ colors:
   aurora-nord15 : 'b48ead'
 
 core:
+  normal_text:
+    foreground: polar-night-nord3
+
   regular_file:
+    foreground: polar-night-nord3
+
+  reset_to_normal:
     foreground: polar-night-nord3
 
   directory:
     foreground: frost-nord7
     font-style: bold
 
-  executable_file:
-    foreground: aurora-nord12
-    font-style: bold
-
   symlink:
     foreground: aurora-nord14
+    font-style: bold
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: aurora-nord13
+    background: polar-night-nord2
+    font-style: bold
+
+  socket:
+    foreground: aurora-nord15
+    background: polar-night-nord2
+    font-style: bold
+
+  door:
+    foreground: aurora-nord15
+    background: polar-night-nord2
+    font-style: bold
+
+  block_device:
+    foreground: aurora-nord13
+    background: polar-night-nord2
+    font-style: bold
+
+  character_device:
+    foreground: aurora-nord13
+    background: polar-night-nord2
     font-style: bold
 
   broken_symlink:
@@ -52,37 +81,21 @@ core:
     background: aurora-nord11
     font-style: bold
 
-  fifo:
-    foreground: aurora-nord13
-    background: polar-night-nord2
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: aurora-nord12
     font-style: bold
-
-  socket:
-    foreground: aurora-nord15
-    background: polar-night-nord2
-    font-style: bold
-
-  character_device:
-    foreground: aurora-nord13
-    background: polar-night-nord2
-    font-style: bold
-
-  block_device:
-    foreground: aurora-nord13
-    background: polar-night-nord2
-    font-style: bold
-
-  normal_text:
-    foreground: polar-night-nord3
-
-  other_writable:
-    {}
-
-  sticky:
-    {}
-
-  sticky_other_writable:
-    {}
 
 text:
   special:

@@ -1,25 +1,24 @@
 core:
+  normal_text: [$no]
   regular_file: [$fi]
+  reset_to_normal: [$rs]
   directory: [$di]
-
-  executable_file: [$ex]
-
   symlink: [$ln]
-  broken_symlink: [$or]
-  missing_symlink_target: [$mi]
-
+  multi_hard_link: [$mh]
   fifo: [$pi]
   socket: [$so]
-
-  character_device: [$cd]
+  door: [$do]
   block_device: [$bd]
-
-  normal_text: [$no]
-
-  sticky: [$st]
-
-  other_writable: [$ow]
+  character_device: [$cd]
+  broken_symlink: [$or]
+  missing_symlink_target: [$mi]
+  setuid: [$su]
+  setgid: [$sg]
+  file_with_capability: [$ca]
   sticky_other_writable: [$tw]
+  other_writable: [$ow]
+  sticky: [$st]
+  executable_file: [$ex]
 
 text:
   special:
