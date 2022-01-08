@@ -19,24 +19,17 @@ colors:
   darkgray: "333333"
 
 core:
+  normal_text: {}
   regular_file: {}
+  reset_to_normal: {}
 
   directory:
     foreground: cyan
 
-  executable_file:
-    foreground: pink
-    font-style: bold
-
   symlink:
     foreground: pink
 
-  broken_symlink:
-    foreground: black
-    background: red
-  missing_symlink_target:
-    foreground: black
-    background: red
+  multi_hard_link: {}
 
   fifo:
     foreground: black
@@ -46,25 +39,41 @@ core:
     foreground: black
     background: pink
 
-  character_device:
-    foreground: pink
-    background: darkgray
+  door:
+    foreground: black
+    background: pink
 
   block_device:
     foreground: cyan
     background: darkgray
 
-  normal_text:
-    {}
+  character_device:
+    foreground: pink
+    background: darkgray
 
-  sticky:
-    {}
+  broken_symlink:
+    foreground: black
+    background: red
 
-  sticky_other_writable:
-    {}
+  missing_symlink_target:
+    foreground: black
+    background: red
 
-  other_writable:
-    {}
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: pink
+    font-style: bold
 
 text:
   special:
