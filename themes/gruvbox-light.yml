@@ -1,0 +1,167 @@
+colors:
+  bg:         "fbf1c7"
+  bg0:        "fbf1c7"
+  bg1:        "ebdbb2"
+  bg2:        "d5c4a1"
+  bg3:        "bdae93"
+  bg4:        "a89984"
+
+  fg:         "3c3836"
+  fg0:        "282828"
+  fg1:        "3c3836"
+  fg2:        "504945"
+  fg3:        "665c54"
+  fg4:        "7c6f64"
+
+  red:        "cc241d"
+  green:      "98971a"
+  yellow:     "d79921"
+  blue:       "458588"
+  purple:     "b16286"
+  aqua:       "689d6a"
+  orange:     "d65d0e"
+  gray:       "7c6f64"
+
+  alt_red:    "9d0006"
+  alt_green:  "79740e"
+  alt_yellow: "b57614"
+  alt_blue:   "076678"
+  alt_purple: "8f3f71"
+  alt_aqua:   "427b58"
+  alt_orange: "af3a03"
+  alt_gray:   "928374"
+
+core:
+  normal_text:
+    foreground: fg
+    background: bg
+
+  regular_file:
+    foreground: fg
+    background: bg
+
+  reset_to_normal: {}
+
+  directory:
+    foreground: blue
+
+  symlink:
+    foreground: alt_blue
+    font-style: italic
+
+  multi_hard_link:
+    font-style: bold
+
+  fifo:
+    foreground: purple
+
+  socket:
+    foreground: purple
+    font-style: bold
+
+  door:
+    foreground: alt_purple
+    font-style: bold
+
+  block_device:
+    foreground: yellow
+    font-style: bold
+
+  character_device:
+    foreground: alt_yellow
+    font-style: italic
+
+  broken_symlink:
+    foreground: alt_red
+    font-style: italic
+
+  missing_symlink_target:
+    foreground: fg
+    background: alt_red
+
+  setuid:
+    foreground: fg
+    background: red
+
+  setgid:
+    foreground: bg
+    background: orange
+
+  file_with_capability:
+    foreground: bg
+    background: red
+
+  sticky_other_writable:
+    foreground: fg
+    background: blue
+    font-style: italic
+
+  other_writable:
+    foreground: alt_green
+    font-style: bold
+
+  sticky:
+    foreground: fg
+    background: blue
+
+  executable_file:
+    foreground: alt_green
+    font-style: bold
+
+text:
+  special:
+    foreground: alt_yellow
+    font-style: bold
+
+  todo:
+    foreground: alt_green
+
+  licenses:
+    foreground: fg1
+    font-style: italic
+
+  configuration:
+    foreground: alt_yellow
+
+  other:
+    foreground: fg
+
+markup:
+  foreground: yellow
+
+programming:
+  source:
+    foreground: green
+
+  tooling:
+    foreground: alt_green
+    font-style: italic
+
+    continuous-integration:
+      foreground: alt_blue
+
+media:
+  foreground: aqua
+
+  video:
+    foreground: alt_aqua
+    font-style: bold
+
+office:
+  foreground: alt_blue
+  font-style: bold
+
+archives:
+  foreground: orange
+
+  images:
+    foreground: alt_orange
+    font-style: bold
+
+executable:
+  foreground: alt_green
+  font-style: bold
+
+unimportant:
+  foreground: bg3
+  font-style: italic
