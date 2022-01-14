@@ -1,0 +1,128 @@
+colors:
+  # based off of solarized vivid theme
+  # Based on 'dracula' theme
+  # (https://draculatheme.com/)
+  #
+  # The assignment of colors to file types roughly follows `dircolors`
+
+  black   :  '282a36'
+  green   :  '50fa7b'
+  purple  :  'bd93f9'
+  red     :  'ff5555'
+  yellow  :  'f1fa8c'
+  cyan    :  '8be9fd'
+  pink    :  'ff79c6'
+  orange  :  'ffb86c'
+  white   :  'f8f8f2'
+  base01  :  '3a3c4e'
+
+core:
+  regular_file:
+    foreground: white
+
+  directory:
+    foreground: cyan
+
+  executable_file:
+    foreground: green
+
+  symlink:
+    foreground: green
+
+  broken_symlink:
+    foreground: red
+    background: black
+
+  missing_symlink_target:
+    foreground: red
+    background: black
+
+  fifo:
+    foreground: yellow
+    background: black
+    font-style: bold
+
+  socket:
+    foreground: yellow
+    background: black
+    font-style: bold
+
+  door:
+    foreground: yellow
+    background: black
+    font-style: bold
+
+  character_device:
+    foreground: orange
+    background: black
+    font-style: bold
+
+  block_device:
+    foreground: orange
+    background: black
+    font-style: bold
+
+  normal_text:
+    foreground: white
+
+  other_writable:
+    foreground: cyan
+    background: black
+
+  sticky:
+    foreground: yellow
+    background: cyan
+
+  sticky_other_writable:
+    foreground: yellow
+    background: green
+
+text:
+  special:
+    foreground: orange
+
+  todo:
+    foreground: orange
+    font-style: bold
+
+  licenses:
+    foreground: orange
+
+  configuration:
+    foreground: orange
+
+  other:
+    foreground: orange
+
+markup:
+  foreground: orange
+
+programming:
+  foreground: orange
+
+media:
+  image:
+    foreground: yellow
+
+  audio:
+    foreground: orange
+
+  video:
+    foreground: orange
+    font-style: bold
+
+  fonts:
+    foreground: violet
+
+office:
+  foreground: orange
+
+archives:
+  foreground: purple
+  font-style: bold
+
+executable:
+  foreground: green
+
+unimportant:
+  foreground: base01
