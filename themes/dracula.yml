@@ -112,7 +112,7 @@ media:
     font-style: bold
 
   fonts:
-    foreground: violet
+    foreground: orange
 
 office:
   foreground: orange
