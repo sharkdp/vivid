@@ -121,7 +121,7 @@ Check out the [release page](https://github.com/sharkdp/vivid/releases) for bina
 
 ### From source
 
-If you have Rust 1.40 or higher, you can install `vivid` from source via `cargo`:
+If you have Rust 1.54 or higher, you can install `vivid` from source via `cargo`:
 ``` bash
 cargo install vivid
 ```
