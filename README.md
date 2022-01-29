@@ -1,6 +1,6 @@
 # vivid
 
-[![Build Status](https://travis-ci.org/sharkdp/vivid.svg?branch=master)](https://travis-ci.org/sharkdp/vivid)
+[![CICD](https://github.com/sharkdp/vivid/actions/workflows/CICD.yml/badge.svg)](https://github.com/sharkdp/vivid/actions/workflows/CICD.yml)
 ![Crates.io](https://img.shields.io/crates/v/vivid)
 
 *vivid* is a generator for the **`LS_COLORS`** environment variable that controls the colorized output of
