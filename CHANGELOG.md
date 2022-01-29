@@ -1,6 +1,23 @@
 # unreleased
 
+## Changes
 
+- Added new core filetypes (reset_to_normal, multi_hard_link, door, setuid, setgid), see #78 (@ixti)
+- Added instructions on how to preview themes in a user-defined directory, see #75 (@WoLpH)
+
+## New filetypes
+
+- Opus and WavPack audio extensions, see #71 (@desbma)
+- `.webm`, see #72 (@desbma)
+- `.pyd`, `.pyo`, see #73 (@bl-ue)
+
+## New themes
+
+- Nord, see #66 (@Utagai)
+- Lava, see #66 (@fredericrous)
+- Iceberg, see #70 (@p00f)
+- Gruvbox, see #79 (@ixti)
+- Dracula, see #80 (@yavko)
 
 
 # v0.7.0
