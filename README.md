@@ -36,6 +36,8 @@ Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your
 export LS_COLORS="$(vivid generate molokai)"
 ```
 
+### Theme preview
+
 To try all available themes with your current directory:
 
 ``` bash
