@@ -7,7 +7,7 @@ license = "MIT/Apache-2.0"
 name = "vivid"
 readme = "README.md"
 repository = "https://github.com/sharkdp/vivid"
-version = "0.7.0"
+version = "0.8.0"
 exclude = ["demo/*"]
 edition = "2018"
 

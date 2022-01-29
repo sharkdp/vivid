@@ -2,6 +2,19 @@
 
 ## Changes
 
+
+## New filetypes
+
+
+## New themes
+
+
+
+
+# v0.8.0
+
+## Changes
+
 - Added new core filetypes (reset_to_normal, multi_hard_link, door, setuid, setgid), see #78 (@ixti)
 - Added instructions on how to preview themes in a user-defined directory, see #75 (@WoLpH)
 
