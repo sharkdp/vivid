@@ -123,7 +123,7 @@ fn load_theme(
         Some(path) => return Theme::from_path(path, color_mode),
         None => {
             if let Some(embedded_file) = ThemeAssets::get(&theme_file) {
-                if let Ok(embedded_data) = std::str::from_utf8(embedded_file.as_ref()) {
+                if let Ok(embedded_data) = std::str::from_utf8(&embedded_file.data) {
                     return Theme::from_string(embedded_data, color_mode);
                 }
             }
