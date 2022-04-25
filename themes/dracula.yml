@@ -1,5 +1,5 @@
 colors:
-  # based off of solarized vivid theme
+  # based off of solarized vivid theme and dracula/dircolors
   # Based on 'dracula' theme
   # (https://draculatheme.com/)
   #
@@ -37,57 +37,57 @@ core:
   fifo:
     foreground: yellow
     background: black
-    font-style: bold
 
   socket:
-    foreground: yellow
+    foreground: pink
     background: black
     font-style: bold
 
   door:
-    foreground: yellow
+    foreground: pink
     background: black
     font-style: bold
 
   block_device:
-    foreground: orange
+    foreground: yellow
     background: black
     font-style: bold
 
   character_device:
-    foreground: orange
+    foreground: yellow
     background: black
     font-style: bold
 
   broken_symlink:
     foreground: red
     background: black
+    font-style: bold
 
   missing_symlink_target:
     foreground: red
     background: black
 
   setuid:
-    foreground: yellow
-    background: pink 
+    foreground: white
+    background: red 
 
   setgid:
-    foreground: yellow
-    background: pink 
+    foreground: black
+    background: yellow
 
   file_with_capability: {}
 
   sticky_other_writable:
-    foreground: yellow
+    foreground: black
     background: green
 
   other_writable:
-    foreground: cyan
-    background: black
+    foreground: purple
+    background: green
 
   sticky:
-    foreground: yellow
-    background: cyan
+    foreground: white
+    background: purple
 
   executable_file:
     foreground: green
@@ -117,10 +117,10 @@ programming:
 
 media:
   image:
-    foreground: yellow
+    foreground: pink
 
   audio:
-    foreground: orange
+    foreground: cyan
 
   video:
     foreground: orange
@@ -133,7 +133,7 @@ office:
   foreground: orange
 
 archives:
-  foreground: purple
+  foreground: red
   font-style: bold
 
 executable:
