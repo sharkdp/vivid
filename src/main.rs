@@ -190,14 +190,21 @@ fn run() -> Result<()> {
     if let Some(sub_matches) = matches.subcommand_matches("generate") {
         let theme = load_theme(&sub_matches, &user_config_path, color_mode)?;
 
-        let mut filetypes_list = filetypes.mapping.keys().collect::<Vec<_>>();
-        filetypes_list.sort_unstable_by_key(|entry| entry.len());
+        let mut mapping = filetypes
+            .mapping
+            .iter()
+            .map(|(filetype, category)| (filetype, theme.get_style(category)))
+            .map(|(filetype, style)| style.map(|style| (filetype, style)))
+            .collect::<Result<Vec<_>>>()?;
 
-        let mut ls_colors: Vec<String> = vec![];
-        for filetype in filetypes_list {
-            let category = &filetypes.mapping[filetype];
-            ls_colors.push(format!("{}={}", filetype, theme.get_style(&category)?));
-        }
+        // Sort the keys deterministically.  Shorter keys come first so that e.g.
+        // *README.md will override *.md.
+        mapping.sort_unstable_by_key(|&(filetype, _)| (filetype.len(), filetype));
+
+        let ls_colors: Vec<_> = mapping
+            .iter()
+            .map(|(filetype, style)| format!("{}={}", filetype, style))
+            .collect();
 
         writeln!(stdout_lock, "{}", ls_colors.join(":")).ok();
     } else if let Some(sub_matches) = matches.subcommand_matches("preview") {
