@@ -18,9 +18,6 @@ colors:
   chardonnay: 'FFC373'
 
 core:
-  normal_text:
-    foreground: base0
-
   regular_file:
     foreground: base0
 
@@ -31,12 +28,35 @@ core:
     foreground: orangedir
     font-style: bold
 
+  executable_file:
+    foreground: vermilion
+    font-style: bold
+
   symlink:
     foreground: orangedir
     font-style: underline
 
-  multi_hard_link:
-    foreground: base0
+  broken_symlink:
+    foreground: background_color
+    background: kourkinova
+    font-style: bold
+
+  missing_symlink_target:
+    foreground: background_color
+    background: kourkinova
+    font-style: bold
+
+  setuid:
+    foreground: yellow
+    background: black
+
+  setgid:
+    foreground: yellow
+    background: black
+
+  file_with_capability: {}
+
+  multi_hard_link: {}
 
   fifo:
     foreground: background_color
@@ -53,41 +73,27 @@ core:
     background: kourkinova
     font-style: bold
 
-  block_device:
-    foreground: yellow
-    background: base2
-    font-style: bold
-
   character_device:
     foreground: yellow
     background: base2
     font-style: bold
 
-  broken_symlink:
-    foreground: background_color
-    background: kourkinova
+  block_device:
+    foreground: yellow
+    background: base2
     font-style: bold
 
-  missing_symlink_target:
-    foreground: background_color
-    background: kourkinova
-    font-style: bold
+  normal_text:
+    foreground: base0
 
-  setuid: {}
+  other_writable:
+    {}
 
-  setgid: {}
+  sticky:
+    {}
 
-  file_with_capability: {}
-
-  sticky_other_writable: {}
-
-  other_writable: {}
-
-  sticky: {}
-
-  executable_file:
-    foreground: vermilion
-    font-style: bold
+  sticky_other_writable:
+    {}
 
 text:
   special:
