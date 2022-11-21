@@ -1,0 +1,136 @@
+colors:
+  # Original "catppuccin" theme
+  # https://github.com/catppuccin/catppuccin
+
+  rosewater: 'f2d5cf'
+  flamingo: 'eebebe'
+  pink: 'f4b8e4'
+  mauve: 'ca9ee6'
+  red: 'e78284'
+  maroon: 'ea999c'
+  peach: 'ef9f76'
+  yellow: 'e5c890'
+  green: 'a6d189'
+  teal: '81c8be'
+  sky: '99d1db'
+  sapphire: '85c1dc'
+  blue: '8caaee'
+  lavender: 'babbf1'
+  
+  text: 'c6d0f5'
+  subtext1: 'b5bfe2'
+  subtext0: 'a5adce'
+  overlay2: '949cbb'
+  overlay1: '838ba7'
+  overlay0: '737994'
+  surface2: '626880'
+  surface1: '51576d'
+  surface0: '414559'
+
+  base: '303446'
+  mantle: '292c3c'
+  crust: '232634'
+
+core:
+  normal_text: {}
+  regular_file: {}
+  reset_to_normal: {}
+
+  directory:
+    foreground: blue
+
+  symlink:
+    foreground: pink
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: crust
+    background: blue
+
+  socket:
+    foreground: crust
+    background: pink
+
+  door:
+    foreground: crust
+    background: pink
+
+  block_device:
+    foreground: sapphire
+    background: surface0
+
+  character_device:
+    foreground: pink
+    background: surface0
+
+  broken_symlink:
+    foreground: crust
+    background: red
+
+  missing_symlink_target:
+    foreground: crust
+    background: red
+
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: red
+    font-style: bold
+
+text:
+  special:
+    foreground: base
+    background: yellow
+
+  todo:
+    font-style: bold
+
+  licenses:
+    foreground: overlay2
+
+  configuration:
+    foreground: yellow
+
+  other:
+    foreground: yellow
+
+markup:
+  foreground: yellow
+
+programming:
+  source:
+    foreground: green
+
+  tooling:
+    foreground: teal
+
+    continuous-integration:
+      foreground: green
+
+media:
+  foreground: flamingo
+
+office:
+  foreground: red
+
+archives:
+  foreground: sapphire
+  font-style: underline
+
+executable:
+  foreground: red
+  font-style: bold
+
+unimportant:
+  foreground: surface2
