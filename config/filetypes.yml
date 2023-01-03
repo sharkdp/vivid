@@ -248,7 +248,6 @@ media:
   audio:
     - .aif
     - .ape
-    - .cue
     - .flac
     - .m3u
     - .m4a
