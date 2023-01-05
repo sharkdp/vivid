@@ -94,6 +94,7 @@ markup:
     - .markdown
     - .md
     - .mdown
+    - .org
     - .rst
     - .xml
 
@@ -114,7 +115,7 @@ programming:
     dart: [.dart]
     diff: [.diff, .patch]
     elixir: [.ex, .exs]
-    emacs: [.org, .elc]
+    emacs: [.elc]
     elm: [.elm]
     erlang: [.erl]
     fsharp: [.fs, .fsi, .fsx]
