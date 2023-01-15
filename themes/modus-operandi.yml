@@ -1,0 +1,163 @@
+colors:
+    # Port of modus-operandi, a light scheme for emacs
+    # https://protesilaos.com/emacs/modus-themes
+    bg-main         : 'ffffff'
+    bg-dim          : 'f0f0f0'
+    fg-main         : '000000'
+    fg-dim          : '595959'
+    fg-alt          : '193668'
+    bg-active       : 'c4c4c4'
+    bg-inactive     : 'e0e0e0'
+    border          : '9f9f9f'
+
+    red             : 'a60000'
+    red-warmer      : '972500'
+    red-cooler      : 'a0132f'
+    red-faint       : '7f0000'
+    red-intense     : 'd00000'
+    green           : '006800'
+    green-warmer    : '316500'
+    green-cooler    : '00663f'
+    green-faint     : '2a5045'
+    green-intense   : '008900'
+    yellow          : '6f5500'
+    yellow-warmer   : '884900'
+    yellow-cooler   : '7a4f2f'
+    yellow-faint    : '624416'
+    yellow-intense  : '808000'
+    blue            : '0031a9'
+    blue-warmer     : '354fcf'
+    blue-cooler     : '0000b0'
+    blue-faint      : '003497'
+    blue-intense    : '0000ff'
+    magenta         : '721045'
+    magenta-warmer  : '8f0075'
+    magenta-cooler  : '531ab6'
+    magenta-faint   : '7c318f'
+    magenta-intense : 'dd22dd'
+    cyan            : '005e8b'
+    cyan-warmer     : '3f578f'
+    cyan-cooler     : '005f5f'
+    cyan-faint      : '005077'
+    cyan-intense    : '008899'
+
+core:
+  normal_text:
+    foreground: fg-main
+
+  regular_file:
+    foreground: fg-main
+
+  reset_to_normal:
+    foreground: fg-main
+
+  directory:
+    foreground: blue
+    font-style: bold
+
+  symlink:
+    foreground: cyan
+    font-style: bold
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: yellow
+    background: bg-dim
+    font-style: bold
+
+  socket:
+    foreground: magenta
+    background: bg-dim
+    font-style: bold
+
+  door:
+    foreground: magenta
+    background: bg-dim
+    font-style: bold
+
+  block_device:
+    foreground: yellow
+    background: bg-dim
+    font-style: bold
+
+  character_device:
+    foreground: yellow
+    background: bg-dim
+    font-style: bold
+
+  broken_symlink:
+    foreground: red
+    background: bg-dim
+    font-style: bold
+
+  missing_symlink_target:
+    foreground: red
+    background: bg-dim
+    font-style: bold
+
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: green
+    font-style: bold
+
+text:
+  special:
+    foreground: fg-main
+
+  todo:
+    foreground: fg-main
+    font-style: bold
+
+  licenses:
+    foreground: fg-main
+
+  configuration:
+    foreground: fg-main
+
+  other:
+    foreground: fg-main
+
+markup:
+  foreground: fg-main
+
+programming:
+  foreground: fg-main
+
+media:
+  image:
+    foreground: magenta
+
+  audio:
+    foreground: cyan
+
+  video:
+    foreground: magenta
+    font-style: bold
+
+  fonts:
+    foreground: magenta
+
+office:
+  foreground: yellow
+
+archives:
+  foreground: red
+  font-style: bold
+
+executable:
+  foreground: fg-main
+
+unimportant:
+  foreground: fg-dim
