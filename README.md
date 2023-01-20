@@ -116,6 +116,10 @@ Note that the BSD version of `ls` does not use `LS_COLORS`, but you can use the 
 brew install coreutils
 alias ls="gls --color"
 ```
+or, since it actually uses `LSCOLORS` instead:
+```bash
+export LSCOLORS=$LS_COLORS
+```
 
 ### On other distributions
 
