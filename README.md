@@ -60,7 +60,7 @@ export LS_COLORS="$(vivid -m 8-bit generate molokai)"
 
 ### Customization
 
-Custom [`filetypes.yml` databases](config/filetypes.yml) can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_PATH/vivid` on POSIX systems,
+Custom [`filetypes.yml` databases](config/filetypes.yml) can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_HOME/vivid` on POSIX systems,
 or in `%APPDATA%\vivid` on Windows systems.
 
 Custom color themes go into a `themes` subfolder, respectively.  You can also specify an explicit path to your custom theme: `vivid generate path/to/my_theme.yml`.
