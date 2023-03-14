@@ -41,10 +41,10 @@ fn get_user_config_path() -> PathBuf {
         .expect("Could not get home directory")
 }
 
-fn load_filetypes_database(matches: &ArgMatches, user_config_path: &PathBuf) -> Result<FileTypes> {
+fn load_filetypes_database(matches: &ArgMatches, user_config_path: &Path) -> Result<FileTypes> {
     let database_path_from_arg = matches.value_of("database").map(Path::new);
 
-    let mut database_path_user = user_config_path.clone();
+    let mut database_path_user = user_config_path.to_owned();
     database_path_user.push("filetypes.yml");
 
     let database_path_env_s = env::var("VIVID_DATABASE").ok();
@@ -64,8 +64,8 @@ fn load_filetypes_database(matches: &ArgMatches, user_config_path: &PathBuf) -> 
     }
 }
 
-fn available_theme_names(user_config_path: &PathBuf) -> Result<Vec<String>> {
-    let theme_path_user = user_config_path.clone().join("themes");
+fn available_theme_names(user_config_path: &Path) -> Result<Vec<String>> {
+    let theme_path_user = user_config_path.join("themes");
     let theme_path_system = PathBuf::from(THEME_PATH_SYSTEM);
     let theme_paths = util::get_all_existing_paths(&[&theme_path_user, &theme_path_system]);
 
@@ -94,13 +94,13 @@ fn available_theme_names(user_config_path: &PathBuf) -> Result<Vec<String>> {
 
 fn load_theme(
     sub_matches: &ArgMatches,
-    user_config_path: &PathBuf,
+    user_config_path: &Path,
     color_mode: ColorMode,
 ) -> Result<Theme> {
     let theme_from_env = env::var("VIVID_THEME").ok();
     let theme = sub_matches
         .value_of("theme")
-        .or_else(|| theme_from_env.as_deref())
+        .or(theme_from_env.as_deref())
         // Convert option to result, then unwrap value or return error if None
         .ok_or_else(|| VividError::NoThemeProvided)?;
 
@@ -108,7 +108,7 @@ fn load_theme(
 
     let theme_file = format!("{}.yml", theme);
 
-    let mut theme_path_user = user_config_path.clone();
+    let mut theme_path_user = user_config_path.to_owned();
     theme_path_user.push("themes");
     theme_path_user.push(theme_file.clone());
 
@@ -117,7 +117,7 @@ fn load_theme(
     theme_path_system.push(&theme_file);
 
     let theme_path =
-        util::get_first_existing_path(&[&theme_as_path, &theme_path_user, &theme_path_system]);
+        util::get_first_existing_path(&[theme_as_path, &theme_path_user, &theme_path_system]);
 
     match theme_path {
         Some(path) => return Theme::from_path(path, color_mode),
@@ -188,7 +188,7 @@ fn run() -> Result<()> {
     let mut stdout_lock = stdout.lock();
 
     if let Some(sub_matches) = matches.subcommand_matches("generate") {
-        let theme = load_theme(&sub_matches, &user_config_path, color_mode)?;
+        let theme = load_theme(sub_matches, &user_config_path, color_mode)?;
 
         let mut mapping = filetypes
             .mapping
@@ -208,13 +208,13 @@ fn run() -> Result<()> {
 
         writeln!(stdout_lock, "{}", ls_colors.join(":")).ok();
     } else if let Some(sub_matches) = matches.subcommand_matches("preview") {
-        let theme = load_theme(&sub_matches, &user_config_path, color_mode)?;
+        let theme = load_theme(sub_matches, &user_config_path, color_mode)?;
 
         let mut pairs = filetypes.mapping.iter().collect::<Vec<_>>();
         pairs.sort_by_key(|(_, category)| *category);
 
         for (entry, category) in pairs {
-            let ansi_code = theme.get_style(&category).unwrap_or_else(|_| "0".into());
+            let ansi_code = theme.get_style(category).unwrap_or_else(|_| "0".into());
             writeln!(
                 stdout_lock,
                 "{}: \x1b[{}m{}\x1b[0m",

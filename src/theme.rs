@@ -41,7 +41,7 @@ impl Theme {
     }
 
     pub(crate) fn from_string(contents: &str, color_mode: ColorMode) -> Result<Theme> {
-        let mut docs = YamlLoader::load_from_str(&contents)?;
+        let mut docs = YamlLoader::load_from_str(contents)?;
         let doc = docs.pop().ok_or(VividError::EmptyThemeFile)?;
 
         let mut colors = HashMap::new();
@@ -51,7 +51,7 @@ impl Theme {
                 for (key, value) in map {
                     match (key, value) {
                         (Yaml::String(key), Yaml::String(value)) => {
-                            colors.insert(key.clone(), Color::from_hex_str(&value)?);
+                            colors.insert(key.clone(), Color::from_hex_str(value)?);
                         }
                         _ => return Err(VividError::UnexpectedYamlType),
                     }
@@ -84,18 +84,17 @@ impl Theme {
         let mut item = &self.categories;
         for key in category {
             if let Yaml::Hash(map) = item {
-                if map.contains_key(&Yaml::String("foreground".into()))
+                if (map.contains_key(&Yaml::String("foreground".into()))
                     || map.contains_key(&Yaml::String("background".into()))
-                    || map.contains_key(&Yaml::String("font-style".into()))
+                    || map.contains_key(&Yaml::String("font-style".into())))
+                    && map.get(&Yaml::String(key.clone())).is_none()
                 {
-                    if map.get(&Yaml::String(key.clone())).is_none() {
-                        // We can not specialize further
-                        break;
-                    }
+                    // We can not specialize further
+                    break;
                 }
 
                 if let Some(value) = map.get(&Yaml::String(key.clone())) {
-                    item = &value;
+                    item = value;
                 } else {
                     return Err(VividError::CouldNotFindStyleFor(category.join(".")));
                 }

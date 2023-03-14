@@ -33,7 +33,7 @@ impl FileTypes {
     }
 
     fn from_string(contents: &str) -> Result<FileTypes> {
-        let docs = YamlLoader::load_from_str(&contents)?;
+        let docs = YamlLoader::load_from_str(contents)?;
         let doc = &docs[0];
 
         Self::get_mapping(doc, &vec![])
@@ -44,7 +44,7 @@ impl FileTypes {
             filetype[1..].into()
         } else {
             let mut s = String::from("*");
-            s.push_str(&filetype);
+            s.push_str(filetype);
             s
         }
     }

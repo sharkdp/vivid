@@ -24,7 +24,7 @@ impl ColorType {
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Color {
-    RGB(u8, u8, u8),
+    Rgb(u8, u8, u8),
 }
 
 impl Color {
@@ -36,13 +36,13 @@ impl Color {
             let g = u8::from_str_radix(&hex_str[2..4], 16).map_err(|_| parse_error())?;
             let b = u8::from_str_radix(&hex_str[4..6], 16).map_err(|_| parse_error())?;
 
-            Ok(Color::RGB(r, g, b))
+            Ok(Color::Rgb(r, g, b))
         } else if hex_str.len() == 3 {
             let r = u8::from_str_radix(&hex_str[0..1], 16).map_err(|_| parse_error())?;
             let g = u8::from_str_radix(&hex_str[1..2], 16).map_err(|_| parse_error())?;
             let b = u8::from_str_radix(&hex_str[2..3], 16).map_err(|_| parse_error())?;
 
-            Ok(Color::RGB((r << 4) + r, (g << 4) + g, (b << 4) + b))
+            Ok(Color::Rgb((r << 4) + r, (g << 4) + g, (b << 4) + b))
         } else {
             Err(parse_error())
         }
@@ -50,7 +50,7 @@ impl Color {
 
     pub fn get_style(&self, colortype: ColorType, colormode: ColorMode) -> String {
         match self {
-            Color::RGB(r, g, b) => match colormode {
+            Color::Rgb(r, g, b) => match colormode {
                 ColorMode::BitDepth24 => format!(
                     "{ctype};2;{r};{g};{b}",
                     ctype = colortype.get_code(),
@@ -75,13 +75,13 @@ mod tests {
     #[test]
     fn from_hex_str_6chars() {
         let color = Color::from_hex_str("4ec703").unwrap();
-        assert_eq!(Color::RGB(0x4e, 0xc7, 0x03), color);
+        assert_eq!(Color::Rgb(0x4e, 0xc7, 0x03), color);
     }
 
     #[test]
     fn from_hex_str_3chars() {
         let color = Color::from_hex_str("4ec").unwrap();
-        assert_eq!(Color::RGB(0x44, 0xee, 0xcc), color);
+        assert_eq!(Color::Rgb(0x44, 0xee, 0xcc), color);
     }
 
     #[test]
@@ -95,7 +95,7 @@ mod tests {
 
     #[test]
     fn fg_white() {
-        let white = Color::RGB(0xff, 0xff, 0xff);
+        let white = Color::Rgb(0xff, 0xff, 0xff);
         let style_8bit = white.get_style(ColorType::Foreground, ColorMode::BitDepth8);
         assert_eq!("38;5;231", style_8bit);
 
@@ -105,7 +105,7 @@ mod tests {
 
     #[test]
     fn bg_black() {
-        let black = Color::RGB(0x00, 0x00, 0x00);
+        let black = Color::Rgb(0x00, 0x00, 0x00);
         let style_8bit = black.get_style(ColorType::Background, ColorMode::BitDepth8);
         assert_eq!("48;5;16", style_8bit);
 
@@ -115,7 +115,7 @@ mod tests {
 
     #[test]
     fn fg_red() {
-        let red = Color::RGB(0xff, 0x00, 0x00);
+        let red = Color::Rgb(0xff, 0x00, 0x00);
         let style_8bit = red.get_style(ColorType::Foreground, ColorMode::BitDepth8);
         assert_eq!("38;5;196", style_8bit);
 

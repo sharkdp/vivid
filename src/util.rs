@@ -20,9 +20,9 @@ pub fn transpose<T, E>(
 }
 
 pub fn get_first_existing_path<'a>(paths: &[&'a Path]) -> Option<&'a Path> {
-    paths.iter().find(|p| Path::exists(*p)).copied()
+    paths.iter().find(|p| Path::exists(p)).copied()
 }
 
 pub fn get_all_existing_paths<'a>(paths: &[&'a Path]) -> Vec<&'a Path> {
-    paths.iter().cloned().filter(|p| Path::exists(*p)).collect()
+    paths.iter().cloned().filter(|p| Path::exists(p)).collect()
 }
