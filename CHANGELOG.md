@@ -10,6 +10,23 @@
 
 
 
+# v0.9.0
+
+## Changes
+
+- Make the output order deterministic, see #63 and #87 (@tavianator)
+- Added more filetypes, see #95 (@Babkock)
+- Make it possible to build vivid with LTO, see #90 (@ixti)
+
+## Themes
+
+- Added alabaster_dark, see #91 (@p00f)
+- Added catppuccin-*, see #94 (@etenzy)
+- Added modus-operandi, see #96 (@apraga)
+- Updates in the lava theme, see #88 (@fredericrous)
+- Updates in the dracula theme, see #85 (@yavko)
+
+
 
 # v0.8.0
 
