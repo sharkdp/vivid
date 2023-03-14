@@ -12,7 +12,8 @@ use std::process;
 use std::{env, fs};
 
 use clap::{
-    crate_description, crate_name, crate_version, App, AppSettings, Arg, ArgMatches, SubCommand,
+    crate_description, crate_name, crate_version, AppSettings, Arg, ArgMatches, ColorChoice,
+    Command,
 };
 
 use crate::color::ColorMode;
@@ -42,7 +43,7 @@ fn get_user_config_path() -> PathBuf {
 }
 
 fn load_filetypes_database(matches: &ArgMatches, user_config_path: &Path) -> Result<FileTypes> {
-    let database_path_from_arg = matches.value_of("database").map(Path::new);
+    let database_path_from_arg = matches.get_one::<String>("database").map(Path::new);
 
     let mut database_path_user = user_config_path.to_owned();
     database_path_user.push("filetypes.yml");
@@ -99,7 +100,8 @@ fn load_theme(
 ) -> Result<Theme> {
     let theme_from_env = env::var("VIVID_THEME").ok();
     let theme = sub_matches
-        .value_of("theme")
+        .get_one::<String>("theme")
+        .map(|s| s.as_str())
         .or(theme_from_env.as_deref())
         // Convert option to result, then unwrap value or return error if None
         .ok_or_else(|| VividError::NoThemeProvided)?;
@@ -132,50 +134,47 @@ fn load_theme(
     Err(VividError::CouldNotFindTheme(theme.to_string()))
 }
 
-fn run() -> Result<()> {
-    let app = App::new(crate_name!())
+fn app() -> clap::Command<'static> {
+    Command::new(crate_name!())
         .version(crate_version!())
         .about(crate_description!())
-        .global_setting(AppSettings::ColorAuto)
-        .global_setting(AppSettings::ColoredHelp)
+        .color(ColorChoice::Auto)
         .global_setting(AppSettings::DeriveDisplayOrder)
-        .global_setting(AppSettings::UnifiedHelpMessage)
-        .setting(AppSettings::SubcommandRequired)
-        .setting(AppSettings::InferSubcommands)
-        .setting(AppSettings::VersionlessSubcommands)
+        .subcommand_required(true)
+        .infer_subcommands(true)
         .max_term_width(100)
         .arg(
-            Arg::with_name("color-mode")
+            Arg::new("color-mode")
                 .long("color-mode")
-                .short("m")
-                .takes_value(true)
+                .short('m')
                 .value_name("mode")
-                .possible_values(&["8-bit", "24-bit"])
+                .value_parser(["8-bit", "24-bit"])
                 .default_value("24-bit")
                 .help("Type of ANSI colors to be used"),
         )
         .arg(
-            Arg::with_name("database")
+            Arg::new("database")
                 .long("database")
-                .short("d")
-                .takes_value(true)
+                .short('d')
                 .value_name("path")
                 .help("Path to filetypes database (filetypes.yml)"),
         )
         .subcommand(
-            SubCommand::with_name("generate")
+            Command::new("generate")
                 .about("Generate a LS_COLORS expression")
-                .arg(Arg::with_name("theme").help("Name of the color theme")),
+                .arg(Arg::new("theme").help("Name of the color theme")),
         )
         .subcommand(
-            SubCommand::with_name("preview")
+            Command::new("preview")
                 .about("Preview a given theme")
-                .arg(Arg::with_name("theme").help("Name of the color theme")),
+                .arg(Arg::new("theme").help("Name of the color theme")),
         )
-        .subcommand(SubCommand::with_name("themes").about("Prints list of available themes"));
+        .subcommand(Command::new("themes").about("Prints list of available themes"))
+}
 
-    let matches = app.get_matches();
-    let color_mode = match matches.value_of("color-mode") {
+fn run() -> Result<()> {
+    let matches = app().get_matches();
+    let color_mode = match matches.get_one::<String>("color-mode").map(|s| s.as_str()) {
         Some("8-bit") => ColorMode::BitDepth8,
         _ => ColorMode::BitDepth24,
     };
@@ -241,4 +240,9 @@ fn main() {
             process::exit(1);
         }
     }
+}
+
+#[test]
+fn verify_app() {
+    app().debug_assert();
 }
