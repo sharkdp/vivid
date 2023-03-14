@@ -12,8 +12,7 @@ use std::process;
 use std::{env, fs};
 
 use clap::{
-    crate_description, crate_name, crate_version, AppSettings, Arg, ArgMatches, ColorChoice,
-    Command,
+    crate_description, crate_name, crate_version, Arg, ArgAction, ArgMatches, ColorChoice, Command,
 };
 
 use crate::color::ColorMode;
@@ -134,12 +133,11 @@ fn load_theme(
     Err(VividError::CouldNotFindTheme(theme.to_string()))
 }
 
-fn app() -> clap::Command<'static> {
+fn cli() -> clap::Command {
     Command::new(crate_name!())
         .version(crate_version!())
         .about(crate_description!())
         .color(ColorChoice::Auto)
-        .global_setting(AppSettings::DeriveDisplayOrder)
         .subcommand_required(true)
         .infer_subcommands(true)
         .max_term_width(100)
@@ -147,6 +145,7 @@ fn app() -> clap::Command<'static> {
             Arg::new("color-mode")
                 .long("color-mode")
                 .short('m')
+                .action(ArgAction::Set)
                 .value_name("mode")
                 .value_parser(["8-bit", "24-bit"])
                 .default_value("24-bit")
@@ -156,24 +155,31 @@ fn app() -> clap::Command<'static> {
             Arg::new("database")
                 .long("database")
                 .short('d')
+                .action(ArgAction::Set)
                 .value_name("path")
                 .help("Path to filetypes database (filetypes.yml)"),
         )
         .subcommand(
             Command::new("generate")
                 .about("Generate a LS_COLORS expression")
-                .arg(Arg::new("theme").help("Name of the color theme")),
+                .arg(
+                    Arg::new("theme")
+                        .help("Name of the color theme")
+                        .action(ArgAction::Set),
+                ),
         )
         .subcommand(
-            Command::new("preview")
-                .about("Preview a given theme")
-                .arg(Arg::new("theme").help("Name of the color theme")),
+            Command::new("preview").about("Preview a given theme").arg(
+                Arg::new("theme")
+                    .help("Name of the color theme")
+                    .action(ArgAction::Set),
+            ),
         )
         .subcommand(Command::new("themes").about("Prints list of available themes"))
 }
 
 fn run() -> Result<()> {
-    let matches = app().get_matches();
+    let matches = cli().get_matches();
     let color_mode = match matches.get_one::<String>("color-mode").map(|s| s.as_str()) {
         Some("8-bit") => ColorMode::BitDepth8,
         _ => ColorMode::BitDepth24,
@@ -243,6 +249,6 @@ fn main() {
 }
 
 #[test]
-fn verify_app() {
-    app().debug_assert();
+fn verify_cli() {
+    cli().debug_assert();
 }
