@@ -14,6 +14,26 @@ on:
       - '*'
 
 jobs:
+  crate_metadata:
+    name: Extract crate metadata
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Extract crate information
+      id: crate_metadata
+      run: |
+        cargo metadata --no-deps --format-version 1 | jq -r '"name=" + .packages[0].name' | tee -a $GITHUB_OUTPUT
+        cargo metadata --no-deps --format-version 1 | jq -r '"version=" + .packages[0].version' | tee -a $GITHUB_OUTPUT
+        cargo metadata --no-deps --format-version 1 | jq -r '"maintainer=" + .packages[0].authors[0]' | tee -a $GITHUB_OUTPUT
+        cargo metadata --no-deps --format-version 1 | jq -r '"homepage=" + .packages[0].homepage' | tee -a $GITHUB_OUTPUT
+        cargo metadata --no-deps --format-version 1 | jq -r '"msrv=" + .packages[0].rust_version' | tee -a $GITHUB_OUTPUT
+    outputs:
+      name: ${{ steps.crate_metadata.outputs.name }}
+      version: ${{ steps.crate_metadata.outputs.version }}
+      maintainer: ${{ steps.crate_metadata.outputs.maintainer }}
+      homepage: ${{ steps.crate_metadata.outputs.homepage }}
+      msrv: ${{ steps.crate_metadata.outputs.msrv }}
+
   ensure_cargo_fmt:
     name: Ensure 'cargo fmt' has been run
     runs-on: ubuntu-20.04
@@ -27,17 +47,15 @@ jobs:
   min_version:
     name: Minimum supported rust version
     runs-on: ubuntu-20.04
+    needs: crate_metadata
     steps:
     - name: Checkout source code
       uses: actions/checkout@v3
 
-    - name: Get the MSRV from the package metadata
-      id: msrv
-      run: cargo metadata --no-deps --format-version 1 | jq -r '"version=" + (.packages[] | select(.name == "bat")).rust_version' >> $GITHUB_OUTPUT
-    - name: Install rust toolchain (v${{ steps.msrv.outputs.version }})
+    - name: Install rust toolchain (v${{ needs.crate_metadata.outputs.msrv }})
       uses: dtolnay/rust-toolchain@master
       with:
-        toolchain: ${{ steps.msrv.outputs.version }}
+        toolchain: ${{ needs.crate_metadata.outputs.msrv }}
         components: clippy
     - name: Run clippy (on minimum supported rust version to prevent warnings we can't fix)
       run: cargo clippy --locked --all-targets ${{ env.MSRV_FEATURES }}
@@ -47,6 +65,7 @@ jobs:
   build:
     name: ${{ matrix.job.target }} (${{ matrix.job.os }})
     runs-on: ${{ matrix.job.os }}
+    needs: crate_metadata
     strategy:
       fail-fast: false
       matrix:
@@ -75,14 +94,6 @@ jobs:
           arm-unknown-linux-*) sudo apt-get -y update ; sudo apt-get -y install gcc-arm-linux-gnueabihf ;;
           aarch64-unknown-linux-gnu) sudo apt-get -y update ; sudo apt-get -y install gcc-aarch64-linux-gnu ;;
         esac
-
-    - name: Extract crate information
-      shell: bash
-      run: |
-        echo "PROJECT_NAME=$(sed -n 's/^name = "\(.*\)"/\1/p' Cargo.toml | head -n1)" >> $GITHUB_ENV
-        echo "PROJECT_VERSION=$(sed -n 's/^version = "\(.*\)"/\1/p' Cargo.toml | head -n1)" >> $GITHUB_ENV
-        echo "PROJECT_MAINTAINER=$(sed -n 's/^authors = \["\(.*\)"\]/\1/p' Cargo.toml)" >> $GITHUB_ENV
-        echo "PROJECT_HOMEPAGE=$(sed -n 's/^homepage = "\(.*\)"/\1/p' Cargo.toml)" >> $GITHUB_ENV
 
     - name: Install Rust toolchain
       uses: dtolnay/rust-toolchain@stable
@@ -125,7 +136,7 @@ jobs:
         esac;
 
         # Setup paths
-        BIN_NAME="${{ env.PROJECT_NAME }}${EXE_suffix}"
+        BIN_NAME="${{ needs.crate_metadata.outputs.name }}${EXE_suffix}"
         BIN_PATH="target/${{ matrix.job.target }}/release/${BIN_NAME}"
 
         # Let subsequent steps know where to find the binary
@@ -138,7 +149,7 @@ jobs:
       run: |
         # test only library unit tests and binary for arm-type targets
         unset CARGO_TEST_OPTIONS
-        unset CARGO_TEST_OPTIONS ; case ${{ matrix.job.target }} in arm-* | aarch64-*) CARGO_TEST_OPTIONS="--bin ${PROJECT_NAME}" ;; esac;
+        unset CARGO_TEST_OPTIONS ; case ${{ matrix.job.target }} in arm-* | aarch64-*) CARGO_TEST_OPTIONS="--bin ${{ needs.crate_metadata.outputs.name }}" ;; esac;
         echo "CARGO_TEST_OPTIONS=${CARGO_TEST_OPTIONS}" >> $GITHUB_OUTPUT
 
     - name: Run tests
@@ -150,7 +161,7 @@ jobs:
       shell: bash
       run: |
         PKG_suffix=".tar.gz" ; case ${{ matrix.job.target }} in *-pc-windows-*) PKG_suffix=".zip" ;; esac;
-        PKG_BASENAME=${PROJECT_NAME}-v${PROJECT_VERSION}-${{ matrix.job.target }}
+        PKG_BASENAME=${{ needs.crate_metadata.outputs.name }}-v${{ needs.crate_metadata.outputs.version }}-${{ matrix.job.target }}
         PKG_NAME=${PKG_BASENAME}${PKG_suffix}
         echo "PKG_NAME=${PKG_NAME}" >> $GITHUB_OUTPUT
 
@@ -186,10 +197,10 @@ jobs:
         DPKG_DIR="${DPKG_STAGING}/dpkg"
         mkdir -p "${DPKG_DIR}"
 
-        DPKG_BASENAME=${PROJECT_NAME}
-        DPKG_CONFLICTS=${PROJECT_NAME}-musl
-        case ${{ matrix.job.target }} in *-musl) DPKG_BASENAME=${PROJECT_NAME}-musl ; DPKG_CONFLICTS=${PROJECT_NAME} ;; esac;
-        DPKG_VERSION=${PROJECT_VERSION}
+        DPKG_BASENAME=${{ needs.crate_metadata.outputs.name }}
+        DPKG_CONFLICTS=${{ needs.crate_metadata.outputs.name }}-musl
+        case ${{ matrix.job.target }} in *-musl) DPKG_BASENAME=${{ needs.crate_metadata.outputs.name }}-musl ; DPKG_CONFLICTS=${{ needs.crate_metadata.outputs.name }} ;; esac;
+        DPKG_VERSION=${{ needs.crate_metadata.outputs.version }}
 
         unset DPKG_ARCH
         case ${{ matrix.job.target }} in
@@ -215,12 +226,12 @@ jobs:
 
         cat > "${DPKG_DIR}/usr/share/doc/${DPKG_BASENAME}/copyright" <<EOF
         Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-        Upstream-Name: ${{ env.PROJECT_NAME }}
-        Source: ${{ env.PROJECT_HOMEPAGE }}
+        Upstream-Name: ${{ needs.crate_metadata.outputs.name }}
+        Source: ${{ needs.crate_metadata.outputs.homepage }}
 
         Files: *
-        Copyright: ${{ env.PROJECT_MAINTAINER }}
-        Copyright: $COPYRIGHT_YEARS ${{ env.PROJECT_MAINTAINER }}
+        Copyright: ${{ needs.crate_metadata.outputs.maintainer }}
+        Copyright: $COPYRIGHT_YEARS ${{ needs.crate_metadata.outputs.maintainer }}
         License: Apache-2.0 or MIT
 
         License: Apache-2.0
@@ -261,10 +272,10 @@ jobs:
         Version: ${DPKG_VERSION}
         Section: utils
         Priority: optional
-        Maintainer: ${{ env.PROJECT_MAINTAINER }}
-        Homepage: ${{ env.PROJECT_HOMEPAGE }}
+        Maintainer: ${{ needs.crate_metadata.outputs.maintainer }}
+        Homepage: ${{ needs.crate_metadata.outputs.homepage }}
         Architecture: ${DPKG_ARCH}
-        Provides: ${{ env.PROJECT_NAME }}
+        Provides: ${{ needs.crate_metadata.outputs.name }}
         Conflicts: ${DPKG_CONFLICTS}
         Description: generator for the LS_COLORS environment variable
           vivid is a generator for the LS_COLORS environment variable that controls the colorized output of ls, tree, fd, bfs, dust and many other tools.
