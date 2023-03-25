@@ -22,3 +22,8 @@ rust-embed = "6.3"
 [dependencies.clap]
 version = "4"
 features = ["suggestions", "color", "wrap_help", "cargo"]
+
+[profile.release]
+lto = true
+strip = true
+codegen-units = 1
