@@ -5,6 +5,7 @@ mod theme;
 mod types;
 mod util;
 
+use etcetera::BaseStrategy;
 use rust_embed::RustEmbed;
 use std::io::{self, Write};
 use std::path::{Path, PathBuf};
@@ -25,21 +26,6 @@ use crate::theme::Theme;
 struct ThemeAssets;
 
 const THEME_PATH_SYSTEM: &str = "/usr/share/vivid/themes/";
-
-fn get_user_config_path() -> PathBuf {
-    #[cfg(target_os = "macos")]
-    let config_dir_op = env::var_os("XDG_CONFIG_HOME")
-        .map(PathBuf::from)
-        .filter(|p| p.is_absolute())
-        .or_else(|| dirs::home_dir().map(|d| d.join(".config")));
-
-    #[cfg(not(target_os = "macos"))]
-    let config_dir_op = dirs::config_dir();
-
-    config_dir_op
-        .map(|d| d.join("vivid"))
-        .expect("Could not get home directory")
-}
 
 fn load_filetypes_database(matches: &ArgMatches, user_config_path: &Path) -> Result<FileTypes> {
     let database_path_from_arg = matches.get_one::<String>("database").map(Path::new);
@@ -185,7 +171,8 @@ fn run() -> Result<()> {
         _ => ColorMode::BitDepth24,
     };
 
-    let user_config_path = get_user_config_path();
+    let basedirs = etcetera::choose_base_strategy().expect("Could not get home directory");
+    let user_config_path = basedirs.config_dir().join("vivid");
 
     let filetypes = load_filetypes_database(&matches, &user_config_path)?;
 
