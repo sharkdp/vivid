@@ -34,9 +34,12 @@ text:
     - CONTRIBUTORS
     - CONTRIBUTORS.md
     - CONTRIBUTORS.txt
+    - FAQ
     - INSTALL
     - INSTALL.md
     - INSTALL.txt
+    - LEGACY
+    - NOTICE
     - README
     - README.md
     - README.txt
@@ -100,12 +103,15 @@ markup:
     - .xhtml
 
   other:
+    - ".1"
     - .csv
     - .markdown
     - .md
     - .mdown
+    - .info
     - .org
     - .rst
+    - .typ
     - .xml
 
 programming:
@@ -122,7 +128,7 @@ programming:
     crystal: [.cr]
     csharp: [.cs, .csx]
     css: [.css]
-    cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .h, .hh, .hpp, .hxx, .h++, .inc, .inl, .ipp, .def]
+    cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .h, .hh, .hpp, .hxx, .h++, .ino, .inc, .inl, .ipp, .def]
     d: [.d, .di]
     dart: [.dart]
     diff: [.diff, .patch]
@@ -206,6 +212,7 @@ programming:
       make:
         - Makefile
         - .make
+        - .mk
 
       automake:
         - Makefile.am
@@ -460,6 +467,7 @@ archives:
     - .arj
     - .bz
     - .bz2
+    - .db
     - .gz
     - .jar
     - .pkg
@@ -500,6 +508,7 @@ unimportant:
       - Makefile.in
     rust:
       - .rlib
+      - .rmeta
     python:
       - .pyc
       - .pyd
@@ -547,7 +556,11 @@ unimportant:
     - .orig
     - .pid
     - .swp
+    - .timestamp
     - .tmp
+    - stderr
+    - stdin
+    - stdout
     - bun.lockb
     - go.sum
     - package-lock.json
