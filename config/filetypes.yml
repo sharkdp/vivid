@@ -43,6 +43,7 @@ text:
     - README
     - README.md
     - README.txt
+    - VERSION
 
   todo:
     - TODO
