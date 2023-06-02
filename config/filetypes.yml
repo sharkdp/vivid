@@ -173,7 +173,7 @@ programming:
     rust: [.rs]
     sass: [.sass, .scss]
     scala: [.scala, .sbt]
-    shell: [.sh, .bash, .bashrc, .bash_profile, .zsh, .fish]
+    shell: [.sh, .bash, , .nu, .bashrc, .bash_profile, .zsh, .fish]
     sql: [.sql]
     swift: [.swift]
     tablegen: [.td]
