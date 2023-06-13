@@ -1,7 +1,5 @@
 FROM rust:1.69-bullseye as rust-build-stage
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get upgrade -y
 
 WORKDIR /build
 COPY Cargo.lock Cargo.toml ./
