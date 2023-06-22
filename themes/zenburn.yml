@@ -1,0 +1,137 @@
+colors:
+  background_color: '393939'
+  white: 'DEDEDE'
+  # bg: broken link
+  red: 'D58684'
+  # executable
+  bright_red: 'f76f6e'
+  # tooling
+  green: '87AE86'
+  # source code
+  bright_green: '09be77'
+  # configuration, markup | bg: special
+  yellow: 'E8BC92'
+  # directory | bg: fifo
+  blue: '70A2D1'
+  # archives
+  bright_blue: 'bbd9f6'
+  # media (bg: black)
+  pink: 'FFCCEE'
+  # symlink | bg: socket/door
+  bright_pink: 'f1a8db'
+  # office, pdf
+  cyan: '87D6D5'
+  # block_device
+  bright_cyan: 'a1e5e8'
+
+  # foreground when background is diff
+  black: '2a2a2a'
+  # licenses
+  gray: '878787'
+  # unimportant files (lock files)
+  darkgray: '7e7e7e'
+  darkergray: '6a6a6a'
+
+core:
+  normal_text: {}
+  regular_file: {}
+  reset_to_normal: {}
+
+  directory:
+    foreground: blue
+    font-style: underline
+
+  symlink:
+    foreground: bright_pink
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: black
+    background: blue
+
+  socket:
+    foreground: black
+    background: bright_pink
+
+  door:
+    foreground: black
+    background: bright_pink
+
+  block_device:
+    foreground: bright_cyan
+    background: darkergray
+
+  character_device:
+    foreground: bright_pink
+    background: darkergray
+
+  broken_symlink:
+    foreground: black
+    background: red
+
+  missing_symlink_target:
+    foreground: black
+    background: red
+
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: bright_red
+
+text:
+  special:
+    foreground: background_color
+    background: yellow
+
+  todo:
+    font-style: bold
+
+  licenses:
+    foreground: gray
+
+  configuration:
+    foreground: yellow
+
+  other:
+    foreground: yellow
+
+markup:
+  foreground: yellow
+
+programming:
+  source:
+    foreground: bright_green
+
+  tooling:
+    foreground: green
+
+    continuous-integration:
+      foreground: green
+
+media:
+  foreground: pink
+  background: black
+
+office:
+  foreground: cyan
+
+archives:
+  foreground: bright_blue
+  font-style: underline
+
+executable:
+  foreground: bright_red
+
+unimportant:
+  foreground: darkgray
