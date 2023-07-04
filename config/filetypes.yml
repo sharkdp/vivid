@@ -22,6 +22,15 @@ core:
 
 text:
   special:
+    - CHANGELOG
+    - CHANGELOG.md
+    - CHANGELOG.txt
+    - CODE_OF_CONDUCT
+    - CODE_OF_CONDUCT.md
+    - CODE_OF_CONDUCT.txt
+    - CONTRIBUTING
+    - CONTRIBUTING.md
+    - CONTRIBUTING.txt
     - CONTRIBUTORS
     - CONTRIBUTORS.md
     - CONTRIBUTORS.txt
@@ -53,6 +62,7 @@ text:
       - .json
       - .tml
       - .toml
+      - .webmanifest
       - .yaml
       - .yml
 
@@ -153,6 +163,7 @@ programming:
     tablegen: [.td]
     tcl: [.tcl]
     typescript: [.ts, .tsx]
+    v: [.v]
     viml: [.vim]
 
   tooling:
@@ -198,11 +209,16 @@ programming:
         - requirements.txt
 
     packaging:
+      go:
+        - go.mod
       python:
         - MANIFEST.in
         - setup.py
+        - pyproject.toml
       ruby:
         - .gemspec
+      v:
+        - v.mod
 
     code-style:
       python:
@@ -212,6 +228,8 @@ programming:
         - .clang-format
 
     editors:
+      editorconfig:
+        - .editorconfig
       qt:
         - .pro
       kdevelop:
@@ -224,6 +242,7 @@ programming:
 
     continuous-integration:
       - appveyor.yml
+      - .cirrus.yml
       - .gitlab-ci.yml
       - .travis.yml
 
@@ -408,10 +427,12 @@ unimportant:
     - .CFUserTextEncoding
     - .DS_Store
     - .localized
+    - Icon\r
 
   other:
     - "~"
     - .bak
+    - .ctags
     - .git  # only works for '.git' files (submodules)
     - .lock
     - .log
@@ -419,4 +440,5 @@ unimportant:
     - .pid
     - .swp
     - .tmp
+    - go.sum
     - package-lock.json
