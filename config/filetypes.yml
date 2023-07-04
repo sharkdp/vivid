@@ -173,6 +173,7 @@ programming:
         - .gitmodules
         - .gitattributes
         - .gitconfig
+        - .mailmap
 
       hg:
         - .hgrc
