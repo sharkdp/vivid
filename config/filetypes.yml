@@ -163,7 +163,7 @@ programming:
     tablegen: [.td]
     tcl: [.tcl]
     typescript: [.ts, .tsx]
-    v: [.v]
+    v: [.v, .vsh]
     viml: [.vim]
 
   tooling:
