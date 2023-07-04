@@ -1,0 +1,120 @@
+colors:
+  # Original Rosé Pine theme
+  # https://rosepinetheme.com/
+
+  base: "faf4ed"
+  surface: "fffaf3"
+  overlay: "f2e9e1"
+  muted: "9893a5"
+  subtle: "797593"
+  text: "575279"
+  love: "b4637a"
+  gold: "ea9d34"
+  rose: "d7827e"
+  pine: "286983"
+  foam: "56949f"
+  iris: "907aa9"
+  highlightLow: "f4ede8"
+  highlightMed: "dfdad9"
+  highlightHigh: "cecacd"
+
+core:
+  normal_text: {}
+  regular_file: {}
+  reset_to_normal: {}
+
+  directory:
+    foreground: foam
+
+  symlink:
+    foreground: love
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: text
+    background: pine
+
+  socket:
+    foreground: text
+    background: rose
+
+  door:
+    foreground: text
+    background: rose
+
+  block_device:
+    foreground: iris
+    background: surface
+
+  character_device:
+    foreground: rose
+    background: surface
+
+  broken_symlink:
+    foreground: text
+    background: rose
+
+  missing_symlink_target:
+    foreground: text
+    background: rose
+
+  setuid: {}
+
+  setgid: {}
+
+  file_with_capability: {}
+
+  sticky_other_writable: {}
+
+  other_writable: {}
+
+  sticky: {}
+
+  executable_file:
+    foreground: rose
+    font-style: bold
+
+text:
+  special:
+    foreground: base
+    background: gold
+
+  todo:
+    font-style: bold
+
+  licenses:
+    foreground: muted
+
+  configuration:
+    foreground: gold
+
+  other:
+    foreground: gold
+
+markup:
+  foreground: gold
+
+programming:
+  source:
+    foreground: pine
+
+  tooling:
+    foreground: foam
+
+media:
+  foreground: love
+
+office:
+  foreground: iris
+
+archives:
+  foreground: foam
+  font-style: underline
+
+executable:
+  foreground: rose
+  font-style: bold
+
+unimportant:
+  foreground: overlay
