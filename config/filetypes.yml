@@ -157,7 +157,7 @@ programming:
     ruby: [.rb]
     rust: [.rs]
     scala: [.scala, .sbt]
-    shell: [.sh, .bash, .zsh, .fish]
+    shell: [.sh, .bash, .bashrc, .bash_profile, .zsh, .fish]
     sql: [.sql]
     swift: [.swift]
     tablegen: [.td]
