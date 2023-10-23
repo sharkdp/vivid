@@ -249,6 +249,7 @@ programming:
 
 media:
   image:
+    - .avif
     - .bmp
     - .eps
     - .gif
