@@ -150,12 +150,14 @@ programming:
     perl: [.pl, .pm, .pod, .t, .cgi]
     php: [.php]
     powershell: [.ps1, .psm1, .psd1]
+    prql: [.prql]
     puppet: [.pp, .epp]
     purescript: [.purs]
     python: [.py]
     r: [.r]
     ruby: [.rb]
     rust: [.rs]
+    sass: [.sass, .scss]
     scala: [.scala, .sbt]
     shell: [.sh, .bash, .bashrc, .bash_profile, .zsh, .fish]
     sql: [.sql]
@@ -165,6 +167,7 @@ programming:
     typescript: [.ts, .tsx]
     v: [.v, .vsh]
     viml: [.vim]
+    zig: [.zig]
 
   tooling:
     vcs:
@@ -184,6 +187,7 @@ programming:
         - .ignore
         - .fdignore
         - .rgignore
+        - .tfignore
 
     build:
       cmake:
@@ -249,17 +253,21 @@ programming:
 
 media:
   image:
+    - .avif
     - .bmp
     - .eps
     - .gif
+    - .heif
     - .ico
     - .jpeg
     - .jpg
+    - .jxl
     - .pbm
     - .pgm
     - .png
     - .ppm
     - .psd
+    - .qoi
     - .svg
     - .tif
     - .tiff
@@ -302,6 +310,7 @@ media:
     - .otf
     - .ttf
     - .woff
+    - .woff2
 
 office:
   document:
@@ -377,6 +386,7 @@ executable:
     - .so
     - .a
     - .dll
+    - .dylib
 
   linux:
     - .ko
@@ -441,5 +451,6 @@ unimportant:
     - .pid
     - .swp
     - .tmp
+    - bun.lockb
     - go.sum
     - package-lock.json
