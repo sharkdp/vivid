@@ -111,6 +111,7 @@ markup:
 programming:
   source:
     actionscript: [.as]
+    ada: [.adb, .ads]
     applescript: [.applescript]
     asp: [.asa]
     awk: [.awk]
@@ -132,6 +133,7 @@ programming:
     go: [.go]
     graphviz: [.dot, .gv]
     groovy: [.groovy, .gvy, .gradle]
+    hack: [.hack]
     haskell: [.hs]
     ipython: [.ipynb]
     java: [.java, .bsh]
@@ -145,6 +147,8 @@ programming:
     lua: [.lua]
     mathematica: [.nb]
     matlab: [.matlab, .m, .mn]
+    mojo: [.mojo]
+    nim: [.nim, .nims, .nimble]
     ocaml: [.ml, .mli]
     pascal: [.pas, .p, .dpr]
     perl: [.pl, .pm, .pod, .t, .cgi]
@@ -155,6 +159,7 @@ programming:
     purescript: [.purs]
     python: [.py]
     r: [.r]
+    raku: [.raku]
     ruby: [.rb]
     rust: [.rs]
     sass: [.sass, .scss]
@@ -247,6 +252,7 @@ programming:
 
     continuous-integration:
       - appveyor.yml
+      - azure-pipelines.yml
       - .cirrus.yml
       - .gitlab-ci.yml
       - .travis.yml
@@ -263,16 +269,19 @@ media:
     - .jpg
     - .jxl
     - .pbm
+    - .pcx
     - .pgm
     - .png
     - .ppm
     - .psd
     - .qoi
     - .svg
+    - .tga
     - .tif
     - .tiff
     - .webp
     - .xcf
+    - .xpm
 
   audio:
     - .aif
@@ -298,6 +307,7 @@ media:
     - .mp4
     - .mpeg
     - .mpg
+    - .ogv
     - .rm
     - .swf
     - .vob
@@ -344,6 +354,7 @@ archives:
   packages:
     - .apk
     - .deb
+    - .msi
     - .rpm
     - .xbps
 
