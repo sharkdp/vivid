@@ -263,6 +263,7 @@ programming:
 media:
   image:
     application:
+      - .ai # Illustrator
       - .kra # Krita
       - .psd # Photoshop
       - .xvf # GIMP
@@ -376,6 +377,36 @@ media:
     - .ttf
     - .woff
     - .woff2
+
+  3d: # File formats relating to 3D data for computer graphics, CAD, 3D printing etc.
+    application:
+      - .blend # Blender scene file
+      - .hda # Houdini Digital Assets
+      - .hip # Houdini scene file
+      - .ma # Maya scene file
+      - .mb # Maya scene file
+      - .otl # Houdini Operator Type Library
+
+    mesh:
+      - .3ds
+      - .3mf # 3D manufacturing format
+      - .alembic
+      - .amf # Additive Manifacturing File
+      - .dae # Collada
+      - .fbx
+      - .iges
+      - .igs
+      - .mtl # material for .obj
+      - .obj
+      - .step
+      - .stl
+      - .stp
+      - .usd # Universal Scene Description (stores many things)
+      - .usda # .usd ASCII-format
+      - .usdc # .usd binary-format
+      - .usdz # .usd package
+      - .wrl # VRML
+      - .x3d
 
 office:
   document:
