@@ -262,29 +262,81 @@ programming:
 
 media:
   image:
-    - .avif
-    - .bmp
-    - .eps
-    - .gif
-    - .heif
-    - .ico
-    - .jpeg
-    - .jpg
-    - .jxl
-    - .pbm
-    - .pcx
-    - .pgm
-    - .png
-    - .ppm
-    - .psd
-    - .qoi
-    - .svg
-    - .tga
-    - .tif
-    - .tiff
-    - .webp
-    - .xcf
-    - .xpm
+    application:
+      - .kra # Krita
+      - .psd # Photoshop
+      - .xvf # GIMP
+
+    bitmap:
+      - .avif
+      - .bmp
+      - .exr # OpenEXR
+      - .gif
+      - .heif
+      - .ico
+      - .jpeg
+      - .jpg
+      - .jxl
+      - .pbm
+      - .pcx
+      - .pgm
+      - .png
+      - .ppm
+      - .qoi
+      - .tga
+      - .tif
+      - .tiff
+      - .webp
+      - .xpm
+
+    raw: # Camera RAW files, based on https://en.wikipedia.org/wiki/Raw_image_format (.tif omitted to avoid duplication)
+      - .3fr
+      - .ari
+      - .arw
+      - .bay
+      - .braw
+      - .cap
+      - .cr2
+      - .cr3
+      - .crw
+      - .data
+      - .dcr
+      - .dcs
+      - .dng
+      - .drf
+      - .eip
+      - .erf
+      - .fff
+      - .gpr
+      - .iiq
+      - .k25
+      - .kdc
+      - .mdc
+      - .mef
+      - .mos
+      - .mrw
+      - .nef
+      - .nrw
+      - .obm
+      - .orf
+      - .pef
+      - .ptx
+      - .pxn
+      - .r3d
+      - .raf
+      - .raw
+      - .rw2
+      - .rwl
+      - .rwz
+      - .sr2
+      - .srf
+      - .srw
+      - .x3f
+
+    vector:
+      - .dxf
+      - .eps
+      - .svg
 
   audio:
     - .aif
