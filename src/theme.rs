@@ -105,10 +105,7 @@ impl Theme {
             let mut style: String = format!("{font_style}");
             if let Some(foreground) = foreground {
                 let foreground_code = foreground.get_style(ColorType::Foreground, self.color_mode);
-                style.push_str(&format!(
-                    ";{foreground_code}",
-                    foreground_code = foreground_code
-                ));
+                style.push_str(&foreground_code);
             }
 
             if let Some(background) = background {
