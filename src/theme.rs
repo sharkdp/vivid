@@ -4,27 +4,11 @@ use std::path::Path;
 use yaml_rust::yaml::YamlLoader;
 use yaml_rust::Yaml;
 
-use lazy_static::lazy_static;
-
 use crate::color::{Color, ColorMode, ColorType};
 use crate::error::{Result, VividError};
+use crate::font_style::FontStyle;
 use crate::types::CategoryRef;
 use crate::util::{load_yaml_file, transpose};
-
-lazy_static! {
-    static ref ANSI_STYLES: HashMap<&'static str, u8> = {
-        let mut m = HashMap::new();
-        m.insert("regular", 0);
-        m.insert("bold", 1);
-        m.insert("faint", 2);
-        m.insert("italic", 3);
-        m.insert("underline", 4);
-        m.insert("blink", 5);
-        m.insert("rapid-blink", 6);
-        m.insert("overline", 53);
-        m
-    };
-}
 
 #[derive(Debug)]
 pub struct Theme {
@@ -104,12 +88,7 @@ impl Theme {
         }
 
         if let Yaml::Hash(map) = item {
-            let font_style: &str = map
-                .get(&Yaml::String("font-style".into()))
-                .map(|s| s.as_str().expect("Color value should be a string"))
-                .unwrap_or("regular");
-
-            let font_style_ansi: &u8 = ANSI_STYLES.get(&font_style).unwrap(); // TODO
+            let font_style = FontStyle::from_yaml(map);
 
             let foreground = map
                 .get(&Yaml::String("foreground".into()))
@@ -123,7 +102,7 @@ impl Theme {
 
             let background = transpose(background.map(|fg| self.get_color(fg)))?;
 
-            let mut style: String = format!("{font_style}", font_style = *font_style_ansi,);
+            let mut style: String = format!("{font_style}");
             if let Some(foreground) = foreground {
                 let foreground_code = foreground.get_style(ColorType::Foreground, self.color_mode);
                 style.push_str(&format!(

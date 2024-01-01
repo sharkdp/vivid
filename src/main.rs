@@ -1,6 +1,7 @@
 mod color;
 mod error;
 mod filetypes;
+mod font_style;
 mod theme;
 mod types;
 mod util;
