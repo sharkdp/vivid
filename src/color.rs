@@ -1,3 +1,5 @@
+use std::str::FromStr;
+
 use crate::error::{Result, VividError};
 use ansi_colours::ansi256_from_rgb;
 
@@ -100,10 +102,41 @@ impl Color {
             Color::Ansi3Bit(color) => format!("{}", *color as u8 + colortype.bg_addition()),
         }
     }
+
+    fn from_ansi_name(s: &str) -> Result<Color> {
+        match s {
+            "black" => Ok(Self::Ansi3Bit(Ansi3Bit::Black)),
+            "red" => Ok(Self::Ansi3Bit(Ansi3Bit::Red)),
+            "green" => Ok(Self::Ansi3Bit(Ansi3Bit::Green)),
+            "yellow" => Ok(Self::Ansi3Bit(Ansi3Bit::Yellow)),
+            "blue" => Ok(Self::Ansi3Bit(Ansi3Bit::Blue)),
+            "magenta" => Ok(Self::Ansi3Bit(Ansi3Bit::Magenta)),
+            "cyan" => Ok(Self::Ansi3Bit(Ansi3Bit::Cyan)),
+            "white" => Ok(Self::Ansi3Bit(Ansi3Bit::White)),
+            "bright_black" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightBlack)),
+            "bright_red" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightRed)),
+            "bright_green" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightGreen)),
+            "bright_yellow" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightYellow)),
+            "bright_blue" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightBlue)),
+            "bright_magenta" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightMagenta)),
+            "bright_cyan" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightCyan)),
+            "bright_white" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightWhite)),
+            _ => Err(VividError::ColorParseError(s.to_string())),
+        }
+    }
+}
+
+impl FromStr for Color {
+    type Err = VividError;
+    fn from_str(s: &str) -> Result<Self> {
+        Color::from_hex_str(s).or(Color::from_ansi_name(s))
+    }
 }
 
 #[cfg(test)]
 mod tests {
+    use crate::color::Ansi3Bit;
+
     use super::{Color, ColorMode, ColorType};
 
     #[test]
@@ -155,5 +188,19 @@ mod tests {
 
         let style_24bit = red.get_style(ColorType::Foreground, ColorMode::BitDepth24);
         assert_eq!("38;2;255;0;0", style_24bit);
+    }
+
+    #[test]
+    fn ansi_3bit() {
+        assert_eq!(Color::Ansi3Bit(Ansi3Bit::Black), "black".parse().unwrap());
+        assert_eq!(Color::Ansi3Bit(Ansi3Bit::Green), "green".parse().unwrap());
+        assert_eq!(
+            Color::Ansi3Bit(Ansi3Bit::BrightYellow),
+            "bright_yellow".parse().unwrap()
+        );
+        assert_eq!(
+            Color::Ansi3Bit(Ansi3Bit::BrightCyan),
+            "bright_cyan".parse().unwrap()
+        );
     }
 }

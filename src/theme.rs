@@ -51,7 +51,7 @@ impl Theme {
                 for (key, value) in map {
                     match (key, value) {
                         (Yaml::String(key), Yaml::String(value)) => {
-                            colors.insert(key.clone(), Color::from_hex_str(value)?);
+                            colors.insert(key.clone(), value.parse()?);
                         }
                         _ => return Err(VividError::UnexpectedYamlType),
                     }
@@ -71,7 +71,7 @@ impl Theme {
         self.colors
             .get(color_str)
             .cloned()
-            .or_else(|| Color::from_hex_str(color_str).ok())
+            .or_else(|| color_str.parse().ok())
             .ok_or_else(|| VividError::UnknownColor(color_str.to_string()))
     }
 
