@@ -105,22 +105,22 @@ impl Color {
 
     fn from_ansi_name(s: &str) -> Result<Color> {
         match s {
-            "black" => Ok(Self::Ansi3Bit(Ansi3Bit::Black)),
-            "red" => Ok(Self::Ansi3Bit(Ansi3Bit::Red)),
-            "green" => Ok(Self::Ansi3Bit(Ansi3Bit::Green)),
-            "yellow" => Ok(Self::Ansi3Bit(Ansi3Bit::Yellow)),
-            "blue" => Ok(Self::Ansi3Bit(Ansi3Bit::Blue)),
-            "magenta" => Ok(Self::Ansi3Bit(Ansi3Bit::Magenta)),
-            "cyan" => Ok(Self::Ansi3Bit(Ansi3Bit::Cyan)),
-            "white" => Ok(Self::Ansi3Bit(Ansi3Bit::White)),
-            "bright_black" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightBlack)),
-            "bright_red" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightRed)),
-            "bright_green" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightGreen)),
-            "bright_yellow" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightYellow)),
-            "bright_blue" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightBlue)),
-            "bright_magenta" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightMagenta)),
-            "bright_cyan" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightCyan)),
-            "bright_white" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightWhite)),
+            "ansi:black" => Ok(Self::Ansi3Bit(Ansi3Bit::Black)),
+            "ansi:red" => Ok(Self::Ansi3Bit(Ansi3Bit::Red)),
+            "ansi:green" => Ok(Self::Ansi3Bit(Ansi3Bit::Green)),
+            "ansi:yellow" => Ok(Self::Ansi3Bit(Ansi3Bit::Yellow)),
+            "ansi:blue" => Ok(Self::Ansi3Bit(Ansi3Bit::Blue)),
+            "ansi:magenta" => Ok(Self::Ansi3Bit(Ansi3Bit::Magenta)),
+            "ansi:cyan" => Ok(Self::Ansi3Bit(Ansi3Bit::Cyan)),
+            "ansi:white" => Ok(Self::Ansi3Bit(Ansi3Bit::White)),
+            "ansi:bright_black" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightBlack)),
+            "ansi:bright_red" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightRed)),
+            "ansi:bright_green" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightGreen)),
+            "ansi:bright_yellow" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightYellow)),
+            "ansi:bright_blue" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightBlue)),
+            "ansi:bright_magenta" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightMagenta)),
+            "ansi:bright_cyan" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightCyan)),
+            "ansi:bright_white" => Ok(Self::Ansi3Bit(Ansi3Bit::BrightWhite)),
             _ => Err(VividError::ColorParseError(s.to_string())),
         }
     }
@@ -192,15 +192,21 @@ mod tests {
 
     #[test]
     fn ansi_3bit() {
-        assert_eq!(Color::Ansi3Bit(Ansi3Bit::Black), "black".parse().unwrap());
-        assert_eq!(Color::Ansi3Bit(Ansi3Bit::Green), "green".parse().unwrap());
+        assert_eq!(
+            Color::Ansi3Bit(Ansi3Bit::Black),
+            "ansi:black".parse().unwrap()
+        );
+        assert_eq!(
+            Color::Ansi3Bit(Ansi3Bit::Green),
+            "ansi:green".parse().unwrap()
+        );
         assert_eq!(
             Color::Ansi3Bit(Ansi3Bit::BrightYellow),
-            "bright_yellow".parse().unwrap()
+            "ansi:bright_yellow".parse().unwrap()
         );
         assert_eq!(
             Color::Ansi3Bit(Ansi3Bit::BrightCyan),
-            "bright_cyan".parse().unwrap()
+            "ansi:bright_cyan".parse().unwrap()
         );
     }
 }
