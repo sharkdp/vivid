@@ -50,15 +50,19 @@ impl FontStyle {
                 }
                 _ => panic!("font-style should be a string or an array of strings"),
             },
-            None => Self::default(),
+            None => Self(vec![0]),
         }
     }
 }
 
 impl Display for FontStyle {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
-        for style in &self.0 {
-            write!(f, "{};", style)?;
+        for (i, style) in self.0.iter().enumerate() {
+            if i + 1 == self.0.len() {
+                write!(f, "{}", style)?;
+            } else {
+                write!(f, "{};", style)?;
+            }
         }
         Ok(())
     }
