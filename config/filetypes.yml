@@ -114,13 +114,14 @@ programming:
     ada: [.adb, .ads]
     applescript: [.applescript]
     asp: [.asa]
+    assembly: [.asm]
     awk: [.awk]
     basic: [.vb]
     cabal: [.cabal]
     clojure: [.clj]
     crystal: [.cr]
     csharp: [.cs, .csx]
-    css: [.css, .sass, .scss]
+    css: [.css]
     cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .h, .hh, .hpp, .hxx, .h++, .inc, .inl, .ipp, .def]
     d: [.d, .di]
     dart: [.dart]
@@ -130,6 +131,7 @@ programming:
     elm: [.elm]
     erlang: [.erl]
     fsharp: [.fs, .fsi, .fsx]
+    gcode: [.gcode]
     go: [.go]
     graphviz: [.dot, .gv]
     groovy: [.groovy, .gvy, .gradle]
@@ -150,6 +152,7 @@ programming:
     mojo: [.mojo]
     nim: [.nim, .nims, .nimble]
     ocaml: [.ml, .mli]
+    openscad: [.scad]
     pascal: [.pas, .p, .dpr]
     perl: [.pl, .pm, .pod, .t, .cgi]
     php: [.php]
@@ -259,29 +262,82 @@ programming:
 
 media:
   image:
-    - .avif
-    - .bmp
-    - .eps
-    - .gif
-    - .heif
-    - .ico
-    - .jpeg
-    - .jpg
-    - .jxl
-    - .pbm
-    - .pcx
-    - .pgm
-    - .png
-    - .ppm
-    - .psd
-    - .qoi
-    - .svg
-    - .tga
-    - .tif
-    - .tiff
-    - .webp
-    - .xcf
-    - .xpm
+    application:
+      - .ai # Illustrator
+      - .kra # Krita
+      - .psd # Photoshop
+      - .xvf # GIMP
+
+    bitmap:
+      - .avif
+      - .bmp
+      - .exr # OpenEXR
+      - .gif
+      - .heif
+      - .ico
+      - .jpeg
+      - .jpg
+      - .jxl
+      - .pbm
+      - .pcx
+      - .pgm
+      - .png
+      - .ppm
+      - .qoi
+      - .tga
+      - .tif
+      - .tiff
+      - .webp
+      - .xpm
+
+    raw: # Camera RAW files, based on https://en.wikipedia.org/wiki/Raw_image_format (.tif omitted to avoid duplication)
+      - .3fr
+      - .ari
+      - .arw
+      - .bay
+      - .braw
+      - .cap
+      - .cr2
+      - .cr3
+      - .crw
+      - .data
+      - .dcr
+      - .dcs
+      - .dng
+      - .drf
+      - .eip
+      - .erf
+      - .fff
+      - .gpr
+      - .iiq
+      - .k25
+      - .kdc
+      - .mdc
+      - .mef
+      - .mos
+      - .mrw
+      - .nef
+      - .nrw
+      - .obm
+      - .orf
+      - .pef
+      - .ptx
+      - .pxn
+      - .r3d
+      - .raf
+      - .raw
+      - .rw2
+      - .rwl
+      - .rwz
+      - .sr2
+      - .srf
+      - .srw
+      - .x3f
+
+    vector:
+      - .dxf
+      - .eps
+      - .svg
 
   audio:
     - .aif
@@ -321,6 +377,36 @@ media:
     - .ttf
     - .woff
     - .woff2
+
+  3d: # File formats relating to 3D data for computer graphics, CAD, 3D printing etc.
+    application:
+      - .blend # Blender scene file
+      - .hda # Houdini Digital Assets
+      - .hip # Houdini scene file
+      - .ma # Maya scene file
+      - .mb # Maya scene file
+      - .otl # Houdini Operator Type Library
+
+    mesh:
+      - .3ds
+      - .3mf # 3D manufacturing format
+      - .alembic
+      - .amf # Additive Manifacturing File
+      - .dae # Collada
+      - .fbx
+      - .iges
+      - .igs
+      - .mtl # material for .obj
+      - .obj
+      - .step
+      - .stl
+      - .stp
+      - .usd # Universal Scene Description (stores many things)
+      - .usda # .usd ASCII-format
+      - .usdc # .usd binary-format
+      - .usdz # .usd package
+      - .wrl # VRML
+      - .x3d
 
 office:
   document:
