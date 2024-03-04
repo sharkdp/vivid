@@ -78,8 +78,8 @@
       ]
     }
   },
-  "title": "file type settings",
-  "description": "File type settings",
+  "title": "theme",
+  "description": "A theme",
   "type": "object",
   "properties": {
     "colors": {
