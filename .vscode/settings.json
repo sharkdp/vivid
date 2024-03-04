@@ -1,0 +1,6 @@
+{
+    "yaml.schemas": {
+        "./schemas/filetypes.json": "config/filetypes.yml",
+        "./schemas/theme.json": "themes/*.yml",
+    }
+}
