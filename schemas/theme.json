@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "color": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 6,
+      "pattern": "^[0-9a-fA-F]{6}$",
+      "examples": [
+        "000000",
+        "FFFFFF",
+        "FF0000",
+        "00FF00",
+        "0000FF",
+        "FFFF00",
+        "FF00FF"
+      ]
+    },
+    "color_reference": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "pattern": "^\\s+$"
+      },
+      "examples": [
+        "background",
+        "white",
+        "gray",
+        "white",
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "cyan",
+        "blue",
+        "purple",
+        "light_gray",
+        "light_red",
+        "light_orange",
+        "light_yellow",
+        "light_green",
+        "light_cyan",
+        "light_blue",
+        "light_purple"
+      ]
+    },
+    "file_type_association": {
+      "title": "file type association",
+      "description": "A file type association",
+      "type": ["object", "null"],
+      "anyOf": [
+        {
+          "properties": {
+            "programming": {
+              "$ref": "#/definitions/file_type_association"
+            }
+          },
+          "patternProperties": {
+            ".": {
+              "$ref": "#/definitions/file_type_association"
+            }
+          }
+        },
+        {
+          "properties": {
+            "background": {
+              "title": "background",
+              "description": "A reference to a background color defined in 'colors' property",
+              "$ref": "#/definitions/color_reference"
+            },
+            "foreground": {
+              "title": "foreground",
+              "description": "A reference to a foreground color defined in 'colors' property",
+              "$ref": "#/definitions/color_reference"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "title": "file type settings",
+  "description": "File type settings",
+  "type": "object",
+  "properties": {
+    "colors": {
+      "title": "colors",
+      "description": "Color identifiers",
+      "type": "object",
+      "properties": {
+        "background": {
+          "title": "background",
+          "description": "A background color",
+          "$ref": "#/definitions/color"
+        },
+        "gray": {
+          "title": "gray",
+          "description": "A gray color",
+          "$ref": "#/definitions/color"
+        },
+        "white": {
+          "title": "white",
+          "description": "A white color",
+          "$ref": "#/definitions/color"
+        },
+        "red": {
+          "title": "red",
+          "description": "A red color",
+          "$ref": "#/definitions/color"
+        },
+        "orange": {
+          "title": "orange",
+          "description": "A orange color",
+          "$ref": "#/definitions/color"
+        },
+        "yellow": {
+          "title": "yellow",
+          "description": "A yellow color",
+          "$ref": "#/definitions/color"
+        },
+        "green": {
+          "title": "green",
+          "description": "A green color",
+          "$ref": "#/definitions/color"
+        },
+        "cyan": {
+          "title": "cyan",
+          "description": "A cyan color",
+          "$ref": "#/definitions/color"
+        },
+        "blue": {
+          "title": "blue",
+          "description": "A blue color",
+          "$ref": "#/definitions/color"
+        },
+        "purple": {
+          "title": "purple",
+          "description": "A purple color",
+          "$ref": "#/definitions/color"
+        },
+        "light_gray": {
+          "title": "light gray",
+          "description": "A light gray color",
+          "$ref": "#/definitions/color"
+        },
+        "light_red": {
+          "title": "light red",
+          "description": "A light red color",
+          "$ref": "#/definitions/color"
+        },
+        "light_orange": {
+          "title": "light orange",
+          "description": "A light orange color",
+          "$ref": "#/definitions/color"
+        },
+        "light_yellow": {
+          "title": "light yellow",
+          "description": "A light yellow color",
+          "$ref": "#/definitions/color"
+        },
+        "light_green": {
+          "title": "light green",
+          "description": "A light green color",
+          "$ref": "#/definitions/color"
+        },
+        "light_cyan": {
+          "title": "light cyan",
+          "description": "A light cyan color",
+          "$ref": "#/definitions/color"
+        },
+        "light_blue": {
+          "title": "light blue",
+          "description": "A light blue color",
+          "$ref": "#/definitions/color"
+        },
+        "light_purple": {
+          "title": "light purple",
+          "description": "A light purple color",
+          "$ref": "#/definitions/color"
+        }
+      },
+      "patternProperties": {
+        ".": {
+          "title": "color",
+          "description": "A color",
+          "$ref": "#/definitions/color"
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    ".": {
+      "$ref": "#/definitions/file_type_association"
+    }
+  },
+  "additionalProperties": false
+}
