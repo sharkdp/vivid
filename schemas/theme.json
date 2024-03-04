@@ -51,7 +51,16 @@
       "anyOf": [
         {
           "properties": {
+            "text": {
+              "$ref": "#/definitions/file_type_association"
+            },
+            "markup": {
+              "$ref": "#/definitions/file_type_association"
+            },
             "programming": {
+              "$ref": "#/definitions/file_type_association"
+            },
+            "unimportant": {
               "$ref": "#/definitions/file_type_association"
             }
           },
