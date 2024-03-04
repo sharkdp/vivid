@@ -48,43 +48,42 @@
       "title": "file type association",
       "description": "A file type association",
       "type": ["object", "null"],
-      "anyOf": [
-        {
-          "properties": {
-            "text": {
-              "$ref": "#/definitions/file_type_association"
-            },
-            "markup": {
-              "$ref": "#/definitions/file_type_association"
-            },
-            "programming": {
-              "$ref": "#/definitions/file_type_association"
-            },
-            "unimportant": {
-              "$ref": "#/definitions/file_type_association"
-            }
-          },
-          "patternProperties": {
-            ".": {
-              "$ref": "#/definitions/file_type_association"
-            }
-          }
+      "properties": {
+        "background": {
+          "title": "background",
+          "description": "A reference to a background color defined in 'colors' property",
+          "$ref": "#/definitions/color_reference"
         },
-        {
-          "properties": {
-            "background": {
-              "title": "background",
-              "description": "A reference to a background color defined in 'colors' property",
-              "$ref": "#/definitions/color_reference"
-            },
-            "foreground": {
-              "title": "foreground",
-              "description": "A reference to a foreground color defined in 'colors' property",
-              "$ref": "#/definitions/color_reference"
-            }
-          }
+        "foreground": {
+          "title": "foreground",
+          "description": "A reference to a foreground color defined in 'colors' property",
+          "$ref": "#/definitions/color_reference"
+        },
+        "font-style": {
+          "title": "font style",
+          "description": "A font style",
+          "type": "string",
+          "enum": ["bold", "italic", "underline"]
+        },
+        "text": {
+          "$ref": "#/definitions/file_type_association"
+        },
+        "markup": {
+          "$ref": "#/definitions/file_type_association"
+        },
+        "programming": {
+          "$ref": "#/definitions/file_type_association"
+        },
+        "unimportant": {
+          "$ref": "#/definitions/file_type_association"
         }
-      ]
+      },
+      "patternProperties": {
+        ".": {
+          "$ref": "#/definitions/file_type_association"
+        }
+      },
+      "additionalProperties": false
     }
   },
   "title": "theme",
