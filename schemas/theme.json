@@ -3,9 +3,9 @@
   "definitions": {
     "color": {
       "type": "string",
-      "minLength": 6,
+      "minLength": 3,
       "maxLength": 6,
-      "pattern": "^[0-9a-fA-F]{6}$",
+      "pattern": "^([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$",
       "examples": [
         "000000",
         "FFFFFF",
