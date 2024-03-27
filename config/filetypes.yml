@@ -144,6 +144,7 @@ programming:
     graphviz: [.dot, .gv]
     groovy: [.groovy, .gvy, .gradle]
     hack: [.hack]
+    hare: [.ha]
     haskell: [.hs]
     ipython: [.ipynb]
     java: [.java, .bsh]
