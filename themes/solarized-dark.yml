@@ -130,6 +130,9 @@ media:
   fonts:
     foreground: violet
 
+  3d:
+    foreground: magenta
+
 office:
   foreground: orange
 

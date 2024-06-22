@@ -149,6 +149,9 @@ media:
   fonts:
     foreground: magenta
 
+  3d:
+    foreground: magenta
+
 office:
   foreground: yellow
 

@@ -129,6 +129,9 @@ media:
   fonts:
     foreground: orange
 
+  3d:
+    foreground: pink
+
 office:
   foreground: orange
 

@@ -132,6 +132,9 @@ media:
 
   fonts:
     foreground: aurora-nord15
+  
+  3d:
+    foreground: aurora-nord15
 
 office:
   foreground: aurora-nord15

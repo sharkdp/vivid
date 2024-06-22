@@ -136,6 +136,9 @@ media:
   fonts:
     foreground: green2
     font-style: bold
+  3d:
+    foreground: purple1
+    font-style: bold
 
 office:
   foreground: purple2
