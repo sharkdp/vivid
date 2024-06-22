@@ -140,6 +140,9 @@ media:
   fonts:
     foreground: kourkinova
 
+  3d:
+    foreground: kourkinova
+
 office:
   foreground: christine
   font-style: bold

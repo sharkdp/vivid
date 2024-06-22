@@ -27,3 +27,6 @@ features = ["suggestions", "color", "wrap_help", "cargo"]
 lto = true
 strip = true
 codegen-units = 1
+
+[dev-dependencies]
+assert_cmd = "2.0.14"

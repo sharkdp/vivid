@@ -135,6 +135,9 @@ media:
   fonts:
     foreground: blue2
     font-style: bold
+  3d:
+    foreground: magenta
+    font-style: bold
 
 office:
   foreground: pink
