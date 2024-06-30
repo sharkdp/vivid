@@ -1,150 +1,161 @@
-colors:
-  # Based on the Nord colorscheme.
-  # (https://www.nordtheme.com/docs/colors-and-palettes)
+# Nord dircolors theme: https://github.com/nordtheme/dircolors
+# Three exceptions from reference implementation:
+#  1. Directory file type and directories with special permissions use nord10
+#     instead of nord9 to stand out better.
+#  2. Where there is a background colour, the foreground of nord4 is replaced by
+#     nord5 to make the text more legible.
+#  3. The media/document file types don't all use nord14. These can be
+#     customised according to personal preference and desired granularity.
+# Reference documentation: https://www.nordtheme.com/docs/colors-and-palettes
 
-  # Polar night
-  polar-night-nord0 : '2e3440'
-  polar-night-nord1 : '3b4252'
-  polar-night-nord2 : '434c5e'
-  polar-night-nord3 : '4c566a'
+colors:   # Nord Alacritty theme mapping: https://github.com/nordtheme/alacritty
+  nord0:  '2e3440'  # background
+  nord1:  '3b4252'  # black
+  nord2:  '434c5e'  # selection
+  nord3:  '4c566a'  # brightblack
+  nord4:  'd8dee9'  # foreground
+  nord5:  'e5e9f0'  # white
+  nord6:  'eceff4'  # brightwhite
+  nord7:  '8fbcbb'  # brightcyan
+  nord8:  '88c0d0'  # cyan
+  nord9:  '81a1c1'  # blue
+  nord10: '5e81ac'  # darkblue
+  nord11: 'bf616a'  # red
+  nord12: 'd08770'  # orange
+  nord13: 'ebcb8b'  # yellow
+  nord14: 'a3be8c'  # green
+  nord15: 'b48ead'  # magenta
 
-  # Snow storm
-  snow-storm-nord4 : 'd8dee9'
-  snow-storm-nord5 : 'e5e9f0'
-  snow-storm-nord6 : 'eceff4'
-
-  # Frost
-  frost-nord7 : '8fbcbb'
-  frost-nord8 : '88c0d0'
-  frost-nord9 : '81a1c1'
-  frost-nord10 : '5e81ac'
-
-  # Aurora
-  aurora-nord11 : 'bf616a'
-  aurora-nord12 : 'd08770'
-  aurora-nord13 : 'ebcb8b'
-  aurora-nord14 : 'a3be8c'
-  aurora-nord15 : 'b48ead'
+  dim-foreground: 'a5abb6'
 
 core:
   normal_text:
-    foreground: polar-night-nord3
-
-  regular_file:
-    foreground: polar-night-nord3
+    foreground: dim-foreground
 
   reset_to_normal:
-    foreground: polar-night-nord3
+    background: nord0
+    foreground: nord4
+    font-style: regular
+
+# File Types
+
+  regular_file:
+    foreground: nord4
 
   directory:
-    foreground: frost-nord7
+    foreground: nord10  # nord9
     font-style: bold
+
+  multi_hard_link:
+    foreground: nord8
+    font-style: underline
 
   symlink:
-    foreground: aurora-nord14
-    font-style: bold
-
-  multi_hard_link: {}
-
-  fifo:
-    foreground: aurora-nord13
-    background: polar-night-nord2
-    font-style: bold
-
-  socket:
-    foreground: aurora-nord15
-    background: polar-night-nord2
-    font-style: bold
-
-  door:
-    foreground: aurora-nord15
-    background: polar-night-nord2
-    font-style: bold
-
-  block_device:
-    foreground: aurora-nord13
-    background: polar-night-nord2
-    font-style: bold
-
-  character_device:
-    foreground: aurora-nord13
-    background: polar-night-nord2
-    font-style: bold
+    foreground: nord8
 
   broken_symlink:
-    foreground: snow-storm-nord6
-    background: aurora-nord11
-    font-style: bold
+    foreground: nord11
 
   missing_symlink_target:
-    foreground: snow-storm-nord6
-    background: aurora-nord11
+    # NOTE: Also used for readline completion shell builtin and function suffix
+    background: nord11
+    foreground: nord5  # nord4
     font-style: bold
 
-  setuid: {}
+  fifo:
+    foreground: nord7
+    font-style:
+      - bold
+      - underline
 
-  setgid: {}
+  character_device:
+    foreground: nord13
 
-  file_with_capability: {}
+  block_device:
+    foreground: nord13
+    font-style: underline
 
-  sticky_other_writable: {}
+  door:
+    foreground: nord13
+    font-style: italic
 
-  other_writable: {}
+  socket:
+    # NOTE: Swapped with block device as used for readline completion prefix
+    foreground: nord13
+    font-style: bold
 
-  sticky: {}
+# File Permissions
 
   executable_file:
-    foreground: aurora-nord12
+    foreground: nord7
     font-style: bold
 
-text:
-  special:
-    foreground: aurora-nord15
+  file_with_capability:
+    foreground: nord4
+    font-style:
+      - bold
+      - underline
 
-  todo:
-    foreground: aurora-nord15
+  setuid:
+    foreground: nord4
+    font-style:
+      - bold
+      - underline
+
+  setgid:
+    foreground: nord4
+    font-style:
+      - bold
+      - underline
+
+  sticky:
+    background: nord10  # nord9
+    foreground: nord5   # nord4
+    font-style: underline
+
+  other_writable:
+    background: nord10  # nord9
+    foreground: nord5   # nord4
     font-style: bold
 
-  licenses:
-    foreground: aurora-nord15
+  sticky_other_writable:
+    background: nord10  # nord9
+    foreground: nord5   # nord4
+    font-style:
+      - bold
+      - underline
 
-  configuration:
-    foreground: aurora-nord15
-
-  other:
-    foreground: aurora-nord15
-
-markup:
-  foreground: aurora-nord15
-
-programming:
-  foreground: aurora-nord14
-
-media:
-  image:
-    foreground: aurora-nord15
-
-  audio:
-    foreground: aurora-nord15
-
-  video:
-    foreground: aurora-nord15
-
-  fonts:
-    foreground: aurora-nord15
-  
-  3d:
-    foreground: aurora-nord15
-
-office:
-  foreground: aurora-nord15
+# Document Types
 
 archives:
-  foreground: frost-nord9
+  foreground: nord5
   font-style: bold
 
 executable:
-  foreground: aurora-nord12
+  foreground: nord7
+  font-style: bold
+
+markup:
+  foreground: nord6
+  web:
+    foreground: nord4
+
+media:
+  foreground: nord15
+  fonts:
+    foreground: nord4
+
+office:
+  foreground: nord14
+
+programming:
+  source:
+    foreground: nord7
+  tooling:
+    foreground: nord4
+
+text:
+  foreground: nord4
 
 unimportant:
-  foreground: polar-night-nord2
+  foreground: nord3
