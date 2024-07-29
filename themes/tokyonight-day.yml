@@ -1,0 +1,173 @@
+#
+# Tokyo Night "Moon" theme
+#
+# Based on https://github.com/folke/tokyonight.nvim/tree/main/extras/lua.
+# Not generated via tokyonight.nvim extras template as custom/derived shades are added.
+#
+
+colors:
+  # variable: "rrggbb" | source-names (if divergent)
+  bg: "e1e2e7"
+  fg: "3760bf"
+
+  gray1: "2d3f76" # bg_visual
+  gray2: "444a73" # terminal_black
+  gray3: "636da6" # comment
+
+  red1: "c53b53" # red1/error
+  red2: "f52a65" # red
+  orange: "ba530e"
+  yellow: "8c6c3e"
+
+  green1: "587539"
+  green2: "478983" # teal/green1
+
+  blue1: "007197" # blue6
+  blue2: "38468B" # & info
+  blue3: "0D7A8B" # blue5
+  blue5: "0D9AAC" # blue1
+  blue4: "512C71" # border_highlight
+  blue6: "3760bf" # blue
+
+  magenta: "9854f1"
+  pink: "f254c8" # purple
+
+  bg_red2: "342335"
+  bg_orange: "322534"
+  bg_yellow: "302a35"
+  bg_green2: "21303c"
+  bg_pink: "2a2238"
+
+core: # See `dircolors -p` for explanations
+  normal_text:
+    foreground: gray3
+
+  regular_file: {}
+
+  reset_to_normal:
+    foreground: gray3
+
+  directory:
+    foreground: blue6
+    font-style: bold
+
+  executable_file: # Files with exec permissions
+    foreground: green1
+    font-style: bold
+
+  file_with_capability:
+    background: gray1
+
+  setuid:
+    background: gray1
+
+  setgid:
+    background: gray1
+
+  sticky:
+    background: gray1
+
+  sticky_other_writable: # Usually a directory on Linux
+    foreground: bg
+    background: blue6
+    font-style: bold
+
+  other_writable: # Ditto ^
+    foreground: blue6
+    background: gray1
+    font-style: bold
+
+  symlink:
+    foreground: blue3
+    font-style: italic
+
+  broken_symlink:
+    foreground: bg
+    background: red1
+
+  missing_symlink_target:
+    foreground: red1
+
+  multi_hard_link: {}
+
+  socket:
+    foreground: green2
+    background: bg_green2
+    font-style: bold
+
+  fifo:
+    foreground: orange
+    background: bg_orange
+    font-style: bold
+
+  door:
+    foreground: pink
+    background: bg_pink
+    font-style: bold
+
+  block_device:
+    foreground: red2
+    background: bg_red2
+    font-style: bold
+
+  character_device:
+    foreground: yellow
+    background: bg_yellow
+    font-style: bold
+
+executable: # Libs and exec binaries (without exec permissions)
+  foreground: green2
+
+archives:
+  foreground: red2
+  font-style: bold
+
+media:
+  audio:
+    foreground: blue4
+    font-style: bold
+  image:
+    foreground: magenta
+    font-style: bold
+  video:
+    foreground: green2
+    font-style: bold
+  fonts:
+    foreground: blue2
+    font-style: bold
+  3d:
+    foreground: magenta
+    font-style: bold
+
+office:
+  foreground: pink
+  font-style: bold
+
+text:
+  foreground: fg
+  configuration:
+    foreground: orange
+    dockerfile:
+      foreground: blue5
+  licenses:
+    foreground: fg
+    font-style: bold
+  special:
+    foreground: blue3
+    font-style: bold
+  todo:
+    foreground: blue1
+    font-style: bold
+
+markup:
+  foreground: fg
+
+programming:
+  foreground: yellow
+  tooling:
+    foreground: blue2
+    continuous-integration:
+      foreground: blue5
+
+unimportant:
+  foreground: gray2
