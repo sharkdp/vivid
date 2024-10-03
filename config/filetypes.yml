@@ -106,6 +106,8 @@ markup:
 
   other:
     - ".1"
+    - .aseprite-brushes # Aseprite
+    - .aseprite-keys # Aseprite
     - .csv
     - .markdown
     - .md
@@ -273,6 +275,8 @@ programming:
 media:
   image:
     application:
+      - .aseprite # Aseprite
+      - .ase # Aseprite
       - .ai # Illustrator
       - .kra # Krita
       - .psd # Photoshop
@@ -468,6 +472,7 @@ archives:
   other:
     - .7z
     - .arj
+    - .aseprite-extension # Aseprite
     - .bz
     - .bz2
     - .db
