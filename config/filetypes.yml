@@ -115,6 +115,7 @@ markup:
     - .info
     - .org
     - .rst
+    - .tsv
     - .typ
     - .xml
 
@@ -478,6 +479,8 @@ archives:
     - .db
     - .gz
     - .jar
+    - .paq8n
+    - .paq8o
     - .pkg
     - .rar
     - .tar
@@ -487,6 +490,7 @@ archives:
     - .xz
     - .z
     - .zip
+    - .zpaq
     - .zst
 
 executable:
