@@ -564,6 +564,8 @@ unimportant:
     - .orig
     - .pid
     - .swp
+    - .swo
+    - .swn
     - .timestamp
     - .tmp
     - stderr
