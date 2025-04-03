@@ -36,6 +36,12 @@ Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your
 export LS_COLORS="$(vivid generate molokai)"
 ```
 
+or for Fish:
+
+```fish
+set -gx LS_COLORS "$(vivid generate molokai)"
+```
+
 ### Theme preview
 
 To try all available themes with your current directory:
