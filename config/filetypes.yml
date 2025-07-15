@@ -176,7 +176,7 @@ programming:
     r: [.r]
     raku: [.raku]
     ruby: [.rb]
-    rust: [.rs]
+    rust: [.ers, .rs]
     sass: [.sass, .scss]
     scala: [.scala, .sbt]
     shell: [.sh, .bash, .nu, .bashrc, .bash_profile, .zsh, .fish]
