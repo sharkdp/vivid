@@ -281,7 +281,7 @@ media:
       - .ai # Illustrator
       - .kra # Krita
       - .psd # Photoshop
-      - .xvf # GIMP
+      - .xcf # GIMP
 
     bitmap:
       - .avif
