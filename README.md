@@ -81,8 +81,8 @@ Download one of the Debian packages from the [release page](https://github.com/s
 and install it via `dpkg -i`:
 
 ``` bash
-wget "https://github.com/sharkdp/vivid/releases/download/v0.8.0/vivid_0.8.0_amd64.deb"
-sudo dpkg -i vivid_0.8.0_amd64.deb
+wget "https://github.com/sharkdp/vivid/releases/download/v0.10.1/vivid_0.10.1_amd64.deb"
+sudo dpkg -i vivid_0.10.1_amd64.deb
 ```
 
 ### On Arch Linux
