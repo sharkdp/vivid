@@ -162,6 +162,23 @@ fn cli() -> clap::Command {
                     .action(ArgAction::Set),
             ),
         )
+        .subcommand(
+            Command::new("c")
+                .about("Generate the escape sequence for a style defined in the given theme category")
+                .arg(
+                    Arg::new("theme")
+                    .long("theme")
+                    .short('t')
+                    .action(ArgAction::Set)
+                    .value_name("theme")
+                    .help("Theme name")
+                )
+                .arg(
+                    Arg::new("category")
+                    .help("Category name (see preview command)")
+                    .action(ArgAction::Set),
+                ),
+        )
         .subcommand(Command::new("themes").about("Prints list of available themes"))
 }
 
@@ -216,6 +233,21 @@ fn run() -> Result<()> {
                 entry
             )
             .ok();
+        }
+    } else if let Some(sub_matches) = matches.subcommand_matches("c") {
+        let category_str = sub_matches
+            .get_one::<String>("category")
+            .map(|s| s.as_str())
+            .ok_or_else(|| VividError::NoCategoryProvided)?;
+
+        if category_str == "reset" {
+            write!(stdout_lock, "\x1b[0m").ok();
+        } else {
+            let theme = load_theme(sub_matches, &user_config_path, color_mode)?;
+            let vec: Vec<String> = category_str.split(".").map(|s| s.to_string()).collect();
+            let category: &[String] = &vec;
+            let ansi_code = theme.get_style(category).unwrap_or_else(|_| "0".into());
+            write!(stdout_lock, "\x1b[{}m", ansi_code).ok();
         }
     } else if matches.subcommand_matches("themes").is_some() {
         for theme in available_theme_names(&user_config_path)? {
