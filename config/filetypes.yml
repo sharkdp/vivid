@@ -502,6 +502,7 @@ archives:
     - .db
     - .gz
     - .jar
+    - .lz
     - .paq8n
     - .paq8o
     - .pkg
