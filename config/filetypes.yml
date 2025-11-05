@@ -120,6 +120,7 @@ markup:
     - .info
     - .org
     - .rst
+    - .texi
     - .textile
     - .tsv
     - .typ
