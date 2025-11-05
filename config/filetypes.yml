@@ -437,6 +437,7 @@ media:
 
 office:
   document:
+    - .chm
     - .djv
     - .djvu
     - .doc
