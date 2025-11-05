@@ -171,6 +171,7 @@ programming:
     perl: [.pl, .pm, .pod, .t, .cgi]
     php: [.php]
     powershell: [.ps1, .psm1, .psd1]
+    processing: [.pde]
     prql: [.prql]
     puppet: [.pp, .epp]
     purescript: [.purs]
