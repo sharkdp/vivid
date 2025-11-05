@@ -441,6 +441,8 @@ media:
 office:
   document:
     - .abw # AbiWord
+    - .azw
+    - .azw3
     - .chm
     - .djv
     - .djvu
@@ -448,6 +450,7 @@ office:
     - .docx
     - .dvi
     - .epub
+    - .kfx
     - .mobi # Mobipocket
     - .odt
     - .pdf
