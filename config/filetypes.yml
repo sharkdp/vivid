@@ -121,6 +121,7 @@ markup:
     - .info
     - .org
     - .rst
+    - .sil
     - .texi
     - .textile
     - .tsv
