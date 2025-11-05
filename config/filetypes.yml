@@ -73,6 +73,7 @@ text:
       - .yml
 
     metadata:
+      - .opf # Open Packaging Format (used in EPUBs)
       - .xmp
 
     bibtex:
