@@ -460,6 +460,13 @@ office:
     - .sxw
 
   spreadsheet:
+<<<<<<< HEAD
+=======
+    - .sc # sc (Spreadsheet Calculator) and sc-im
+    - .gnm
+    - .gnum
+    - .gnumeric
+>>>>>>> 3b0951f (Add .gnm, .gnum, and .gnumeric (Gnumeric spreadsheet extensions) to filetypes.yml)
     - .xls
     - .xlsx
     - .ods
