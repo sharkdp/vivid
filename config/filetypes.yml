@@ -65,6 +65,7 @@ text:
       - .config
       - .ini
       - .json
+      - .kdl
       - .tml
       - .toml
       - .webmanifest
