@@ -450,6 +450,7 @@ office:
     - .docx
     - .dvi
     - .epub
+    - .htmlz
     - .kfx
     - .mobi # Mobipocket
     - .odt
