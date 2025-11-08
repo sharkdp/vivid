@@ -121,6 +121,7 @@ markup:
     - .mdown
     - .info
     - .org
+    - .qd # Quarkdown
     - .rst
     - .sil
     - .texi
