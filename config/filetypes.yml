@@ -107,6 +107,8 @@ markup:
 
   other:
     - ".1"
+    - .adoc
+    - .asciidoc
     - .aseprite-brushes # Aseprite
     - .aseprite-keys # Aseprite
     - .csv
