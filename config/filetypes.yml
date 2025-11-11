@@ -114,6 +114,7 @@ markup:
     - .aseprite-brushes # Aseprite
     - .aseprite-keys # Aseprite
     - .csv
+    - .dbk
     - .dj
     - .markdown
     - .md
