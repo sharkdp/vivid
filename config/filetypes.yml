@@ -126,6 +126,7 @@ programming:
     applescript: [.applescript]
     asp: [.asa]
     assembly: [.asm]
+    asymptote: [.asy]
     awk: [.awk]
     basic: [.vb]
     cabal: [.cabal]
