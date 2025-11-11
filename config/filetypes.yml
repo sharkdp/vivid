@@ -119,6 +119,7 @@ markup:
     - .info
     - .org
     - .rst
+    - .textile
     - .tsv
     - .typ
     - .xml
