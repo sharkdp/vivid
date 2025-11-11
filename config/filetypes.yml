@@ -441,6 +441,7 @@ media:
 
 office:
   document:
+    - .abw # AbiWord
     - .chm
     - .djv
     - .djvu
