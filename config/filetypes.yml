@@ -389,6 +389,7 @@ media:
     - .fnt
     - .fon
     - .otf
+    - .ttc
     - .ttf
     - .woff
     - .woff2
