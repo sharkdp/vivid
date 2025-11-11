@@ -428,6 +428,8 @@ media:
 
 office:
   document:
+    - .djv
+    - .djvu
     - .doc
     - .docx
     - .epub
