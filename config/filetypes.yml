@@ -442,6 +442,7 @@ office:
     - .djvu
     - .doc
     - .docx
+    - .dvi
     - .epub
     - .odt
     - .pdf
