@@ -468,6 +468,10 @@ office:
   calendar:
     - .ics
 
+  contacts:
+    - .vcard
+    - .vcf
+
 archives:
   packages:
     - .apk
