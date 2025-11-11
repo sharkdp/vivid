@@ -449,6 +449,7 @@ office:
     - .docx
     - .dvi
     - .epub
+    - .mobi # Mobipocket
     - .odt
     - .pdf
     - .ps
