@@ -176,6 +176,7 @@ programming:
     matlab: [.matlab, .m, .mn]
     mojo: [.mojo]
     nim: [.nim, .nims, .nimble]
+    numbat: [.nbt]
     ocaml: [.ml, .mli]
     openscad: [.scad]
     pascal: [.pas, .p, .dpr]
