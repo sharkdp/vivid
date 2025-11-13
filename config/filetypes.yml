@@ -116,6 +116,7 @@ markup:
     - .csv
     - .dbk
     - .dj
+    - .lout
     - .markdown
     - .md
     - .mdown
