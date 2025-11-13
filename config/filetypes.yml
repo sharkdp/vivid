@@ -150,6 +150,7 @@ programming:
     dart: [.dart]
     diff: [.diff, .patch]
     elixir: [.ex, .exs]
+    elvish: [.elv]
     emacs: [.elc]
     elm: [.elm]
     erlang: [.erl]
