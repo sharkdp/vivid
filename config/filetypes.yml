@@ -461,6 +461,9 @@ office:
     - .sxw
 
   spreadsheet:
+    - .gnm
+    - .gnum
+    - .gnumeric
     - .xls
     - .xlsx
     - .ods
