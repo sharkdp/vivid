@@ -580,6 +580,9 @@ unimportant:
       - .blg
       - .fdb_latexmk
       - .fls
+      - .glg
+      - .glo
+      - .gls
       - .idx
       - .ilg
       - .ind
