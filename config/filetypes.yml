@@ -488,6 +488,9 @@ office:
     - .vcard
     - .vcf
 
+  dictionary:
+    - .dict
+
 archives:
   packages:
     - .apk
