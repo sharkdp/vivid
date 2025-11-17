@@ -517,6 +517,7 @@ archives:
     - .bz
     - .bz2
     - .db
+    - .dz # DICT dictionaries compressed with dictzip
     - .gz
     - .jar
     - .lz
