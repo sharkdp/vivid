@@ -490,6 +490,7 @@ office:
 
   dictionary:
     - .dict
+    - .slob
 
 archives:
   packages:
