@@ -491,6 +491,7 @@ office:
   dictionary:
     - .dict
     - .slob
+    - .xdxf
 
 archives:
   packages:
