@@ -65,6 +65,7 @@ text:
       - .config
       - .ini
       - .json
+      - .kdl
       - .tml
       - .toml
       - .webmanifest
@@ -72,6 +73,8 @@ text:
       - .yml
 
     metadata:
+      - .cue
+      - .opf # Open Packaging Format (used in EPUBs)
       - .xmp
 
     bibtex:
@@ -106,15 +109,24 @@ markup:
 
   other:
     - ".1"
+    - .adoc
+    - .asciidoc
     - .aseprite-brushes # Aseprite
     - .aseprite-keys # Aseprite
     - .csv
+    - .dbk
+    - .dj
+    - .lout
     - .markdown
     - .md
     - .mdown
     - .info
     - .org
+    - .qd # Quarkdown
     - .rst
+    - .sil
+    - .texi
+    - .textile
     - .tsv
     - .typ
     - .xml
@@ -126,6 +138,7 @@ programming:
     applescript: [.applescript]
     asp: [.asa]
     assembly: [.asm]
+    asymptote: [.asy]
     awk: [.awk]
     basic: [.vb]
     cabal: [.cabal]
@@ -138,11 +151,13 @@ programming:
     dart: [.dart]
     diff: [.diff, .patch]
     elixir: [.ex, .exs]
+    elvish: [.elv]
     emacs: [.elc]
     elm: [.elm]
     erlang: [.erl]
     fsharp: [.fs, .fsi, .fsx]
     gcode: [.gcode]
+    gleam: [.gleam]
     go: [.go]
     graphviz: [.dot, .gv]
     groovy: [.groovy, .gvy, .gradle]
@@ -163,20 +178,24 @@ programming:
     matlab: [.matlab, .m, .mn]
     mojo: [.mojo]
     nim: [.nim, .nims, .nimble]
+    numbat: [.nbt]
     ocaml: [.ml, .mli]
     openscad: [.scad]
     pascal: [.pas, .p, .dpr]
     perl: [.pl, .pm, .pod, .t, .cgi]
     php: [.php]
     powershell: [.ps1, .psm1, .psd1]
+    processing: [.pde]
     prql: [.prql]
     puppet: [.pp, .epp]
     purescript: [.purs]
     python: [.py]
     r: [.r]
+    racket: [.rkt]
     raku: [.raku]
     ruby: [.rb]
     rust: [.rs]
+    sage: [.sage]
     sass: [.sass, .scss]
     scala: [.scala, .sbt]
     shell: [.sh, .bash, .nu, .bashrc, .bash_profile, .zsh, .fish]
@@ -389,6 +408,7 @@ media:
     - .fnt
     - .fon
     - .otf
+    - .ttc
     - .ttf
     - .woff
     - .woff2
@@ -425,9 +445,19 @@ media:
 
 office:
   document:
+    - .abw # AbiWord
+    - .azw
+    - .azw3
+    - .chm
+    - .djv
+    - .djvu
     - .doc
     - .docx
+    - .dvi
     - .epub
+    - .htmlz
+    - .kfx
+    - .mobi # Mobipocket
     - .odt
     - .pdf
     - .ps
@@ -435,6 +465,9 @@ office:
     - .sxw
 
   spreadsheet:
+    - .gnm
+    - .gnum
+    - .gnumeric
     - .xls
     - .xlsx
     - .ods
@@ -450,6 +483,15 @@ office:
 
   calendar:
     - .ics
+
+  contacts:
+    - .vcard
+    - .vcf
+
+  dictionary:
+    - .dict
+    - .slob
+    - .xdxf
 
 archives:
   packages:
@@ -477,8 +519,10 @@ archives:
     - .bz
     - .bz2
     - .db
+    - .dz # DICT dictionaries compressed with dictzip
     - .gz
     - .jar
+    - .lz
     - .paq8n
     - .paq8o
     - .pkg
@@ -542,6 +586,9 @@ unimportant:
       - .blg
       - .fdb_latexmk
       - .fls
+      - .glg
+      - .glo
+      - .gls
       - .idx
       - .ilg
       - .ind
