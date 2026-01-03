@@ -108,14 +108,12 @@ markup:
     - ".1"
     - .aseprite-brushes # Aseprite
     - .aseprite-keys # Aseprite
-    - .csv
     - .markdown
     - .md
     - .mdown
     - .info
     - .org
     - .rst
-    - .tsv
     - .typ
     - .xml
 
@@ -435,9 +433,11 @@ office:
     - .sxw
 
   spreadsheet:
+    - .csv
     - .xls
     - .xlsx
     - .ods
+    - .tsv
     - .xlr
 
   presentation:
