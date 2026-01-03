@@ -429,24 +429,27 @@ office:
     - .docx
     - .epub
     - .odt
+    - .pages
     - .pdf
     - .ps
     - .rtf
     - .sxw
 
   spreadsheet:
-    - .xls
-    - .xlsx
+    - .csv
+    - .numbers
     - .ods
     - .xlr
+    - .xls
+    - .xlsx
 
   presentation:
+    - .key
+    - .odp
+    - .pps
     - .ppt
     - .pptx
-    - .odp
     - .sxi
-    - .kex
-    - .pps
 
   calendar:
     - .ics
