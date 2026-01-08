@@ -445,7 +445,7 @@ office:
     - .pptx
     - .odp
     - .sxi
-    - .kex
+    - .key
     - .pps
 
   calendar:
