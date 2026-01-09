@@ -94,6 +94,9 @@ text:
       - passwd
       - shadow
 
+  other:
+    - .txt
+
 markup:
   web:
     - .htm
@@ -449,7 +452,6 @@ office:
   other:
     - .csv
     - .tsv
-    - .txt
 
 archives:
   packages:
