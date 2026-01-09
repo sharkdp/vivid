@@ -94,9 +94,6 @@ text:
       - passwd
       - shadow
 
-  other:
-    - .txt
-
 markup:
   web:
     - .htm
@@ -433,11 +430,9 @@ office:
     - .sxw
 
   spreadsheet:
-    - .csv
     - .xls
     - .xlsx
     - .ods
-    - .tsv
     - .xlr
 
   presentation:
@@ -450,6 +445,11 @@ office:
 
   calendar:
     - .ics
+
+  other:
+    - .csv
+    - .tsv
+    - .txt
 
 archives:
   packages:
