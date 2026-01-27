@@ -149,7 +149,7 @@ programming:
     haskell: [.hs]
     ipython: [.ipynb]
     java: [.java, .bsh]
-    javascript: [.js, .jsx, .htc]
+    javascript: [.js, .jsx, .htc, .mjs, .cjs]
     julia: [.jl]
     kotlin: [.kt, .kts]
     latex: [.tex, .ltx]
