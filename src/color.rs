@@ -154,13 +154,13 @@ mod tests {
     }
 
     #[test]
-fn from_hex_str_with_hash() {
-    let color = Color::from_hex_str("#4ec703").unwrap();
-    assert_eq!(Color::Rgb(0x4e, 0xc7, 0x03), color);
+    fn from_hex_str_with_hash() {
+        let color = Color::from_hex_str("#4ec703").unwrap();
+        assert_eq!(Color::Rgb(0x4e, 0xc7, 0x03), color);
 
-    let color_short = Color::from_hex_str("#4ec").unwrap();
-    assert_eq!(Color::Rgb(0x44, 0xee, 0xcc), color_short);
-}
+        let color_short = Color::from_hex_str("#4ec").unwrap();
+        assert_eq!(Color::Rgb(0x44, 0xee, 0xcc), color_short);
+    }
 
     #[test]
     fn from_hex_str_errors() {
