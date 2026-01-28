@@ -39,7 +39,7 @@ impl Display for VividError {
             VividError::CouldNotLoadTheme(path) => write!(fmt, "Could not load theme '{}'.", path),
             VividError::NoThemeProvided => write!(
                 fmt,
-                "No theme specified. Try `vivid generate molokai` for an example"
+                "Argument not optional: [theme]. Try `vivid themes` for a list"
             ),
             VividError::EmptyThemeFile => write!(fmt, "Theme file is empty"),
             VividError::CouldNotFindStyleFor(category) => {
