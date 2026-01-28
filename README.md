@@ -39,7 +39,7 @@ export LS_COLORS="$(vivid generate molokai)"
 or for Fish:
 
 ```fish
-set -gx LS_COLORS "$(vivid generate molokai)"
+set -gx LS_COLORS (vivid generate molokai)
 ```
 
 ### Theme preview
