@@ -162,6 +162,7 @@ programming:
     mojo: [.mojo]
     nim: [.nim, .nims, .nimble]
     ocaml: [.ml, .mli]
+    odin: [.odin]
     openscad: [.scad]
     pascal: [.pas, .p, .dpr]
     perl: [.pl, .pm, .pod, .t, .cgi]
