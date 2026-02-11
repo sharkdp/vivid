@@ -22,9 +22,13 @@ core:
 
 text:
   special:
+    - AUTHORS
     - CHANGELOG
     - CHANGELOG.md
     - CHANGELOG.txt
+    - CHANGES
+    - CHANGES.md
+    - CHANGES.txt
     - CODE_OF_CONDUCT
     - CODE_OF_CONDUCT.md
     - CODE_OF_CONDUCT.txt
@@ -34,6 +38,7 @@ text:
     - CONTRIBUTORS
     - CONTRIBUTORS.md
     - CONTRIBUTORS.txt
+    - HISTORY
     - FAQ
     - INSTALL
     - INSTALL.md
@@ -57,6 +62,7 @@ text:
     - LICENSE
     - LICENSE-APACHE
     - LICENSE-MIT
+    - PATENTS
 
   configuration:
     generic:
@@ -65,6 +71,7 @@ text:
       - .config
       - .ini
       - .json
+      - .rc
       - .tml
       - .toml
       - .webmanifest
@@ -79,6 +86,7 @@ text:
       - .bst
 
     dockerfile:
+      - Containerfile
       - Dockerfile
 
     nix:
@@ -91,7 +99,30 @@ text:
       - .desktop
 
     system:
+      - .automount
+      - .device
+      - .mount
+      - .path
+      - .service
+      - .snapshot
+      - .socket
+      - .swap
+      - .target
+      - .timer
+      - authorized_keys
+      - crontab
+      - crypttab
+      - fstab
+      - group
+      - grub.cfg
+      - hostname
+      - hosts
+      - known_hosts
+      - mounts
+      - mtab
+      - networks
       - passwd
+      - securetty
       - shadow
 
   other:
@@ -101,42 +132,72 @@ markup:
   web:
     - .htm
     - .html
+    - .jhtm
+    - .jhtml
     - .shtml
     - .xhtml
 
   other:
     - ".1"
+    - .adoc
+    - .asciidoc
     - .aseprite-brushes # Aseprite
     - .aseprite-keys # Aseprite
+    - .etx
+    - .fxml
+    - .info
     - .markdown
     - .md
     - .mdown
-    - .info
+    - .mdx
+    - .mkd
+    - .nfo
+    - .norg
     - .org
+    - .rss
     - .rst
+    - .textile
     - .typ
     - .xml
+    - .xsd
 
 programming:
   source:
     actionscript: [.as]
     ada: [.adb, .ads]
+    agda: [.agda, .lagda]
     applescript: [.applescript]
     asp: [.asa]
     assembly: [.asm]
     awk: [.awk]
-    basic: [.vb]
+    basic: [.vb, .vba, .vbs]
     cabal: [.cabal]
-    clojure: [.clj]
+    clojure: [.clj, .cljs, cljc, .cljw]
     crystal: [.cr]
     csharp: [.cs, .csx]
     css: [.css]
-    cxx: [.c, .cpp, .cc, .cp, .cxx, .c++, .h, .hh, .hpp, .hxx, .h++, .ino, .inc, .inl, .ipp, .def]
+    cxx:
+      - .a
+      - .c
+      - .c++
+      - .cc
+      - .cp
+      - .cpp
+      - .cxx
+      - .def
+      - .h
+      - .h++
+      - .hh
+      - .hpp
+      - .hxx
+      - .inc
+      - .inl
+      - .ino
+      - .ipp
     d: [.d, .di]
     dart: [.dart]
     diff: [.diff, .patch]
     elixir: [.ex, .exs]
-    emacs: [.elc]
     elm: [.elm]
     erlang: [.erl]
     fsharp: [.fs, .fsi, .fsx]
@@ -146,7 +207,7 @@ programming:
     groovy: [.groovy, .gvy, .gradle]
     hack: [.hack]
     hare: [.ha]
-    haskell: [.hs]
+    haskell: [.hs, .hi, .lhs]
     ipython: [.ipynb]
     java: [.java, .bsh]
     javascript: [.js, .jsx, .htc, .mjs, .cjs]
@@ -161,7 +222,7 @@ programming:
     matlab: [.matlab, .m, .mn]
     mojo: [.mojo]
     nim: [.nim, .nims, .nimble]
-    ocaml: [.ml, .mli]
+    ocaml: [.ml, .mli, .mly]
     odin: [.odin]
     openscad: [.scad]
     pascal: [.pas, .p, .dpr]
@@ -178,9 +239,18 @@ programming:
     rust: [.rs]
     sass: [.sass, .scss]
     scala: [.scala, .sbt]
-    shell: [.sh, .bash, .nu, .bashrc, .bash_profile, .zsh, .fish]
-    sql: [.sql]
+    sed: [.sed]
+    shell:
+      - .bash
+      - .bash_profile
+      - .bashrc
+      - .fish
+      - .nu
+      - .profile
+      - .sh
+      - .zsh
     swift: [.swift]
+    sql: [.sql]
     tablegen: [.td]
     tcl: [.tcl]
     typescript: [.ts, .tsx]
@@ -191,10 +261,10 @@ programming:
   tooling:
     vcs:
       git:
-        - .gitignore
-        - .gitmodules
         - .gitattributes
         - .gitconfig
+        - .gitignore
+        - .gitmodules
         - .mailmap
 
       hg:
@@ -202,11 +272,13 @@ programming:
         - hgrc
 
       other:
-        - CODEOWNERS
-        - .ignore
+        - .containerignore
+        - .dockerignore
         - .fdignore
+        - .ignore
         - .rgignore
         - .tfignore
+        - CODEOWNERS
 
     build:
       cmake:
@@ -275,11 +347,13 @@ programming:
 media:
   image:
     application:
-      - .aseprite # Aseprite
-      - .ase # Aseprite
       - .ai # Illustrator
+      - .ase # Aseprite
+      - .aseprite # Aseprite
       - .kra # Krita
       - .psd # Photoshop
+      - .pxd # Pixelmator Pro
+      - .pxm # Pixelmator Pro
       - .xcf # GIMP
 
     bitmap:
@@ -288,6 +362,7 @@ media:
       - .exr # OpenEXR
       - .gif
       - .heif
+      - .icns
       - .ico
       - .jpeg
       - .jpg
@@ -351,43 +426,82 @@ media:
     vector:
       - .dxf
       - .eps
+      - .epsf
       - .svg
 
   audio:
+    - .3ga
+    - .aac
     - .aif
+    - .aiff   # lossless
+    - .alac   # lossless
+    - .amr
     - .ape
+    - .ape    # lossless
+    - .au
+    - .caf
+    - .cda    # lossless
+    - .dat
+    - .dts
+    - .fcm
     - .flac
+    - .flac   # lossless
     - .m3u
     - .m4a
     - .mid
+    - .midi   # lossless
+    - .mod
     - .mp3
+    - .mp4a
+    - .oga
     - .ogg
     - .opus
+    - .pcm    # lossless
+    - .s3m
+    - .sid
     - .wav
+    - .wav    # lossless
     - .wma
     - .wv
+    - .wv     # lossless
+    - .wvc    # lossless
 
   video:
+    - .3g2
+    - .3gp
+    - .asf
     - .avi
+    - .divx
+    - .f4v
     - .flv
+    - .gp3
+    - .gp4
     - .h264
+    - .m2v
     - .m4v
     - .mkv
     - .mov
     - .mp4
     - .mpeg
     - .mpg
+    - .ogm
     - .ogv
     - .rm
+    - .rmvb
+    - .sample
     - .swf
-    - .vob
+    - .vob      # lossless
     - .webm
     - .wmv
 
   fonts:
+    - .afm
     - .fnt
     - .fon
     - .otf
+    - .pfa
+    - .pfb
+    - .pfm
     - .ttf
     - .woff
     - .woff2
@@ -407,11 +521,13 @@ media:
       - .alembic
       - .amf # Additive Manifacturing File
       - .dae # Collada
+      - .dwg
       - .fbx
       - .iges
       - .igs
       - .mtl # material for .obj
       - .obj
+      - .ply
       - .step
       - .stl
       - .stp
@@ -424,10 +540,13 @@ media:
 
 office:
   document:
+    - .djvu
     - .doc
+    - .docm
     - .docx
     - .epub
     - .odt
+    - .pages
     - .pdf
     - .ps
     - .rtf
@@ -435,19 +554,27 @@ office:
 
   spreadsheet:
     - .csv
-    - .xls
-    - .xlsx
+    - .numbers
     - .ods
     - .tsv
+    - .xla        # excel add-on
     - .xlr
+    - .xls
+    - .xlsm
+    - .xlsx
+    - .xlt
+    - .xltm
 
   presentation:
-    - .ppt
-    - .pptx
-    - .odp
-    - .sxi
     - .key
+    - .odp
     - .pps
+    - .ppt
+    - .ppts
+    - .pptsm
+    - .pptx
+    - .pptxm
+    - .sxi
 
   calendar:
     - .ics
@@ -455,10 +582,14 @@ office:
 archives:
   packages:
     - .apk
+    - .crx      # Chromium extensions
     - .deb
+    - .ear
+    - .ipa
     - .msi
     - .rpm
     - .xbps
+    - .xpi      # Firefox extensions
 
   ros:
     - .bag
@@ -466,33 +597,66 @@ archives:
   images:
     - .bin
     - .dmg
+    - .fvd
     - .img
     - .iso
+    - .nrg
+    - .qcow
+    - .sparseimage
     - .toast
     - .vcd
+    - .vdi
+    - .vfd
+    - .vhd
+    - .vhdx
+    - .vmdk
 
   other:
     - .7z
     - .arj
     - .aseprite-extension # Aseprite
+    - .br     # Brotli
+    - .bsp
     - .bz
     - .bz2
+    - .cab
+    - .cpio
     - .db
+    - .ear
     - .gz
+    - .jad
     - .jar
+    - .lrz
+    - .lz
+    - .lzma
+    - .lzo
+    - .mht
+    - .mhtml
+    - .pak
     - .paq8n
     - .paq8o
+    - .pk3
     - .pkg
     - .rar
+    - .s7z
+    - .sz
     - .tar
     - .tbz
     - .tbz2
     - .tgz
+    - .vdf
+    - .vpk
+    - .war
+    - .warc
     - .xz
     - .z
     - .zip
+    - .zipx
+    - .zoo
     - .zpaq
     - .zst
+    - .zstd
+    - .zz
 
 executable:
   windows:
@@ -557,25 +721,40 @@ unimportant:
     - .CFUserTextEncoding
     - .DS_Store
     - .localized
+    - .plist
     - Icon\r
 
   other:
     - "~"
+    - .aria2
     - .bak
+    - .cap
     - .ctags
+    - .dmp
+    - .dump
     - .git  # only works for '.git' files (submodules)
+    - .github
     - .lock
+    - .lockfile
     - .log
     - .orig
+    - .part
+    - .pcap
     - .pid
-    - .swp
-    - .swo
+    - .state
+    - .swap
     - .swn
+    - .swo
+    - .swp
+    - .tfstate
     - .timestamp
     - .tmp
-    - stderr
-    - stdin
-    - stdout
     - bun.lockb
     - go.sum
     - package-lock.json
+    - poetry.lock
+    - requirements.txt
+    - stderr
+    - stdin
+    - stdout
+    - uv.lock
