@@ -177,7 +177,6 @@ programming:
     csharp: [.cs, .csx]
     css: [.css]
     cxx:
-      - .a
       - .c
       - .c++
       - .cc
@@ -207,7 +206,7 @@ programming:
     groovy: [.groovy, .gvy, .gradle]
     hack: [.hack]
     hare: [.ha]
-    haskell: [.hs, .hi, .lhs]
+    haskell: [.hs, .lhs]
     ipython: [.ipynb]
     java: [.java, .bsh]
     javascript: [.js, .jsx, .htc, .mjs, .cjs]
@@ -436,7 +435,6 @@ media:
     - .aiff   # lossless
     - .alac   # lossless
     - .amr
-    - .ape
     - .ape    # lossless
     - .au
     - .caf
@@ -444,7 +442,6 @@ media:
     - .dat
     - .dts
     - .fcm
-    - .flac
     - .flac   # lossless
     - .m3u
     - .m4a
@@ -459,10 +456,8 @@ media:
     - .pcm    # lossless
     - .s3m
     - .sid
-    - .wav
     - .wav    # lossless
     - .wma
-    - .wv
     - .wv     # lossless
     - .wvc    # lossless
 
@@ -622,7 +617,6 @@ archives:
     - .cab
     - .cpio
     - .db
-    - .ear
     - .gz
     - .jad
     - .jar
@@ -665,10 +659,10 @@ executable:
     - .exe
 
   library:
-    - .so
     - .a
     - .dll
     - .dylib
+    - .so
 
   linux:
     - .ko
@@ -691,9 +685,9 @@ unimportant:
       - .pyd
       - .pyo
     haskell:
+      - .cache
       - .dyn_hi
       - .dyn_o
-      - .cache
       - .hi
     java:
       - .class
@@ -728,7 +722,6 @@ unimportant:
     - "~"
     - .aria2
     - .bak
-    - .cap
     - .ctags
     - .dmp
     - .dump
@@ -742,7 +735,6 @@ unimportant:
     - .pcap
     - .pid
     - .state
-    - .swap
     - .swn
     - .swo
     - .swp
@@ -753,7 +745,6 @@ unimportant:
     - go.sum
     - package-lock.json
     - poetry.lock
-    - requirements.txt
     - stderr
     - stdin
     - stdout
