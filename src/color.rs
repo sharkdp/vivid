@@ -65,6 +65,8 @@ pub enum Ansi3Bit {
 impl Color {
     pub fn from_hex_str(hex_str: &str) -> Result<Color> {
         let parse_error = || VividError::ColorParseError(hex_str.to_string());
+        // Strip the leading '#' if it exists so both 'RRGGBB' and '#RRGGBB' work
+        let hex_str = hex_str.strip_prefix('#').unwrap_or(hex_str);
 
         if hex_str.len() == 6 {
             let r = u8::from_str_radix(&hex_str[0..2], 16).map_err(|_| parse_error())?;
@@ -149,6 +151,15 @@ mod tests {
     fn from_hex_str_3chars() {
         let color = Color::from_hex_str("4ec").unwrap();
         assert_eq!(Color::Rgb(0x44, 0xee, 0xcc), color);
+    }
+
+    #[test]
+    fn from_hex_str_with_hash() {
+        let color = Color::from_hex_str("#4ec703").unwrap();
+        assert_eq!(Color::Rgb(0x4e, 0xc7, 0x03), color);
+
+        let color_short = Color::from_hex_str("#4ec").unwrap();
+        assert_eq!(Color::Rgb(0x44, 0xee, 0xcc), color_short);
     }
 
     #[test]
