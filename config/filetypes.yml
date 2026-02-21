@@ -198,6 +198,11 @@ programming:
     diff: [.diff, .patch]
     elixir: [.ex, .exs]
     elm: [.elm]
+    emacs: [.elc, .eln]
+    erlang: [.erl]
+    fortran: [.f, .for]
+    elixir: [.ex, .exs]
+    elm: [.elm]
     erlang: [.erl]
     fsharp: [.fs, .fsi, .fsx]
     gcode: [.gcode]
@@ -214,8 +219,8 @@ programming:
     kotlin: [.kt, .kts]
     latex: [.tex, .ltx]
     less: [.less]
-    llvm: [.ll, .mir]
     lisp: [.lisp, .el]
+    llvm: [.ll, .mir]
     lua: [.lua]
     mathematica: [.nb]
     matlab: [.matlab, .m, .mn]
@@ -248,13 +253,16 @@ programming:
       - .profile
       - .sh
       - .zsh
-    swift: [.swift]
     sql: [.sql]
+    swift: [.swift]
     tablegen: [.td]
     tcl: [.tcl]
+    terraform: [.tf, .terraform, .tfvars]
     typescript: [.ts, .tsx]
     v: [.v, .vsh]
+    vala: [.vala, .vapi]
     viml: [.vim]
+    xonsh: [.xsh]
     zig: [.zig]
 
   tooling:
@@ -303,6 +311,13 @@ programming:
 
       pip:
         - requirements.txt
+
+      ruby:
+        - .rake
+
+      bazel:
+        - .bzl
+        - .bazel
 
     packaging:
       go:
@@ -573,6 +588,22 @@ office:
 
   calendar:
     - .ics
+
+  contacts:
+    - .vcard
+    - .vcf
+
+  ebook:
+    - .azw
+    - .azw3
+    - .cbr
+    - .cbz
+    - .fb2
+    - .mobi
+
+  email:
+    - .eml
+    - .msg
 
 archives:
   packages:
