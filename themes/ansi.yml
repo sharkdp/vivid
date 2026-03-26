@@ -1,0 +1,158 @@
+# A theme that uses the terminal's 16-color ANSI palette
+#
+# By reusing the color palette that the user has configured, the ls colors will nicely
+# blend in with their surroundings.
+#
+# This theme optimizes for the following goals and guidelines:
+#
+# 1. Prefer the 8 base (non-bright) color variants. This ensures that the theme works well
+#    with minimal color themes which assign the same color for the base and bright
+#    variant. Furthermore, distinguishing between shades of the same color takes more
+#    effort and thus runs counter to quick transmission of information to the user.
+# 2. No explicit use of black and white as these are usually the or similar to the default
+#    foreground and background colors.
+# 3. No background colors. Since we do not know the actual colors corresponding to the
+#    ANSI color codes, background colors risk making the text difficult to read. However,
+#    we assume that in any theme the colors except black can be reasonably well read on
+#    the default background (light themes often switch black and white).
+# 4. Prefer bold for highlighting over underlines as underlines hurt readability in my
+#    opinion.
+# 5. Similar files have similar styles, so sockets and pipes have the same color, for
+#    example.
+# 6. Regular files are neither colored nor have a font-style with two exceptions: READMEs
+#    and similar are bold and unimportant files de-emphasized with faint style. This
+#    avoids visual overload from coloring too many things.
+
+colors:
+  black: "ansi:black"
+  red: "ansi:red"
+  green: "ansi:green"
+  yellow: "ansi:yellow"
+  blue: "ansi:blue"
+  magenta: "ansi:magenta"
+  cyan: "ansi:cyan"
+  white: "ansi:white"
+  bright_black: "ansi:bright_black"
+  bright_red: "ansi:bright_red"
+  bright_green: "ansi:bright_green"
+  bright_yellow: "ansi:bright_yellow"
+  bright_blue: "ansi:bright_blue"
+  bright_magenta: "ansi:bright_magenta"
+  bright_cyan: "ansi:bright_cyan"
+  bright_white: "ansi:bright_white"
+
+core:
+  normal_text: {}
+  regular_file: {}
+  reset_to_normal: {}
+
+  # Directories
+  directory:
+    foreground: blue
+
+  sticky:
+    foreground: blue
+    font-style: bold
+
+  other_writable:
+    foreground: blue
+    font-style: underline
+
+  sticky_other_writable:
+    foreground: blue
+    font-style: [bold, underline]
+
+  # Executables
+  executable_file:
+    foreground: yellow
+    font-style: bold
+
+  setuid:
+    foreground: yellow
+    font-style: [bold, underline]
+
+  setgid:
+    foreground: yellow
+    font-style: [bold, underline]
+
+  # Symlinks
+  symlink:
+    foreground: cyan
+    font-style: italic
+
+  broken_symlink:
+    foreground: red
+    font-style: italic
+
+  missing_symlink_target:
+    foreground: red
+    font-style: bold
+
+  multi_hard_link: {}
+
+  # IPC files
+  fifo:
+    foreground: magenta
+
+  socket:
+    foreground: magenta
+    font-style: bold
+
+  door:
+    foreground: magenta
+    font-style: bold
+
+  # Devices
+  block_device:
+    foreground: green
+    font-style: [bold, underline]
+
+  character_device:
+    foreground: green
+    font-style: bold
+
+  file_with_capability: {}
+
+text:
+  special:
+    font-style: bold
+
+  todo:
+    font-style: bold
+
+  licenses: {}
+
+  configuration:
+    font-style: regular
+
+  other: {}
+
+markup:
+  font-style: regular
+
+programming:
+  source:
+    font-style: regular
+
+  tooling:
+    font-style: regular
+
+media:
+  font-style: regular
+
+office:
+  font-style: regular
+
+archives:
+  font-style: regular
+
+executable:
+  # Do not style libraries as executables
+  font-style: regular
+
+  windows:
+    foreground: yellow
+    font-style: bold
+
+unimportant:
+  font-style: faint

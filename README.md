@@ -64,6 +64,14 @@ option when running `vivid`. This will generate interpolated 8-bit colors:
 export LS_COLORS="$(vivid -m 8-bit generate molokai)"
 ```
 
+### Re-using your terminal's color theme
+
+To match your terminal's existing color theme, you can use the `ansi` theme, which uses your terminal theme's 16-color ANSI palette. This way colors adapt to your terminal theme, such as when you switch between light and dark mode.
+
+```bash
+export LS_COLORS="$(vivid generate ansi)"
+```
+
 ### Customization
 
 Custom [`filetypes.yml` databases](config/filetypes.yml) can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_HOME/vivid` on POSIX systems,
