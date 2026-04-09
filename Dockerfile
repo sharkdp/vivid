@@ -1,4 +1,4 @@
-FROM rust:1.74-bullseye as rust-build-stage
+FROM rust:1.88-bullseye as rust-build-stage
 RUN apt-get update && apt-get upgrade -y
 
 WORKDIR /build
