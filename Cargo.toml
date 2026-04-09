@@ -10,7 +10,7 @@ repository = "https://github.com/sharkdp/vivid"
 version = "0.11.1"
 exclude = ["demo/*"]
 edition = "2018"
-rust-version = "1.85.0"
+rust-version = "1.88.0"
 
 [dependencies]
 yaml-rust = "0.4"
