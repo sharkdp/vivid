@@ -201,9 +201,6 @@ programming:
     emacs: [.elc, .eln]
     erlang: [.erl]
     fortran: [.f, .for]
-    elixir: [.ex, .exs]
-    elm: [.elm]
-    erlang: [.erl]
     fsharp: [.fs, .fsi, .fsx]
     gcode: [.gcode]
     go: [.go]
@@ -239,6 +236,7 @@ programming:
     python: [.py]
     r: [.r]
     raku: [.raku]
+    razor: [.cshtml, .razor]
     ruby: [.rb]
     rust: [.rs]
     sass: [.sass, .scss]
@@ -262,6 +260,7 @@ programming:
     v: [.v, .vsh]
     vala: [.vala, .vapi]
     viml: [.vim]
+    xaml: [.xaml]
     xonsh: [.xsh]
     zig: [.zig]
 
@@ -318,6 +317,17 @@ programming:
       bazel:
         - .bzl
         - .bazel
+
+      msbuild:
+        - .csproj
+        - .fsproj
+        - .proj
+        - .props
+        - .sln
+        - .slnx
+        - .targets
+        - .vbproj
+        - .vcxproj
 
     packaging:
       go:
@@ -613,6 +623,7 @@ archives:
     - .ear
     - .ipa
     - .msi
+    - .nuget
     - .rpm
     - .xbps
     - .xpi      # Firefox extensions
