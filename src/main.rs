@@ -61,6 +61,10 @@ fn merge_additional_filetypes(matches: &ArgMatches, filetypes: &mut FileTypes) -
         filetypes.merge(&addition);
     }
 
+    // Remove the "none" category and its descendants, so that existing filetypes
+    // can be excluded from the final output.
+    filetypes.remove_root_category("none");
+
     Ok(())
 }
 

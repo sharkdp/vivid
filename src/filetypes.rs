@@ -99,6 +99,11 @@ impl FileTypes {
             self.mapping.insert(filetype.clone(), category.clone());
         }
     }
+
+    pub fn remove_root_category(&mut self, to_remove: &str) {
+        self.mapping
+            .retain(|_, category| category.get(0).is_some_and(|c| c != to_remove));
+    }
 }
 
 #[cfg(test)]
@@ -137,7 +142,7 @@ mod tests {
                   - .ext1 # Untouched
                   - .ext2 # To be moved
                 bar:
-                  - .ext3 # Untouched
+                  - .ext3 # To be removed
             ",
         )
         .unwrap();
@@ -150,16 +155,20 @@ mod tests {
                   - .ext2 # Moved filetype
                 baz:
                   - .ext5 # New category
+                none:
+                  - .ext3 # Removed filetype
             ",
         )
         .unwrap();
 
         ft.merge(&to_merge);
+        ft.remove_root_category("none");
 
         assert_eq!(vec!["foo".to_string()], ft.mapping["*.ext1"]);
         assert_eq!(vec!["bar".to_string()], ft.mapping["*.ext2"]);
-        assert_eq!(vec!["bar".to_string()], ft.mapping["*.ext3"]);
+        assert!(!ft.mapping.contains_key("*.ext3"));
         assert_eq!(vec!["foo".to_string()], ft.mapping["*.ext4"]);
         assert_eq!(vec!["baz".to_string()], ft.mapping["*.ext5"]);
+        assert_eq!(ft.mapping.len(), 4)
     }
 }
