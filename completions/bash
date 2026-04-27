@@ -6,17 +6,15 @@ _vivid_completions() {
     cword=$COMP_CWORD
 
     local themes compshells
-    themes=$(vivid themes 2>/dev/null)
-    compshells=$(vivid completion --list 2>/dev/null)
-
     local commands="generate preview themes help completion"
-    local global_opts="-m --color-mode -d --database -h --help -V --version"
-
+    
     local subcmd=""
+    local subcmd_index=0
     local i
     for ((i=1; i < cword; i++)); do
         if [[ ! "${words[i]}" =~ ^- ]]; then
             subcmd="${words[i]}"
+            subcmd_index=$i
             break
         fi
     done
@@ -27,26 +25,42 @@ _vivid_completions() {
             return 0
             ;;
         -d|--database)
-            COMPREPLY=( $(compgen -f -- "$cur") ) # Use -f for files
+            COMPREPLY=( $(compgen -f -- "$cur") )
             return 0
             ;;
     esac
 
     if [[ "$cur" == -* ]]; then
-        local opts="$global_opts"
-        [[ "$subcmd" == "completion" ]] && opts="$opts -l --list"
-        COMPREPLY=( $(compgen -W "$opts" -- "$cur") )
+        if [[ -z "$subcmd" ]]; then
+            COMPREPLY=( $(compgen -W "-m --color-mode -d --database -h --help -V --version" -- "$cur") )
+        else
+            case "$subcmd" in
+                completion)
+                    COMPREPLY=( $(compgen -W "-l --list -h --help" -- "$cur") )
+                    ;;
+                *)
+                    COMPREPLY=( $(compgen -W "-h --help" -- "$cur") )
+                    ;;
+            esac
+        fi
         return 0
     fi
 
     if [[ -z "$subcmd" ]]; then
         COMPREPLY=( $(compgen -W "$commands" -- "$cur") )
     else
+        if [[ $cword -gt $((subcmd_index + 1)) ]]; then
+            COMPREPLY=()
+            return 0
+        fi
+
         case "$subcmd" in
             generate|preview)
+                themes=$(vivid themes 2>/dev/null)
                 COMPREPLY=( $(compgen -W "$themes" -- "$cur") )
                 ;;
             completion)
+                compshells=$(vivid completion --list 2>/dev/null)
                 COMPREPLY=( $(compgen -W "$compshells" -- "$cur") )
                 ;;
         esac
