@@ -53,7 +53,7 @@ impl Display for VividError {
             }
             VividError::NoCompletionShellProvided => write!(
                 fmt,
-                "Argument not optional: [shell]. Try `vivid completion --shells` for a list"
+                "Argument not optional: [shell]. Try `vivid completion --list` for a list"
             ),
             VividError::CouldNotFindCompletionFile(file_name) => write!(
                 fmt,

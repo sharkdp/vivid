@@ -22,7 +22,7 @@ use crate::color::ColorMode;
 use crate::error::{Result, VividError};
 use crate::filetypes::FileTypes;
 use crate::theme::Theme;
-use crate::completion::{get_completion_as_str};
+use crate::completion::{get_completion_as_str, get_available_completion_files};
 
 #[derive(RustEmbed)]
 #[folder = "themes/"]
@@ -170,6 +170,13 @@ fn cli() -> clap::Command {
                 Arg::new("shell")
                     .help("Name of the shell")
                     .action(ArgAction::Set)
+            )
+            .arg(
+                Arg::new("list")
+                    .long("list")
+                    .short('l')
+                    .action(ArgAction::SetTrue)
+                    .help("List available completion files"),
             ),
         )
 }
@@ -231,9 +238,14 @@ fn run() -> Result<()> {
             writeln!(stdout_lock, "{}", theme).ok();
         }
     } else if let Some(submatches) = matches.subcommand_matches("completion") {
-        if let Some(shell) = submatches.get_one::<String>("shell") {
+        if matches!(submatches.get_one::<bool>("list"), Some(true)) {
+            let compfiles = get_available_completion_files();
+            for file in compfiles {
+                writeln!(stdout_lock, "{}", file).ok();
+            }
+        } else if let Some(shell) = submatches.get_one::<String>("shell") {
             let comp = get_completion_as_str(&shell)?; // Result
-            print!("{}", comp);
+            write!(stdout_lock, "{}", comp).ok();
         } else {
             return Err(VividError::NoCompletionShellProvided);
         }

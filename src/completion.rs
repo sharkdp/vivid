@@ -24,3 +24,9 @@ pub fn get_completion_as_str(sh: &str) -> Result<String> {
         })?;
     Ok(contents.to_string())
 }
+
+pub fn get_available_completion_files() -> Vec<String> {
+    CompletionAssets::iter()
+        .map(|path| path.into_owned())
+        .collect()
+}
