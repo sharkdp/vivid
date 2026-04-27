@@ -20,6 +20,8 @@ pub enum VividError {
     CouldNotFindStyleFor(String),
     UnknownColor(String),
     InvalidFileName(String),
+    NoCompletionShellProvided,
+    CouldNotFindCompletionFile(String),
 }
 
 impl Display for VividError {
@@ -49,6 +51,14 @@ impl Display for VividError {
             VividError::InvalidFileName(file_name) => {
                 write!(fmt, "Invalid file name '{}'", file_name)
             }
+            VividError::NoCompletionShellProvided => write!(
+                fmt,
+                "Argument not optional: [shell]. Try `vivid completion --shells` for a list"
+            ),
+            VividError::CouldNotFindCompletionFile(file_name) => write!(
+                fmt,
+                "Could not find completion file '{}'.", file_name
+            ),
         }
     }
 }

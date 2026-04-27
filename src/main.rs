@@ -5,6 +5,7 @@ mod font_style;
 mod theme;
 mod types;
 mod util;
+mod completion;
 
 use etcetera::BaseStrategy;
 use rust_embed::RustEmbed;
@@ -21,6 +22,7 @@ use crate::color::ColorMode;
 use crate::error::{Result, VividError};
 use crate::filetypes::FileTypes;
 use crate::theme::Theme;
+use crate::completion::{get_completion_as_str};
 
 #[derive(RustEmbed)]
 #[folder = "themes/"]
@@ -163,6 +165,13 @@ fn cli() -> clap::Command {
             ),
         )
         .subcommand(Command::new("themes").about("Prints list of available themes"))
+        .subcommand(
+            Command::new("completion").about("Get shell completion").arg(
+                Arg::new("shell")
+                    .help("Name of the shell")
+                    .action(ArgAction::Set)
+            ),
+        )
 }
 
 fn run() -> Result<()> {
@@ -220,6 +229,13 @@ fn run() -> Result<()> {
     } else if matches.subcommand_matches("themes").is_some() {
         for theme in available_theme_names(&user_config_path)? {
             writeln!(stdout_lock, "{}", theme).ok();
+        }
+    } else if let Some(submatches) = matches.subcommand_matches("completion") {
+        if let Some(shell) = submatches.get_one::<String>("shell") {
+            let comp = get_completion_as_str(&shell)?; // Result
+            print!("{}", comp);
+        } else {
+            return Err(VividError::NoCompletionShellProvided);
         }
     }
     Ok(())
