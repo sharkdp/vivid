@@ -1,4 +1,5 @@
 mod color;
+mod completion;
 mod error;
 mod filetypes;
 mod font_style;
@@ -18,6 +19,7 @@ use clap::{
 };
 
 use crate::color::ColorMode;
+use crate::completion::{get_available_completion_files, get_completion_as_str};
 use crate::error::{Result, VividError};
 use crate::filetypes::FileTypes;
 use crate::theme::Theme;
@@ -163,6 +165,22 @@ fn cli() -> clap::Command {
             ),
         )
         .subcommand(Command::new("themes").about("Prints list of available themes"))
+        .subcommand(
+            Command::new("completion")
+                .about("Get shell completion")
+                .arg(
+                    Arg::new("shell")
+                        .help("Name of the shell")
+                        .action(ArgAction::Set),
+                )
+                .arg(
+                    Arg::new("list")
+                        .long("list")
+                        .short('l')
+                        .action(ArgAction::SetTrue)
+                        .help("List available completion files"),
+                ),
+        )
 }
 
 fn run() -> Result<()> {
@@ -220,6 +238,18 @@ fn run() -> Result<()> {
     } else if matches.subcommand_matches("themes").is_some() {
         for theme in available_theme_names(&user_config_path)? {
             writeln!(stdout_lock, "{}", theme).ok();
+        }
+    } else if let Some(submatches) = matches.subcommand_matches("completion") {
+        if matches!(submatches.get_one::<bool>("list"), Some(true)) {
+            let compfiles = get_available_completion_files();
+            for file in compfiles {
+                writeln!(stdout_lock, "{}", file).ok();
+            }
+        } else if let Some(shell) = submatches.get_one::<String>("shell") {
+            let comp = get_completion_as_str(&shell)?; // Result
+            write!(stdout_lock, "{}", comp).ok();
+        } else {
+            return Err(VividError::NoCompletionShellProvided);
         }
     }
     Ok(())

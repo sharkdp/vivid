@@ -1,0 +1,70 @@
+_vivid_completions() {
+    local cur prev words cword
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    words=("${COMP_WORDS[@]}")
+    cword=$COMP_CWORD
+
+    local themes compshells
+    local commands="generate preview themes help completion"
+    
+    local subcmd=""
+    local subcmd_index=0
+    local i
+    for ((i=1; i < cword; i++)); do
+        if [[ ! "${words[i]}" =~ ^- ]]; then
+            subcmd="${words[i]}"
+            subcmd_index=$i
+            break
+        fi
+    done
+
+    case "$prev" in
+        -m|--color-mode)
+            COMPREPLY=( $(compgen -W "8bit 24bit" -- "$cur") )
+            return 0
+            ;;
+        -d|--database)
+            COMPREPLY=( $(compgen -f -- "$cur") )
+            return 0
+            ;;
+    esac
+
+    if [[ "$cur" == -* ]]; then
+        if [[ -z "$subcmd" ]]; then
+            COMPREPLY=( $(compgen -W "-m --color-mode -d --database -h --help -V --version" -- "$cur") )
+        else
+            case "$subcmd" in
+                completion)
+                    COMPREPLY=( $(compgen -W "-l --list -h --help" -- "$cur") )
+                    ;;
+                *)
+                    COMPREPLY=( $(compgen -W "-h --help" -- "$cur") )
+                    ;;
+            esac
+        fi
+        return 0
+    fi
+
+    if [[ -z "$subcmd" ]]; then
+        COMPREPLY=( $(compgen -W "$commands" -- "$cur") )
+    else
+        if [[ $cword -gt $((subcmd_index + 1)) ]]; then
+            COMPREPLY=()
+            return 0
+        fi
+
+        case "$subcmd" in
+            generate|preview)
+                themes=$(vivid themes 2>/dev/null)
+                COMPREPLY=( $(compgen -W "$themes" -- "$cur") )
+                ;;
+            completion)
+                compshells=$(vivid completion --list 2>/dev/null)
+                COMPREPLY=( $(compgen -W "$compshells" -- "$cur") )
+                ;;
+        esac
+    fi
+}
+
+complete -F _vivid_completions vivid
