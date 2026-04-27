@@ -55,10 +55,9 @@ impl Display for VividError {
                 fmt,
                 "Argument not optional: [shell]. Try `vivid completion --list` for a list"
             ),
-            VividError::CouldNotFindCompletionFile(file_name) => write!(
-                fmt,
-                "Could not find completion file '{}'.", file_name
-            ),
+            VividError::CouldNotFindCompletionFile(file_name) => {
+                write!(fmt, "Could not find completion file '{}'.", file_name)
+            }
         }
     }
 }

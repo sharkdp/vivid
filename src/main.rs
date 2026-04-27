@@ -1,11 +1,11 @@
 mod color;
+mod completion;
 mod error;
 mod filetypes;
 mod font_style;
 mod theme;
 mod types;
 mod util;
-mod completion;
 
 use etcetera::BaseStrategy;
 use rust_embed::RustEmbed;
@@ -19,10 +19,10 @@ use clap::{
 };
 
 use crate::color::ColorMode;
+use crate::completion::{get_available_completion_files, get_completion_as_str};
 use crate::error::{Result, VividError};
 use crate::filetypes::FileTypes;
 use crate::theme::Theme;
-use crate::completion::{get_completion_as_str, get_available_completion_files};
 
 #[derive(RustEmbed)]
 #[folder = "themes/"]
@@ -166,18 +166,20 @@ fn cli() -> clap::Command {
         )
         .subcommand(Command::new("themes").about("Prints list of available themes"))
         .subcommand(
-            Command::new("completion").about("Get shell completion").arg(
-                Arg::new("shell")
-                    .help("Name of the shell")
-                    .action(ArgAction::Set)
-            )
-            .arg(
-                Arg::new("list")
-                    .long("list")
-                    .short('l')
-                    .action(ArgAction::SetTrue)
-                    .help("List available completion files"),
-            ),
+            Command::new("completion")
+                .about("Get shell completion")
+                .arg(
+                    Arg::new("shell")
+                        .help("Name of the shell")
+                        .action(ArgAction::Set),
+                )
+                .arg(
+                    Arg::new("list")
+                        .long("list")
+                        .short('l')
+                        .action(ArgAction::SetTrue)
+                        .help("List available completion files"),
+                ),
         )
 }
 
