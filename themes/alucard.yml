@@ -1,0 +1,144 @@
+colors:
+  # Based on 'Alucard Classic' theme (Light variant of Dracula)
+  # Official Specs: https://draculatheme.com/spec
+  
+  bg           :  'fffbeb' # Background
+  fg           :  '1f1f1f' # Foreground
+  selection    :  'cfcfde' # Selection
+  comment      :  '6c664b' # Comment / Current Line
+  red          :  'cb3a2a'
+  orange       :  'a34d14'
+  yellow       :  '846e15'
+  green        :  '14710a'
+  cyan         :  '036a96'
+  purple       :  '644ac9'
+  pink         :  'a3144d'
+
+core:
+  normal_text:
+    foreground: fg
+  
+  regular_file:
+    foreground: fg
+  
+  reset_to_normal:
+    foreground: orange
+
+  directory:
+    foreground: purple
+
+  symlink:
+    foreground: cyan
+
+  multi_hard_link: {}
+
+  fifo:
+    foreground: yellow
+    background: bg
+
+  socket:
+    foreground: pink
+    background: bg
+    font-style: bold
+
+  door:
+    foreground: pink
+    background: bg
+    font-style: bold
+
+  block_device:
+    foreground: yellow
+    background: bg
+    font-style: bold
+
+  character_device:
+    foreground: yellow
+    background: bg
+    font-style: bold
+
+  broken_symlink:
+    foreground: red
+    background: bg
+    font-style: bold
+
+  missing_symlink_target:
+    foreground: red
+    background: bg
+
+  setuid:
+    foreground: bg
+    background: red 
+
+  setgid:
+    foreground: fg
+    background: yellow
+
+  file_with_capability: {}
+
+  sticky_other_writable:
+    foreground: fg
+    background: green
+
+  other_writable:
+    foreground: purple
+    background: green
+
+  sticky:
+    foreground: bg
+    background: purple
+
+  executable_file:
+    foreground: green
+
+text:
+  special:
+    foreground: orange
+
+  todo:
+    foreground: orange
+    font-style: bold
+
+  licenses:
+    foreground: orange
+
+  configuration:
+    foreground: orange
+
+  other:
+    foreground: orange
+
+markup:
+  foreground: orange
+
+programming:
+  foreground: orange
+
+media:
+  image:
+    foreground: pink
+
+  audio:
+    foreground: cyan
+
+  video:
+    foreground: orange
+    font-style: bold
+
+  fonts:
+    foreground: orange
+
+  3d:
+    foreground: pink
+
+office:
+  foreground: orange
+
+archives:
+  foreground: red
+  font-style: bold
+
+executable:
+  foreground: green
+
+unimportant:
+  foreground: comment
