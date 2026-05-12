@@ -1,0 +1,40 @@
+#compdef vivid
+
+local -a themes
+themes=($(vivid themes 2>/dev/null))
+local -a compshells
+compshells=($(vivid completion --list 2>/dev/null))
+
+_arguments -s \
+    '(-m --color-mode)'{-m,--color-mode}'[Type of ANSI colors]:mode:(8bit 24bit)' \
+    '(-d --database)'{-d,--database}'[Path to filetypes database]:file:_files' \
+    '(-h --help)'{-h,--help}'[Show help]' \
+    '(-V --version)'{-V,--version}'[Show version]' \
+    '1: :->cmds' \
+    '*:: :->args'
+
+case $state in
+    cmds)
+        local -a subcmds
+        subcmds=(
+            'generate:Generate a LS_COLORS expression'
+            'preview:Preview a given theme'
+            'themes:List available themes'
+            'help:Show help'
+            'completion:Get shell completion script'
+        )
+        _describe -t commands 'vivid command' subcmds
+        ;;
+    args)
+        case $words[1] in
+            generate|preview)
+                _values 'themes' "${themes[@]}"
+                ;;
+            completion)
+                _arguments -s \
+                    '(-l --list)'{-l,--list}'[List supported shells]'
+                _values 'compshells' "${compshells[@]}"
+                ;;
+        esac
+        ;;
+esac
