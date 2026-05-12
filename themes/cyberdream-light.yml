@@ -1,6 +1,7 @@
 colors:
   black: "ffffff"
   green: "008b0c"
+  blue: "0057d1"
   purple: "a018ff"
   red: "d11500"
   yellow: "997b00"
@@ -21,7 +22,7 @@ core:
     foreground: orange
 
   directory:
-    foreground: purple
+    foreground: blue
 
   symlink:
     foreground: cyan
@@ -111,13 +112,13 @@ programming:
 
 media:
   image:
-    foreground: pink
-
-  audio:
     foreground: cyan
 
+  audio:
+    foreground: yellow
+
   video:
-    foreground: orange
+    foreground: yellow
     font-style: bold
 
   fonts:
@@ -127,10 +128,10 @@ media:
     foreground: pink
 
 office:
-  foreground: orange
+  foreground: green
 
 archives:
-  foreground: red
+  foreground: purple
   font-style: bold
 
 executable:
