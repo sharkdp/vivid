@@ -18,7 +18,8 @@
             ],
             "groupName": "github-actions",
             "automerge": false,
-            "schedule": ["* 0 1 * *"]
+            "schedule": ["* 0 1 * *"],
+            "pinDigests": true
         },
         {
             "matchUpdateTypes": [
