@@ -69,8 +69,11 @@ text:
       - .cfg
       - .conf
       - .config
+      - .hjson
       - .ini
       - .json
+      - .json5
+      - .jsonc
       - .rc
       - .tml
       - .toml
