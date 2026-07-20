@@ -18,7 +18,7 @@ jobs:
     name: Extract crate metadata
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v7
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
     - name: Extract crate information
       id: crate_metadata
       run: |
@@ -38,10 +38,10 @@ jobs:
     name: Ensure 'cargo fmt' has been run
     runs-on: ubuntu-latest
     steps:
-    - uses: dtolnay/rust-toolchain@stable
+    - uses: dtolnay/rust-toolchain@4cda84d5c5c54efe2404f9d843567869ab1699d4 # stable
       with:
         components: rustfmt
-    - uses: actions/checkout@v7
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
     - run: cargo fmt -- --check
 
   min_version:
@@ -50,10 +50,10 @@ jobs:
     needs: crate_metadata
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v7
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
     - name: Install rust toolchain (v${{ needs.crate_metadata.outputs.msrv }})
-      uses: dtolnay/rust-toolchain@master
+      uses: dtolnay/rust-toolchain@2c7215f132e9ebf062739d9130488b56d53c060c # master
       with:
         toolchain: ${{ needs.crate_metadata.outputs.msrv }}
         components: clippy
@@ -86,7 +86,7 @@ jobs:
       BUILD_CMD: cargo
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v7
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
     - name: Install prerequisites
       shell: bash
@@ -97,13 +97,13 @@ jobs:
         esac
 
     - name: Install Rust toolchain
-      uses: dtolnay/rust-toolchain@stable
+      uses: dtolnay/rust-toolchain@4cda84d5c5c54efe2404f9d843567869ab1699d4 # stable
       with:
         targets: ${{ matrix.job.target }}
 
     - name: Install cross
       if: matrix.job.use-cross
-      uses: taiki-e/install-action@v2
+      uses: taiki-e/install-action@a6b2e2dcd845ddd7f509ce4f3ed3d922b80cc5d9 # v2
       with:
         tool: cross
 
@@ -294,13 +294,13 @@ jobs:
         fakeroot dpkg-deb --build "${DPKG_DIR}" "${DPKG_PATH}"
 
     - name: "Artifact upload: tarball"
-      uses: actions/upload-artifact@v7.0.1
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: ${{ steps.package.outputs.PKG_NAME }}
         path: ${{ steps.package.outputs.PKG_PATH }}
 
     - name: "Artifact upload: Debian package"
-      uses: actions/upload-artifact@v7.0.1
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       if: steps.debian-package.outputs.DPKG_NAME
       with:
         name: ${{ steps.debian-package.outputs.DPKG_NAME }}
@@ -314,7 +314,7 @@ jobs:
         echo "IS_RELEASE=${IS_RELEASE}" >> $GITHUB_OUTPUT
 
     - name: Publish archives and packages
-      uses: softprops/action-gh-release@v3
+      uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3
       if: steps.is-release.outputs.IS_RELEASE
       with:
         files: |
