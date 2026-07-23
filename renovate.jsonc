@@ -10,7 +10,7 @@
         "automerge": true,
         "enabled": true
     },
-    "schedule": ["* 0 * * 0"],
+    "schedule": ["* * 1 * *"],
     "packageRules": [
         {
             "matchManagers": [
