@@ -16,7 +16,7 @@ rust-version = "1.88.0"
 yaml-rust = "0.4"
 lazy_static = "1.2"
 ansi_colours = "1.0"
-etcetera = "0.8"
+etcetera = "0.11"
 rust-embed = "8.4"
 
 [dependencies.clap]
