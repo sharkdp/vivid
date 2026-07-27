@@ -64,6 +64,14 @@ option when running `vivid`. This will generate interpolated 8-bit colors:
 export LS_COLORS="$(vivid -m 8-bit generate molokai)"
 ```
 
+### Italic font styles
+
+Italic styles are disabled by default. Enable them with the `--italic` option:
+
+``` bash
+export LS_COLORS="$(vivid --italic generate molokai)"
+```
+
 ### Re-using your terminal's color theme
 
 To match your terminal's existing color theme, you can use the `ansi` theme, which uses your terminal theme's 16-color ANSI palette. This way colors adapt to your terminal theme, such as when you switch between light and dark mode.

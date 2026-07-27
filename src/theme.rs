@@ -59,7 +59,7 @@ impl Theme {
             .ok_or_else(|| VividError::UnknownColor(color_str.to_string()))
     }
 
-    pub fn get_style(&self, category: CategoryRef) -> Result<String> {
+    pub fn get_style(&self, category: CategoryRef, use_italic: bool) -> Result<String> {
         if category.is_empty() {
             // TODO: use a non-empty collection data type to avoid this
             panic!("category should not be empty");
@@ -88,7 +88,7 @@ impl Theme {
         }
 
         if let Yaml::Hash(map) = item {
-            let font_style = FontStyle::from_yaml(map);
+            let font_style = FontStyle::from_yaml(map, use_italic);
 
             let foreground = map
                 .get(&Yaml::String("foreground".into()))
@@ -149,20 +149,33 @@ mod tests {
                     foreground: '000000'
 
                 t3:
-                    font-style: bold",
+                    font-style: bold
+
+                t4:
+                    font-style: [bold, italic]
+
+                t5:
+                    font-style: italic",
             ColorMode::BitDepth24,
         )
         .unwrap();
 
-        let style1 = theme.get_style(&["foo".into(), "bar".into()]).unwrap();
+        let style1 = theme
+            .get_style(&["foo".into(), "bar".into()], false)
+            .unwrap();
         assert_eq!("0;38;2;0;255;127", style1);
 
         let style2 = theme
-            .get_style(&["c1".into(), "c2".into(), "c3".into()])
+            .get_style(&["c1".into(), "c2".into(), "c3".into()], false)
             .unwrap();
         assert_eq!("0;38;2;0;0;0", style2);
 
-        let style3 = theme.get_style(&["t3".into()]).unwrap();
+        let style3 = theme.get_style(&["t3".into()], false).unwrap();
         assert_eq!("1", style3);
+
+        assert_eq!("1", theme.get_style(&["t4".into()], false).unwrap());
+        assert_eq!("1;3", theme.get_style(&["t4".into()], true).unwrap());
+        assert_eq!("0", theme.get_style(&["t5".into()], false).unwrap());
+        assert_eq!("3", theme.get_style(&["t5".into()], true).unwrap());
     }
 }
