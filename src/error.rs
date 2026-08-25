@@ -12,6 +12,7 @@ pub enum VividError {
     UnexpectedYamlType,
     ColorParseError(String),
     DuplicateFileType(String),
+    UnknownInclude(String),
     CouldNotLoadDatabaseFrom(String),
     CouldNotFindTheme(String),
     CouldNotLoadTheme(String),
@@ -32,6 +33,11 @@ impl Display for VividError {
                 write!(fmt, "Could not parse color string '{}'.", color_str)
             }
             VividError::DuplicateFileType(ft) => write!(fmt, "Duplicate file type '{}'.", ft),
+            VividError::UnknownInclude(target) => write!(
+                fmt,
+                "Unknown 'include' target '{}'. Only 'default' is supported.",
+                target
+            ),
             VividError::CouldNotLoadDatabaseFrom(path) => {
                 write!(fmt, "Could not load filetypes database from '{}'.", path)
             }
