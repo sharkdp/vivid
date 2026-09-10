@@ -75,7 +75,7 @@ export LS_COLORS="$(vivid generate ansi)"
 ### Customization
 
 Custom [`filetypes.yml` databases](config/filetypes.yml) can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_HOME/vivid` on POSIX systems,
-or in `%APPDATA%\vivid` on Windows systems.
+or in `%APPDATA%\vivid` on Windows systems. You can also use the `--add-filetypes` argument to add additional mappings, move existing filetypes into a different category, or remove them by assigning them to the `none` category.
 
 Custom color themes go into a `themes` subfolder, respectively.  You can also specify an explicit path to your custom theme: `vivid generate path/to/my_theme.yml`.
 As a starting point, you can use one of the [bundled themes](themes/).
