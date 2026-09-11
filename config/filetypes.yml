@@ -529,7 +529,7 @@ media:
       - .3ds
       - .3mf # 3D manufacturing format
       - .alembic
-      - .amf # Additive Manifacturing File
+      - .amf # Additive Manufacturing File
       - .dae # Collada
       - .dwg
       - .fbx
