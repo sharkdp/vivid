@@ -33,10 +33,10 @@ impl FontStyle {
     ///
     /// Panics if the yaml value is neither a string or
     /// a yaml array
-    pub fn from_yaml(map: &Hash) -> Self {
-        match map.get(&Yaml::String("font-style".into())) {
+    pub fn from_yaml(map: &Hash, use_italic: bool) -> Self {
+        let mut styles = match map.get(&Yaml::String("font-style".into())) {
             Some(value) => match value {
-                Yaml::String(s) => Self(vec![ANSI_STYLES[s.as_str()]]),
+                Yaml::String(s) => vec![ANSI_STYLES[s.as_str()]],
                 Yaml::Array(array) => {
                     let mut vec = Vec::with_capacity(array.len());
                     for item in array {
@@ -46,12 +46,19 @@ impl FontStyle {
                                 .expect("font_style should be a string or an array of strings")],
                         );
                     }
-                    Self(vec)
+                    vec
                 }
                 _ => panic!("font-style should be a string or an array of strings"),
             },
-            None => Self(vec![0]),
+            None => vec![0],
+        };
+        if !use_italic {
+            styles.retain(|style| *style != 3);
         }
+        if styles.is_empty() {
+            styles.push(0);
+        }
+        Self(styles)
     }
 }
 
