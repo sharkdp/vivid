@@ -95,7 +95,7 @@ sudo dpkg -i vivid_0.10.1_amd64.deb
 
 ### On Arch Linux
 
-You can install `vivid` from [the official package repository](https://www.archlinux.org/packages/community/x86_64/vivid/):
+You can install `vivid` from [the official package repository](https://archlinux.org/packages/extra/x86_64/vivid/):
 
 ``` bash
 pacman -S vivid
@@ -119,7 +119,7 @@ pkg install vivid
 
 ### On macOS
 
-You can install `vivid` from [Homebrew](https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/vivid.rb):
+You can install `vivid` from [Homebrew](https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/v/vivid.rb):
 
 ``` bash
 brew install vivid
