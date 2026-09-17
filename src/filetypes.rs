@@ -36,7 +36,33 @@ impl FileTypes {
         let docs = YamlLoader::load_from_str(contents)?;
         let doc = &docs[0];
 
+        // A database can start from the bundled defaults by adding an `include: default`
+        // key at the top level. The remaining entries are then treated as additions or
+        // overrides on top of those defaults, so users only need to list what they want
+        // to change instead of copying the whole database.
+        if let Yaml::Hash(hash) = doc {
+            let include_key = Yaml::String("include".to_string());
+            if let Some(include) = hash.get(&include_key) {
+                let mut base = Self::included_base(include)?;
+
+                let mut overrides = hash.clone();
+                overrides.remove(&include_key);
+                let extra = Self::get_mapping(&Yaml::Hash(overrides), &vec![])?;
+                base.mapping.extend(extra.mapping);
+
+                return Ok(base);
+            }
+        }
+
         Self::get_mapping(doc, &vec![])
+    }
+
+    fn included_base(include: &Yaml) -> Result<FileTypes> {
+        match include {
+            Yaml::String(name) if name == "default" => Self::from_embedded(),
+            Yaml::String(name) => Err(VividError::UnknownInclude(name.clone())),
+            _ => Err(VividError::UnexpectedYamlType),
+        }
     }
 
     fn get_code(filetype: &str) -> String {
@@ -121,5 +147,61 @@ mod tests {
             vec!["bar".to_string(), "baz".to_string()],
             ft.mapping["*.ext3"]
         );
+    }
+
+    #[test]
+    fn include_default_overrides_existing_extension() {
+        let ft = FileTypes::from_string(
+            "
+                include: default
+
+                programming:
+                  source:
+                    objective_c: [.m]
+            ",
+        )
+        .unwrap();
+
+        // `.m` now resolves to Objective-C instead of the default Matlab mapping.
+        assert_eq!(
+            vec![
+                "programming".to_string(),
+                "source".to_string(),
+                "objective_c".to_string()
+            ],
+            ft.mapping["*.m"]
+        );
+
+        // Extensions that were not touched keep their default categories.
+        assert_eq!(
+            vec![
+                "programming".to_string(),
+                "source".to_string(),
+                "rust".to_string()
+            ],
+            ft.mapping["*.rs"]
+        );
+    }
+
+    #[test]
+    fn include_default_adds_new_extension() {
+        let ft = FileTypes::from_string(
+            "
+                include: default
+
+                programming:
+                  source:
+                    objective_c: [.mm]
+            ",
+        )
+        .unwrap();
+
+        assert!(ft.mapping.contains_key("*.mm"));
+        assert!(ft.mapping.contains_key("*.rs"));
+    }
+
+    #[test]
+    fn unknown_include_target_is_an_error() {
+        assert!(FileTypes::from_string("include: nonsense\n").is_err());
     }
 }

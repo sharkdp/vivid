@@ -77,6 +77,17 @@ export LS_COLORS="$(vivid generate ansi)"
 Custom [`filetypes.yml` databases](config/filetypes.yml) can be placed in `/usr/share/vivid`, `$HOME/.config/vivid`, or `$XDG_CONFIG_HOME/vivid` on POSIX systems,
 or in `%APPDATA%\vivid` on Windows systems.
 
+If you only want to tweak a few entries instead of maintaining a full copy of the database, start your `filetypes.yml` with `include: default`. The bundled defaults are loaded first, and the remaining entries are applied on top of them as additions or overrides:
+
+```yaml
+include: default
+
+# Treat `.m` as Objective-C instead of the default (Matlab):
+programming:
+  source:
+    objective_c: [.m]
+```
+
 Custom color themes go into a `themes` subfolder, respectively.  You can also specify an explicit path to your custom theme: `vivid generate path/to/my_theme.yml`.
 As a starting point, you can use one of the [bundled themes](themes/).
 
