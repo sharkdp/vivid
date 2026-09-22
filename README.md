@@ -44,13 +44,12 @@ set -gx LS_COLORS (vivid generate molokai)
 
 ### Theme preview
 
-To try all available themes with your current directory:
+To try all available themes with GNU `ls` in your current directory:
 
 ``` bash
 for theme in $(vivid themes); do
     echo "Theme: $theme"
-    LS_COLORS=$(vivid generate $theme)
-    ls
+    LS_COLORS="$(vivid generate "$theme")" ls --color=always
     echo
 done
 ```
@@ -137,7 +136,7 @@ Check out the [release page](https://github.com/sharkdp/vivid/releases) for bina
 
 ### From source
 
-If you have Rust 1.54 or higher, you can install `vivid` from source via `cargo`:
+If you have Rust 1.88.0 or higher, you can install `vivid` from source via `cargo`:
 ``` bash
 cargo install vivid
 ```
