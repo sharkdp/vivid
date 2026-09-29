@@ -7,6 +7,8 @@ use lazy_static::lazy_static;
 
 use yaml_rust::{yaml::Hash, Yaml};
 
+use crate::error::{Result, VividError};
+
 lazy_static! {
     static ref ANSI_STYLES: HashMap<&'static str, u8> = {
         let mut m = HashMap::new();
@@ -29,29 +31,34 @@ pub struct FontStyle(Vec<u8>);
 impl FontStyle {
     /// Creates a FontStyle from the yaml
     ///
-    /// # Panics
+    /// # Errors
     ///
-    /// Panics if the yaml value is neither a string or
-    /// a yaml array
-    pub fn from_yaml(map: &Hash) -> Self {
+    /// Returns an error if the `font-style` value is neither a string nor an
+    /// array of strings, or if a style name is not a known font style.
+    pub fn from_yaml(map: &Hash) -> Result<Self> {
         match map.get(&Yaml::String("font-style".into())) {
             Some(value) => match value {
-                Yaml::String(s) => Self(vec![ANSI_STYLES[s.as_str()]]),
-                Yaml::Array(array) => {
-                    let mut vec = Vec::with_capacity(array.len());
-                    for item in array {
-                        vec.push(
-                            ANSI_STYLES[item
-                                .as_str()
-                                .expect("font_style should be a string or an array of strings")],
-                        );
-                    }
-                    Self(vec)
-                }
-                _ => panic!("font-style should be a string or an array of strings"),
+                Yaml::String(_) => Ok(Self(vec![Self::style_code(value)?])),
+                Yaml::Array(array) => array
+                    .iter()
+                    .map(Self::style_code)
+                    .collect::<Result<Vec<_>>>()
+                    .map(Self),
+                _ => Err(VividError::UnexpectedYamlTypeFor("font-style")),
             },
-            None => Self(vec![0]),
+            None => Ok(Self(vec![0])),
         }
+    }
+
+    /// Returns the ANSI code for a single font style yaml value
+    fn style_code(item: &Yaml) -> Result<u8> {
+        let name = item
+            .as_str()
+            .ok_or(VividError::UnexpectedYamlTypeFor("font-style"))?;
+        ANSI_STYLES
+            .get(name)
+            .copied()
+            .ok_or_else(|| VividError::UnknownFontStyle(name.to_string()))
     }
 }
 
