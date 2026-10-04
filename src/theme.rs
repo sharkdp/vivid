@@ -88,17 +88,23 @@ impl Theme {
         }
 
         if let Yaml::Hash(map) = item {
-            let font_style = FontStyle::from_yaml(map);
+            let font_style = FontStyle::from_yaml(map)?;
 
-            let foreground = map
-                .get(&Yaml::String("foreground".into()))
-                .map(|s| s.as_str().unwrap());
+            let foreground = map.get(&Yaml::String("foreground".into())).map(|value| {
+                value
+                    .as_str()
+                    .ok_or(VividError::UnexpectedYamlTypeFor("foreground"))
+            });
+            let foreground = transpose(foreground)?;
 
             let foreground = transpose(foreground.map(|fg| self.get_color(fg)))?;
 
-            let background = map
-                .get(&Yaml::String("background".into()))
-                .map(|s| s.as_str().expect("'background' value should be a string"));
+            let background = map.get(&Yaml::String("background".into())).map(|value| {
+                value
+                    .as_str()
+                    .ok_or(VividError::UnexpectedYamlTypeFor("background"))
+            });
+            let background = transpose(background)?;
 
             let background = transpose(background.map(|fg| self.get_color(fg)))?;
 
@@ -164,5 +170,130 @@ mod tests {
 
         let style3 = theme.get_style(&["t3".into()]).unwrap();
         assert_eq!("1", style3);
+    }
+
+    #[test]
+    fn multiple_font_styles() {
+        let theme = Theme::from_string(
+            "
+                colors: {}
+
+                foo:
+                  font-style: [bold, underline]",
+            ColorMode::BitDepth24,
+        )
+        .unwrap();
+
+        let style = theme.get_style(&["foo".into()]).unwrap();
+        assert_eq!("1;4", style);
+    }
+
+    #[test]
+    fn unknown_font_style() {
+        let theme = Theme::from_string(
+            "
+                colors: {}
+
+                foo:
+                  font-style: nosuchstyle",
+            ColorMode::BitDepth24,
+        )
+        .unwrap();
+
+        let err = theme.get_style(&["foo".into()]).unwrap_err();
+        assert_eq!("Unknown font-style 'nosuchstyle'.", err.to_string());
+    }
+
+    #[test]
+    fn unknown_font_style_in_list() {
+        let theme = Theme::from_string(
+            "
+                colors: {}
+
+                foo:
+                  font-style: [bold, nosuchstyle]",
+            ColorMode::BitDepth24,
+        )
+        .unwrap();
+
+        let err = theme.get_style(&["foo".into()]).unwrap_err();
+        assert_eq!("Unknown font-style 'nosuchstyle'.", err.to_string());
+    }
+
+    #[test]
+    fn invalid_font_style_type() {
+        let theme = Theme::from_string(
+            "
+                colors: {}
+
+                foo:
+                  font-style: 5",
+            ColorMode::BitDepth24,
+        )
+        .unwrap();
+
+        let err = theme.get_style(&["foo".into()]).unwrap_err();
+        assert_eq!(
+            "Unexpected type for 'font-style' in theme file.",
+            err.to_string()
+        );
+    }
+
+    #[test]
+    fn invalid_font_style_list_item() {
+        let theme = Theme::from_string(
+            "
+                colors: {}
+
+                foo:
+                  font-style: [bold, 5]",
+            ColorMode::BitDepth24,
+        )
+        .unwrap();
+
+        let err = theme.get_style(&["foo".into()]).unwrap_err();
+        assert_eq!(
+            "Unexpected type for 'font-style' in theme file.",
+            err.to_string()
+        );
+    }
+
+    #[test]
+    fn invalid_foreground_type() {
+        let theme = Theme::from_string(
+            "
+                colors: {}
+
+                foo:
+                  foreground: 12345",
+            ColorMode::BitDepth24,
+        )
+        .unwrap();
+
+        let err = theme.get_style(&["foo".into()]).unwrap_err();
+        assert_eq!(
+            "Unexpected type for 'foreground' in theme file.",
+            err.to_string()
+        );
+    }
+
+    #[test]
+    fn invalid_background_type() {
+        let theme = Theme::from_string(
+            "
+                colors: {}
+
+                foo:
+                  background:
+                    x: y",
+            ColorMode::BitDepth24,
+        )
+        .unwrap();
+
+        let err = theme.get_style(&["foo".into()]).unwrap_err();
+        assert_eq!(
+            "Unexpected type for 'background' in theme file.",
+            err.to_string()
+        );
     }
 }
