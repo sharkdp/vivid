@@ -93,6 +93,17 @@ impl FileTypes {
 
         Ok(FileTypes { mapping })
     }
+
+    pub fn merge(&mut self, filetypes: &FileTypes) {
+        for (filetype, category) in filetypes.mapping.iter() {
+            self.mapping.insert(filetype.clone(), category.clone());
+        }
+    }
+
+    pub fn remove_root_category(&mut self, to_remove: &str) {
+        self.mapping
+            .retain(|_, category| category.get(0).is_some_and(|c| c != to_remove));
+    }
 }
 
 #[cfg(test)]
@@ -121,5 +132,43 @@ mod tests {
             vec!["bar".to_string(), "baz".to_string()],
             ft.mapping["*.ext3"]
         );
+    }
+
+    #[test]
+    fn merge() {
+        let mut ft = FileTypes::from_string(
+            "
+                foo:
+                  - .ext1 # Untouched
+                  - .ext2 # To be moved
+                bar:
+                  - .ext3 # To be removed
+            ",
+        )
+        .unwrap();
+
+        let to_merge = FileTypes::from_string(
+            "
+                foo:
+                  - .ext4 # New filetype
+                bar:
+                  - .ext2 # Moved filetype
+                baz:
+                  - .ext5 # New category
+                none:
+                  - .ext3 # Removed filetype
+            ",
+        )
+        .unwrap();
+
+        ft.merge(&to_merge);
+        ft.remove_root_category("none");
+
+        assert_eq!(vec!["foo".to_string()], ft.mapping["*.ext1"]);
+        assert_eq!(vec!["bar".to_string()], ft.mapping["*.ext2"]);
+        assert!(!ft.mapping.contains_key("*.ext3"));
+        assert_eq!(vec!["foo".to_string()], ft.mapping["*.ext4"]);
+        assert_eq!(vec!["baz".to_string()], ft.mapping["*.ext5"]);
+        assert_eq!(ft.mapping.len(), 4)
     }
 }
