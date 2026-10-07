@@ -176,6 +176,13 @@ fn run() -> Result<()> {
     let user_config_path = basedirs.config_dir().join("vivid");
 
     let filetypes = load_filetypes_database(&matches, &user_config_path)?;
+    let sorted_pairs = {
+        let mut v: Vec<_> = filetypes.mapping.iter().collect();
+        // Sort the keys deterministically.  Shorter keys come first so that e.g.
+        // *README.md will override *.md.
+        v.sort_unstable_by_key(|(filetype, _)| (filetype.len(), filetype.as_str()));
+        v
+    };
 
     let stdout = io::stdout();
     let mut stdout_lock = stdout.lock();
@@ -183,16 +190,11 @@ fn run() -> Result<()> {
     if let Some(sub_matches) = matches.subcommand_matches("generate") {
         let theme = load_theme(sub_matches, &user_config_path, color_mode)?;
 
-        let mut mapping = filetypes
-            .mapping
+        let mapping = sorted_pairs
             .iter()
             .map(|(filetype, category)| (filetype, theme.get_style(category)))
             .map(|(filetype, style)| style.map(|style| (filetype, style)))
             .collect::<Result<Vec<_>>>()?;
-
-        // Sort the keys deterministically.  Shorter keys come first so that e.g.
-        // *README.md will override *.md.
-        mapping.sort_unstable_by_key(|&(filetype, _)| (filetype.len(), filetype));
 
         let ls_colors: Vec<_> = mapping
             .iter()
@@ -203,17 +205,17 @@ fn run() -> Result<()> {
     } else if let Some(sub_matches) = matches.subcommand_matches("preview") {
         let theme = load_theme(sub_matches, &user_config_path, color_mode)?;
 
-        let mut pairs = filetypes.mapping.iter().collect::<Vec<_>>();
-        pairs.sort_by_key(|(_, category)| *category);
+        let mut grouped_by_category = sorted_pairs.clone();
+        grouped_by_category.sort_by_key(|(_, category)| *category);
 
-        for (entry, category) in pairs {
+        for (filetype, category) in grouped_by_category {
             let ansi_code = theme.get_style(category).unwrap_or_else(|_| "0".into());
             writeln!(
                 stdout_lock,
                 "{}: \x1b[{}m{}\x1b[0m",
                 category.join("."),
                 ansi_code,
-                entry
+                filetype
             )
             .ok();
         }
