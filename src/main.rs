@@ -146,6 +146,13 @@ fn cli() -> clap::Command {
                 .value_name("path")
                 .help("Path to filetypes database (filetypes.yml)"),
         )
+        .arg(
+            Arg::new("italic")
+                .long("italic")
+                .action(ArgAction::SetTrue)
+                .global(true)
+                .help("Use italic font styles"),
+        )
         .subcommand(
             Command::new("generate")
                 .about("Generate a LS_COLORS expression")
@@ -171,6 +178,7 @@ fn run() -> Result<()> {
         Some("8-bit") => ColorMode::BitDepth8,
         _ => ColorMode::BitDepth24,
     };
+    let use_italic = matches.get_flag("italic");
 
     let basedirs = etcetera::choose_base_strategy().expect("Could not get home directory");
     let user_config_path = basedirs.config_dir().join("vivid");
@@ -186,7 +194,7 @@ fn run() -> Result<()> {
         let mut mapping = filetypes
             .mapping
             .iter()
-            .map(|(filetype, category)| (filetype, theme.get_style(category)))
+            .map(|(filetype, category)| (filetype, theme.get_style(category, use_italic)))
             .map(|(filetype, style)| style.map(|style| (filetype, style)))
             .collect::<Result<Vec<_>>>()?;
 
@@ -207,7 +215,9 @@ fn run() -> Result<()> {
         pairs.sort_by_key(|(_, category)| *category);
 
         for (entry, category) in pairs {
-            let ansi_code = theme.get_style(category).unwrap_or_else(|_| "0".into());
+            let ansi_code = theme
+                .get_style(category, use_italic)
+                .unwrap_or_else(|_| "0".into());
             writeln!(
                 stdout_lock,
                 "{}: \x1b[{}m{}\x1b[0m",
