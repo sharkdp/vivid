@@ -51,6 +51,23 @@ fn load_filetypes_database(matches: &ArgMatches, user_config_path: &Path) -> Res
     }
 }
 
+fn merge_additional_filetypes(matches: &ArgMatches, filetypes: &mut FileTypes) -> Result<()> {
+    for path in matches
+        .get_many::<String>("add-filetypes")
+        .unwrap_or_default()
+        .map(Path::new)
+    {
+        let addition = FileTypes::from_path(path)?;
+        filetypes.merge(&addition);
+    }
+
+    // Remove the "none" category and its descendants, so that existing filetypes
+    // can be excluded from the final output.
+    filetypes.remove_root_category("none");
+
+    Ok(())
+}
+
 fn available_theme_names(user_config_path: &Path) -> Result<Vec<String>> {
     let theme_path_user = user_config_path.join("themes");
     let theme_path_system = PathBuf::from(THEME_PATH_SYSTEM);
@@ -146,6 +163,13 @@ fn cli() -> clap::Command {
                 .value_name("path")
                 .help("Path to filetypes database (filetypes.yml)"),
         )
+        .arg(
+            Arg::new("add-filetypes")
+                .long("add-filetypes")
+                .help("Additional filetypes to add to the database")
+                .action(ArgAction::Append)
+                .value_name("path"),
+        )
         .subcommand(
             Command::new("generate")
                 .about("Generate a LS_COLORS expression")
@@ -175,7 +199,8 @@ fn run() -> Result<()> {
     let basedirs = etcetera::choose_base_strategy().expect("Could not get home directory");
     let user_config_path = basedirs.config_dir().join("vivid");
 
-    let filetypes = load_filetypes_database(&matches, &user_config_path)?;
+    let mut filetypes = load_filetypes_database(&matches, &user_config_path)?;
+    merge_additional_filetypes(&matches, &mut filetypes)?;
 
     let stdout = io::stdout();
     let mut stdout_lock = stdout.lock();
