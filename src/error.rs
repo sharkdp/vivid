@@ -19,6 +19,8 @@ pub enum VividError {
     EmptyThemeFile,
     CouldNotFindStyleFor(String),
     UnknownColor(String),
+    UnknownFontStyle(String),
+    UnexpectedYamlTypeFor(&'static str),
     InvalidFileName(String),
 }
 
@@ -46,6 +48,12 @@ impl Display for VividError {
                 write!(fmt, "Could not find style for category '{}'", category)
             }
             VividError::UnknownColor(color) => write!(fmt, "Unknown color '{}'", color),
+            VividError::UnknownFontStyle(style) => {
+                write!(fmt, "Unknown font-style '{}'.", style)
+            }
+            VividError::UnexpectedYamlTypeFor(field) => {
+                write!(fmt, "Unexpected type for '{}' in theme file.", field)
+            }
             VividError::InvalidFileName(file_name) => {
                 write!(fmt, "Invalid file name '{}'", file_name)
             }
