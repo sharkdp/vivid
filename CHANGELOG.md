@@ -2,6 +2,8 @@
 
 ## Changes
 
+- A custom `filetypes.yml` can now start from the bundled defaults with `include: default` and only list the entries it wants to add or override, see #59 (@ChrisJr404)
+
 
 ## New filetypes
 
