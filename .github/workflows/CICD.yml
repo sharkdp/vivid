@@ -38,7 +38,7 @@ jobs:
     name: Ensure 'cargo fmt' has been run
     runs-on: ubuntu-latest
     steps:
-    - uses: dtolnay/rust-toolchain@4cda84d5c5c54efe2404f9d843567869ab1699d4 # stable
+    - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
       with:
         components: rustfmt
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -53,7 +53,7 @@ jobs:
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
     - name: Install rust toolchain (v${{ needs.crate_metadata.outputs.msrv }})
-      uses: dtolnay/rust-toolchain@2c7215f132e9ebf062739d9130488b56d53c060c # master
+      uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # master
       with:
         toolchain: ${{ needs.crate_metadata.outputs.msrv }}
         components: clippy
@@ -99,13 +99,13 @@ jobs:
         esac
 
     - name: Install Rust toolchain
-      uses: dtolnay/rust-toolchain@4cda84d5c5c54efe2404f9d843567869ab1699d4 # stable
+      uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
       with:
         targets: ${{ matrix.job.target }}
 
     - name: Install cross
       if: matrix.job.use-cross
-      uses: taiki-e/install-action@7572810d7dd469b651bb7793945692cf78da5dd7 # v2
+      uses: taiki-e/install-action@3a3daafd3b7f23b8f65d9f5ba2db203fb59b79e2 # v2
       with:
         tool: cross
 
@@ -296,13 +296,13 @@ jobs:
         fakeroot dpkg-deb --build "${DPKG_DIR}" "${DPKG_PATH}"
 
     - name: "Artifact upload: tarball"
-      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:
         name: ${{ steps.package.outputs.PKG_NAME }}
         path: ${{ steps.package.outputs.PKG_PATH }}
 
     - name: "Artifact upload: Debian package"
-      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       if: steps.debian-package.outputs.DPKG_NAME
       with:
         name: ${{ steps.debian-package.outputs.DPKG_NAME }}
@@ -316,7 +316,7 @@ jobs:
         echo "IS_RELEASE=${IS_RELEASE}" >> $GITHUB_OUTPUT
 
     - name: Publish archives and packages
-      uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3
+      uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3 # v3
       if: steps.is-release.outputs.IS_RELEASE
       with:
         files: |
