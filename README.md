@@ -29,7 +29,7 @@ for older terminal emulators.
 
 ## Usage
 
-Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your shells RC file
+Choose a [color theme](themes/) (for example: `molokai`). Then, add this to your shell's RC file
 (`~/.bashrc`, `~/.zshrc`, …):
 
 ``` bash
